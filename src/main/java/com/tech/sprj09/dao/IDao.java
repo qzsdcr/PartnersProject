@@ -1,9 +1,11 @@
 package com.tech.sprj09.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.tech.sprj09.dto.BoardDto;
 import com.tech.sprj09.dto.MemberDto;
+import com.tech.sprj09.dto.MenuDto;
 import com.tech.sprj09.dto.SikdangDto;
 
 public interface IDao {
@@ -69,5 +71,6 @@ public interface IDao {
 
 	public void sikdedelete(String bid);
 
+	public List<MenuDto> selectMenuList(int sikno); //메뉴 리스트 
 
 }
