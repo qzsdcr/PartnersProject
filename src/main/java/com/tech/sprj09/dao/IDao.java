@@ -3,7 +3,6 @@ package com.tech.sprj09.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tech.sprj09.dto.BoardDto;
 import com.tech.sprj09.dto.MemberDto;
 import com.tech.sprj09.dto.MenuDto;
 import com.tech.sprj09.dto.SikdangDto;
