@@ -1,0 +1,126 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.tech.sprj09.dao.IDao">
+
+	<!-- admin list -->
+	<sql id="includelist1">
+		<choose>
+			<when test="param2==1">
+				WHERE MEMID LIKE '%'||#{param1}||'%'
+			</when>
+			<when test="param2==2">
+				WHERE MEMNAME LIKE '%'||#{param1}||'%'
+			</when>
+			<when test="param2==null">
+
+			</when>
+			<otherwise>
+
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="mlist" resultType="com.tech.sprj09.dto.MemberDto"
+		parameterType="String">
+
+		SELECT MEMNO,MEMID,MEMPASS,MEMNAME,MEMBIRTH,MEMSEX,
+		MEMEMAIL,MEMPNUM,MEMADDRESS,MEMLIKEMENU,
+		MEMJOINDATE,MEMADMIN
+		FROM
+		MEMBER
+
+		<include refid="includelist1" />
+
+		ORDER BY MEMNO ASC
+	</select>
+
+
+	<select id="memberview"
+		resultType="com.tech.sprj09.dto.MemberDto">
+		SELECT MEMNO,MEMID,MEMPASS,MEMNAME,MEMBIRTH,MEMSEX,
+		MEMEMAIL,MEMPNUM,MEMADDRESS,MEMLIKEMENU,
+		MEMJOINDATE,MEMADMIN FROM
+		MEMBER
+		WHERE MEMNO=#{param1}
+	</select>
+
+	<delete id="memberdelete">
+		DELETE FROM MEMBER WHERE
+		MEMNO=#{param1}
+	</delete>
+
+	<update id="membermodify">
+		UPDATE MEMBER SET MEMADMIN=#{param2} WHERE
+		MEMNO=#{param1}
+	</update>
+
+	<select id="clist" resultType="com.tech.sprj09.dto.MemberDto">
+
+		SELECT MEMADMIN AS LV,
+		COUNT(MEMNO) AS SUM FROM MEMBER GROUP BY MEMADMIN
+
+	</select>
+
+
+	<select id="sikdangchartlist"
+		resultType="com.tech.sprj09.dto.SikdangDto">
+
+		SELECT * FROM (SELECT SIKNAME,SIKHIT, RANK() OVER(ORDER BY SIKHIT
+		DESC) AS RNK FROM SIKDANG)
+		<![CDATA[WHERE RNK <=3]]>
+
+	</select>
+
+
+	<sql id="includelist2">
+		<choose>
+			<when test="param2==3">
+				WHERE SIKNO LIKE '%'||#{param1}||'%'
+			</when>
+			<when test="param2==4">
+				WHERE SIKNAME LIKE '%'||#{param1}||'%'
+			</when>
+			<when test="param2==null">
+
+			</when>
+			<otherwise>
+
+			</otherwise>
+		</choose>
+	</sql>
+
+
+
+	<select id="slist" resultType="com.tech.sprj09.dto.SikdangDto">
+
+		SELECT
+		SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE
+		FROM SIKDANG
+		<include refid="includelist2" />
+		ORDER BY SIKNO ASC
+
+
+	</select>
+
+	<select id="sikdeview"
+		resultType="com.tech.sprj09.dto.SikdangDto">
+		SELECT
+		SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
+		FROM SIKDANG
+		WHERE SIKNO=#{param1}
+	</select>
+
+	<update id="sikdemodify">
+		UPDATE SIKDANG SET SIKOPENCLOSE=#{param2} WHERE
+		SIKNO=#{param1}
+	</update>
+	<delete id="sikdedelete">
+		DELETE FROM SIKDANG WHERE
+		SIKNO=#{param1}
+	</delete>
+
+</mapper>
