@@ -78,5 +78,9 @@ public interface IDao {
 	
 	//메뉴 리스트 
 	public List<MenuDto> selectMenuList(int sikno); 
+	public List<MenuDto> selectMenuList();
+
+	public void menuwrite(String menulist, String menudate, String menufilesrc);
+	
 
 }
