@@ -5,13 +5,26 @@ import java.util.List;
 
 import com.tech.sprj09.dto.MemberDto;
 import com.tech.sprj09.dto.MenuDto;
+import com.tech.sprj09.dto.ReviewDto;
 import com.tech.sprj09.dto.SikdangDto;
 
 public interface IDao {
 
-	
+	public ArrayList<SikdangDto> list(int start,int end,String sk,String selNum);
 	   
+	public SikdangDto contentview(String gsikno);
 	
+	public ArrayList<ReviewDto> review(String memno,String sikno,String reviewtitle,String reviewcontent,String spoon,String reviewfile);
+	
+	public ArrayList<ReviewDto> reviewlist();
+	
+	public int selectBoardTotCount1(String searchKeyword);
+	
+	public int selectBoardTotCount2(String searchKeyword);
+	
+	public int selectBoardTotCount3(String searchKeyword);
+	
+	public int selectBoardTotCount4(String searchKeyword);
 	
 	
 	

@@ -29,7 +29,7 @@ public class MenuController {
 	private final MenuService menuService;
 	
 	// 목록표현
-	@RequestMapping("/list")
+	@RequestMapping("/menu")
 	public String list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("========menulist=======");
 		// db에서 데이터 가져오기
