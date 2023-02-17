@@ -16,7 +16,7 @@ import com.tech.sprj09.dao.IDao;
 public class JoinService implements BServiceInter {
 	
 	private SqlSession sqlSession;
-	
+
 	public JoinService(SqlSession sqlSession) {
 		this.sqlSession=sqlSession;
 	}
@@ -28,7 +28,9 @@ public class JoinService implements BServiceInter {
 //		model을 Map로 변환
 		Map<String, Object> map=model.asMap();
 		HttpServletRequest request=
-				(HttpServletRequest)map.get("request");
+				(HttpServletRequest)map.get("request");		
+	    
+	    //param값 저장
 		String memid=request.getParameter("memid"); //아이디1
 		String mempass=request.getParameter("mempass"); //비밀번호2
 		String memname=request.getParameter("memname"); //이름3
@@ -39,18 +41,25 @@ public class JoinService implements BServiceInter {
 		String memaddress=request.getParameter("memaddress"); // 선호지역8
 		String memlikemenu=request.getParameter("memlikemenu"); // 선호메뉴9
 		
-		System.out.println(memsex);
-		System.out.println(memaddress);
-		System.out.println(memlikemenu);
+		//암호화 처리
+		String shpwd="";
+		String bcpwd="";
+		try {
+			shpwd = CryptoService.sha512(mempass); //단방향
+			bcpwd = CryptoService.encryptAES256(mempass, shpwd); //양방향
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		db에 연결해서 sql write는 dao에서 처리
 		IDao dao=sqlSession.getMapper(IDao.class);
 		dao.join(memid,mempass,memname,membirth,memsex,mememail,
-				mempnum,memaddress,memlikemenu);		
-		
-//		BoardDao dao=new BoardDao();
-//		dao.write(bname,btitle,bcontent);
+				mempnum,memaddress,memlikemenu,shpwd,bcpwd);
+		System.out.println("----------insert SQL 전달-----------");
 		
 	}
+	
+		
 
 }
