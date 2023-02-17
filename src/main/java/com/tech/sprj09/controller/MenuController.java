@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tech.sprj09.service.BContentViewService;
 import com.tech.sprj09.service.BServiceInter;
 import com.tech.sprj09.service.menu.MenuListService;
 import com.tech.sprj09.service.menu.MenuWriteService;
@@ -60,19 +59,6 @@ public class MenuController {
 		return "redirect:menu/menulist";
 	}
 	
-//	상세페이지기능
-	@RequestMapping("/menucontentupdate")
-	public String contentview(HttpServletRequest request, Model model) {
-		System.out.println("========menucontentupdate컨트롤러 지나감=======");
-//		db에 디테일기능		
-		// toss
-		model.addAttribute("request", request);
-
-		bServiceInter = new MenuContentViewService(sqlSession);
-		bServiceInter.execute(model);
-
-		return "contentview";
-	}
 	
 
 }
