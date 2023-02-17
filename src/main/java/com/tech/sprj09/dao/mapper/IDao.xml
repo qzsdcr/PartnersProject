@@ -90,6 +90,7 @@
 	</select>
 
 	<!-- 회원가입DB Insert -->
+<<<<<<< HEAD
 	<insert id="join">
 		INSERT INTO
 		MEMBER(MEMNO,MEMID,MEMPASS,MEMNAME,MEMBIRTH,MEMSEX,MEMEMAIL,MEMPNUM,MEMADDRESS,MEMLIKEMENU,MEMJOINDATE,MEMADMIN)
@@ -112,4 +113,52 @@
 
 
 
+=======
+    <insert id="join" >
+    INSERT INTO MEMBER(MEMNO,MEMID,MEMPASS,MEMNAME,MEMBIRTH,MEMSEX,MEMEMAIL,MEMPNUM,MEMADDRESS,MEMLIKEMENU,MEMJOINDATE,MEMADMIN,SHPWD,BCPWD) 
+    VALUES(MEMBER_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},SYSDATE,0,#{param10},#{param11})
+    </insert>
+    
+    <!-- ID중복체크 -->
+    <select id="idLookup" resultType="Int">	
+	SELECT COUNT(MEMID) 
+	FROM MEMBER
+	WHERE MEMID LIKE #{param1}
+    </select>    
+    
+     <!-- 로그인db -->
+     <!-- 로그인 성공시 1  실패시 카운트 되지 않음 -->
+     <select id="login" resultType="com.tech.sprj09.dto.MemberDto">
+     SELECT MEMID, MEMPASS FROM MEMBER WHERE MEMID = #{param1} AND MEMPASS = #{param2}
+     </select>
+    
+     <!-- 로그인 암호화 -->
+     <select id="shpwd" resultType="String">
+     SELECT SHPWD FROM MEMBER WHERE MEMID=#{param1}
+     </select>
+     <select id="bcpwd" resultType="String">
+     SELECT BCPWD FROM MEMBER WHERE MEMID=#{param1}
+     </select>
+     
+     <!-- 암호화 재설정, 초기 암호화 설정 안되어 있을 때 -->
+	<update id="passUpdate">
+		UPDATE MEMBER SET SHPWD=#{param2},
+		BCPWD=#{param3} WHERE MEMID=#{param1}
+	</update>
+     
+     <!-- 이메일 인증 구현 -->
+     <!-- 회원가입 시 이메일 인증을 위한 랜덤번호 저장 -->
+     <update id="updateMailKey">
+     	update member set mail_key=#{param1} where email=#{param2} and id=#{param3}
+     </update>
+     <!-- 메일 인증 후, mail_auth 값을 0에서 1로 변경 -->
+     <update id="updateMailAuth">
+     	update member set mail_auth=1 where email=#{param1} and id=#{param2}
+     </update>
+     <!-- 로그인 시, 이메일 인증 여부 체크 -->
+     <select id="emailAuthFail" resultType="int">
+     	select count(*) from member where id=#{param1} and mail_auth=1
+     </select>    
+    
+>>>>>>> origin/ohuk
 </mapper>
