@@ -4,16 +4,16 @@ package com.tech.sprj09.dto;
 
 import java.sql.Timestamp;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
+@Getter
+@Setter
 public class MenuDto {
-	private int memuid;
-	private String menulist;
-	private Timestamp menudate;
-	private String menufilesrc;
+	private int memuid; //메뉴 고유번호
+	private int sikno;  //식단 고유넘버 
+	private String menulist; // 식단
+	private Timestamp menudate;//식단날짜
+	private String menufilesrc;//식판 이미지 저장공간 
 }
