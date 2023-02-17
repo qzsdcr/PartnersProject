@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout"
+		template="/WEB-INF/views/admin/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/views/admin/header.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/side.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/admin/footer.jsp" />
+	</definition>
+
+	<definition name="admin" extends="baseLayout">
+		<put-attribute name="title" value="기본홈" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/admin.jsp" />
+	</definition>
+	<definition name="member" extends="baseLayout">
+		<put-attribute name="title" value="회원관리" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/member.jsp" />
+	</definition>
+	
+	<definition name="memberchart" extends="baseLayout">
+		<put-attribute name="title" value="회원통계" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/memberchart.jsp" />
+	</definition>
+	
+	<definition name="sikdang" extends="baseLayout">
+		<put-attribute name="title" value="식당관리" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/sikdang.jsp" />
+	</definition>
+
+	<definition name="memberview" extends="baseLayout">
+		<put-attribute name="title" value="멤버 상세" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/memberview.jsp" />
+	</definition>
+
+	<definition name="sikdeview" extends="baseLayout">
+		<put-attribute name="title" value="식당 상세" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/sikdeview.jsp" />
+	</definition>
+
+</tiles-definitions>

@@ -1,9 +1,10 @@
 package com.tech.sprj09.dto;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+
 @Getter
 @Setter
 public class MemberDto {
@@ -21,7 +22,7 @@ public class MemberDto {
 	public String mempnum; // 회원 연락처
 	public String memaddress;// 회원지역
 	public String memlikemenu; // 회원이 선호하는 메뉴
-	public Timestamp memjoindate; // 회원가입일
+	private Timestamp memjoindate; // 회원가입일
 	public String memadmin; // ADMIN인지 일반 회원인지 구분하는 ...
 	private String lv;
 	private String sum;

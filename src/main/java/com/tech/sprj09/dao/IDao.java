@@ -10,7 +10,7 @@ import com.tech.sprj09.dto.SikdangDto;
 public interface IDao {
 
 	
-	
+	   
 	
 	
 	
@@ -66,6 +66,17 @@ public interface IDao {
 
 	public void sikdedelete(String bid);
 
-	public List<MenuDto> selectMenuList(int sikno); //메뉴 리스트 
+	public void sikdemultidelete(String bid);
+
+	
+	
+	
+	
+	
+	
+	
+	
+	//메뉴 리스트 
+	public List<MenuDto> selectMenuList(int sikno); 
 
 }

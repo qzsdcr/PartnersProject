@@ -122,5 +122,9 @@
 		DELETE FROM SIKDANG WHERE
 		SIKNO=#{param1}
 	</delete>
+	<delete id="sikdemultidelete">
+		DELETE FROM SIKDANG WHERE
+		SIKNO=#{param1}
+	</delete>
 
 </mapper>
