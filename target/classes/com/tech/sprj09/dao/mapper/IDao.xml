@@ -89,31 +89,7 @@
 		ORDER BY BSTEP ASC
 	</select>
 
-	<!-- 회원가입DB Insert -->
-<<<<<<< HEAD
-	<insert id="join">
-		INSERT INTO
-		MEMBER(MEMNO,MEMID,MEMPASS,MEMNAME,MEMBIRTH,MEMSEX,MEMEMAIL,MEMPNUM,MEMADDRESS,MEMLIKEMENU,MEMJOINDATE,MEMADMIN)
-		VALUES(MEMBER_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},SYSDATE,0)
-	</insert>
 
-	<!-- ID중복체크 -->
-	<select id="loginLookup" resultType="Int">
-		SELECT COUNT(MEMID)
-		FROM MEMBER
-		WHERE MEMID LIKE #{param1}
-	</select>
-
-	<!-- 로그인db -->
-	<!-- 로그인 성공시 1 실패시 카운트 되지 않음 -->
-	<select id="login" resultType="com.tech.sprj09.dto.MemberDto">
-		SELECT MEMID, MEMPASS FROM MEMBER WHERE MEMID = #{param1} AND MEMPASS =
-		#{param2}
-	</select>
-
-
-
-=======
     <insert id="join" >
     INSERT INTO MEMBER(MEMNO,MEMID,MEMPASS,MEMNAME,MEMBIRTH,MEMSEX,MEMEMAIL,MEMPNUM,MEMADDRESS,MEMLIKEMENU,MEMJOINDATE,MEMADMIN,SHPWD,BCPWD) 
     VALUES(MEMBER_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},SYSDATE,0,#{param10},#{param11})
@@ -160,5 +136,5 @@
      	select count(*) from member where id=#{param1} and mail_auth=1
      </select>    
     
->>>>>>> origin/ohuk
+
 </mapper>
