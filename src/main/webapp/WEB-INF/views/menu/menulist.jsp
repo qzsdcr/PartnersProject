@@ -21,7 +21,7 @@
 			<tr>
 				<td><fmt:formatDate value="${dto.menudate}"
 						pattern="yyyy/MM/dd" /></td>
-				<td>${dto.menulist}</td>
+				<td><a href="menucontentview?menuid=${dto.memuid}">${dto.menulist}</a></td>  <!-- 식단 -->
 			</tr>
 		</c:forEach>
 		<tr>

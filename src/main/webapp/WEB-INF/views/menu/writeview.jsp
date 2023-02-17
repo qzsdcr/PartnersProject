@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h3>menu writeview</h3>
-	<form action="/sprj09/menu/write" method="post" enctype="multipart/form-data">
+	<form action="menuwrite" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td class="left">식단</td>
@@ -25,8 +25,10 @@
 				<td><input type="file" name="file" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="입력" /> <a
-					href="list">목록</a></td>
+				<td colspan="2">
+				<input type="submit" value="입력" /> 	
+				<a href="menulist">목록</a>
+				</td>
 			</tr>
 		</table>
 	</form>

@@ -13,103 +13,90 @@
 
 
 <mapper namespace="com.tech.sprj09.dao.IDao">
-	<!-- <sql id="includelist">
-		<choose>
-		    <when test="param2==1">
-		      WHERE BTITLE LIKE '%'||#{param1}||'%'
-		    </when>
-		   <when test="param2==2">
-		      WHERE BCONTENT LIKE '%'||#{param1}||'%'
-		    </when>
-		    <when test="param2==3">
-		      WHERE BCONTENT LIKE '%'||#{param1}||'%' OR BTITLE LIKE '%'||#{param1}||'%'
-		    </when>
-		    <otherwise>
-		      
-		    </otherwise>
-	  </choose>
-	</sql> -->
+	<!-- <sql id="includelist"> <choose> <when test="param2==1"> WHERE BTITLE 
+		LIKE '%'||#{param1}||'%' </when> <when test="param2==2"> WHERE BCONTENT LIKE 
+		'%'||#{param1}||'%' </when> <when test="param2==3"> WHERE BCONTENT LIKE '%'||#{param1}||'%' 
+		OR BTITLE LIKE '%'||#{param1}||'%' </when> <otherwise> </otherwise> </choose> 
+		</sql> -->
 
 
-   <!--  <select id="selectBoardTotCount1" resultType="Integer">
-    	SELECT COUNT(*) FROM MBOARD WHERE BTITLE LIKE '%'||#{param1}||'%'
-    </select>
-    <select id="selectBoardTotCount2" resultType="Integer">
-    	SELECT COUNT(*) FROM MBOARD WHERE BCONTENT LIKE '%'||#{param1}||'%'
-    </select>
-    <select id="selectBoardTotCount3" resultType="Integer">
-    	SELECT COUNT(*) FROM MBOARD WHERE BCONTENT LIKE '%'||#{param1}||'%' OR BTITLE LIKE '%'||#{param1}||'%'
-    </select>
-    <select id="selectBoardTotCount4" resultType="Integer">
-    	SELECT COUNT(*) FROM MBOARD
-    </select> -->
+	<!-- <select id="selectBoardTotCount1" resultType="Integer"> SELECT COUNT(*) 
+		FROM MBOARD WHERE BTITLE LIKE '%'||#{param1}||'%' </select> <select id="selectBoardTotCount2" 
+		resultType="Integer"> SELECT COUNT(*) FROM MBOARD WHERE BCONTENT LIKE '%'||#{param1}||'%' 
+		</select> <select id="selectBoardTotCount3" resultType="Integer"> SELECT 
+		COUNT(*) FROM MBOARD WHERE BCONTENT LIKE '%'||#{param1}||'%' OR BTITLE LIKE 
+		'%'||#{param1}||'%' </select> <select id="selectBoardTotCount4" resultType="Integer"> 
+		SELECT COUNT(*) FROM MBOARD </select> -->
 
 
- 
-    <insert id="write">
-    	INSERT INTO MBOARD(BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC)
+	<insert id="write">
+		INSERT INTO MBOARD(BID,BNAME,BTITLE,BCONTENT,
+		BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC)
 		VALUES(MBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},
 		SYSDATE,0,MBOARD_SEQ.CURRVAL,0,0,#{param4})
-    </insert>
-    <select id="contentview"  resultType="com.tech.sprj09.dto.BoardDto">
-    	SELECT BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC
+	</insert>
+	<select id="contentview"
+		resultType="com.tech.sprj09.dto.BoardDto">
+		SELECT BID,BNAME,BTITLE,BCONTENT,
+		BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC
 		FROM MBOARD WHERE BID=#{param1}
-    </select>
-    <select id="contentupdate"  resultType="com.tech.sprj09.dto.BoardDto">
-    	SELECT BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC
+	</select>
+	<select id="contentupdate"
+		resultType="com.tech.sprj09.dto.BoardDto">
+		SELECT BID,BNAME,BTITLE,BCONTENT,
+		BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC
 		FROM MBOARD WHERE BID=#{param1}
-    </select>
-	
+	</select>
+
 	<update id="upHit">
 		UPDATE MBOARD SET BHIT=BHIT+1
 		WHERE BID=#{param1}
-	
+
 	</update>
 	<update id="modify">
 		UPDATE MBOARD SET BNAME=#{param2},
-		BTITLE=#{param3}, BCONTENT=#{param4}
-		 WHERE BID=#{param1}
+		BTITLE=#{param3},
+		BCONTENT=#{param4}
+		WHERE BID=#{param1}
 	</update>
 	<delete id="delete">
 		DELETE FROM MBOARD WHERE BID=#{param1}
 	</delete>
-	<select id="replyview"  resultType="com.tech.sprj09.dto.BoardDto">
-    	SELECT BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT
+	<select id="replyview" resultType="com.tech.sprj09.dto.BoardDto">
+		SELECT BID,BNAME,BTITLE,BCONTENT,
+		BDATE,BHIT,BGROUP,BSTEP,BINDENT
 		FROM MBOARD WHERE BID=#{param1}
-    </select>
-    
-    <update id="replyShape">
-    	UPDATE MBOARD
-		SET BSTEP=BSTEP+1 
-		WHERE BGROUP=#{param1} AND BSTEP>#{param2}
-    </update>
-    
-    <insert id="reply">
-    	INSERT INTO MBOARD(BIDa,BNAME,BTITLE,BCONTENT,
-			BDATE,BGROUP,BSTEP,BINDENT) 
-			VALUES(MBOARD_SEQ.NEXTVAL,
-			#{param2},#{param3},
-			#{param4},
-			SYSDATE,#{param5},
-			#{param6}+1,#{param7}+1)
-    </insert>
-	<select id="sonReply" resultType="com.tech.sprj09.dto.BoardDto">
-		SELECT * FROM MBOARD WHERE BGROUP=#{param1}
-			ORDER BY BSTEP ASC
 	</select>
-	
-	<!-- 회원가입DB Insert -->
+
+	<update id="replyShape">
+		UPDATE MBOARD
+		SET BSTEP=BSTEP+1
+		WHERE BGROUP=#{param1} AND BSTEP>#{param2}
+	</update>
+
+	<insert id="reply">
+		INSERT INTO MBOARD(BIDa,BNAME,BTITLE,BCONTENT,
+		BDATE,BGROUP,BSTEP,BINDENT)
+		VALUES(MBOARD_SEQ.NEXTVAL,
+		#{param2},#{param3},
+		#{param4},
+		SYSDATE,#{param5},
+		#{param6}+1,#{param7}+1)
+	</insert>
+	<select id="sonReply" resultType="com.tech.sprj09.dto.BoardDto">
+		SELECT * FROM MBOARD WHERE
+		BGROUP=#{param1}
+		ORDER BY BSTEP ASC
+	</select>
+
+
     <insert id="join" >
-    INSERT INTO MEMBER(MEMNO,MEMID,MEMPASS,MEMNAME,MEMBIRTH,MEMSEX,MEMEMAIL,MEMPNUM,MEMADDRESS,MEMLIKEMENU,MEMJOINDATE,MEMADMIN) 
-    VALUES(MEMBER_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},SYSDATE,0)
+    INSERT INTO MEMBER(MEMNO,MEMID,MEMPASS,MEMNAME,MEMBIRTH,MEMSEX,MEMEMAIL,MEMPNUM,MEMADDRESS,MEMLIKEMENU,MEMJOINDATE,MEMADMIN,SHPWD,BCPWD) 
+    VALUES(MEMBER_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},SYSDATE,0,#{param10},#{param11})
     </insert>
     
     <!-- ID중복체크 -->
-    <select id="loginLookup" resultType="Int">	
+    <select id="idLookup" resultType="Int">	
 	SELECT COUNT(MEMID) 
 	FROM MEMBER
 	WHERE MEMID LIKE #{param1}
@@ -121,4 +108,33 @@
      SELECT MEMID, MEMPASS FROM MEMBER WHERE MEMID = #{param1} AND MEMPASS = #{param2}
      </select>
     
+     <!-- 로그인 암호화 -->
+     <select id="shpwd" resultType="String">
+     SELECT SHPWD FROM MEMBER WHERE MEMID=#{param1}
+     </select>
+     <select id="bcpwd" resultType="String">
+     SELECT BCPWD FROM MEMBER WHERE MEMID=#{param1}
+     </select>
+     
+     <!-- 암호화 재설정, 초기 암호화 설정 안되어 있을 때 -->
+	<update id="passUpdate">
+		UPDATE MEMBER SET SHPWD=#{param2},
+		BCPWD=#{param3} WHERE MEMID=#{param1}
+	</update>
+     
+     <!-- 이메일 인증 구현 -->
+     <!-- 회원가입 시 이메일 인증을 위한 랜덤번호 저장 -->
+     <update id="updateMailKey">
+     	update member set mail_key=#{param1} where email=#{param2} and id=#{param3}
+     </update>
+     <!-- 메일 인증 후, mail_auth 값을 0에서 1로 변경 -->
+     <update id="updateMailAuth">
+     	update member set mail_auth=1 where email=#{param1} and id=#{param2}
+     </update>
+     <!-- 로그인 시, 이메일 인증 여부 체크 -->
+     <select id="emailAuthFail" resultType="int">
+     	select count(*) from member where id=#{param1} and mail_auth=1
+     </select>    
+    
+
 </mapper>

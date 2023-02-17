@@ -1,6 +1,8 @@
 package com.tech.sprj09.service.admin;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +29,9 @@ public class MemberListService implements BServiceInter {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		IDao dao = sqlSession.getMapper(IDao.class);
-
+		
+		
+	
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 		String searchtype = request.getParameter("searchType");
 
@@ -54,14 +58,16 @@ public class MemberListService implements BServiceInter {
 			searchKeyword = "";
 		}
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+		
+		
 		ArrayList<MemberDto> mlist = dao.mlist(searchKeyword, selnum);
-
+		model.addAttribute("mlist", mlist);
+		
 		ArrayList<MemberDto> clist = dao.clist();
 
-		model.addAttribute("mlist", mlist);
-
 		model.addAttribute("clist", clist);
+		 
+		
 	}
 
 }

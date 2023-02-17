@@ -17,6 +17,7 @@ import com.tech.sprj09.service.admin.MemberViewService;
 import com.tech.sprj09.service.sikdang.SListService;
 import com.tech.sprj09.service.sikdang.SikDeDeleteService;
 import com.tech.sprj09.service.sikdang.SikDeModifyService;
+import com.tech.sprj09.service.sikdang.SikDeMultiDeleteService;
 import com.tech.sprj09.service.sikdang.SikDeViewService;
 import com.tech.sprj09.vopage.admin.AdminSearchVO;
 
@@ -46,8 +47,59 @@ public class AdminController {
 		bServiceInter1 = new SListService(sqlSession);	
 		bServiceInter1.execute(model);
 
-		return "admin/admin";
+		return "admin";
 
+	}
+	@RequestMapping("/memberchart")
+	public String memberchart(HttpServletRequest request, AdminSearchVO adminsearchVO, Model model) {
+		System.out.println("========admin=======");
+		// db에서 데이터 가져오기
+		
+		model.addAttribute("request", request);
+		model.addAttribute("adminsearchVO", adminsearchVO);
+
+		bServiceInter = new MemberListService(sqlSession);	
+		bServiceInter.execute(model);
+
+		bServiceInter1 = new SListService(sqlSession);	
+		bServiceInter1.execute(model);
+
+		return "memberchart";
+
+	}
+	@RequestMapping("/sikdang")
+	public String sikdang(HttpServletRequest request, AdminSearchVO adminsearchVO, Model model) {
+		System.out.println("========admin=======");
+		// db에서 데이터 가져오기
+		
+		model.addAttribute("request", request);
+		model.addAttribute("adminsearchVO", adminsearchVO);
+
+		bServiceInter = new MemberListService(sqlSession);	
+		bServiceInter.execute(model);
+
+		bServiceInter1 = new SListService(sqlSession);	
+		bServiceInter1.execute(model);
+
+		return "sikdang";
+
+	}
+	@RequestMapping("/member")
+	public String member(HttpServletRequest request, AdminSearchVO adminsearchVO, Model model) {
+		System.out.println("========admin=======");
+		// db에서 데이터 가져오기
+		
+		model.addAttribute("request", request);
+		model.addAttribute("adminsearchVO", adminsearchVO);
+		
+		bServiceInter = new MemberListService(sqlSession);	
+		bServiceInter.execute(model);
+		
+		bServiceInter1 = new SListService(sqlSession);	
+		bServiceInter1.execute(model);
+		
+		return "member";
+		
 	}
 //////////////////////////////////////////////////////////////////////////////23-02-03	
 //	상세페이지기능
@@ -61,7 +113,7 @@ public class AdminController {
 		bServiceInter = new MemberViewService(sqlSession);
 		bServiceInter.execute(model);
 
-		return "admin/memberview";
+		return "memberview";
 	}
 	
 //	글수정하기
@@ -74,7 +126,7 @@ public class AdminController {
 		bServiceInter = new MemberModifyService(sqlSession);
 		bServiceInter.execute(model);
 //	
-		return "redirect:admin";
+		return "redirect:member";
 	}
 
 //	글삭제하기
@@ -87,7 +139,7 @@ public class AdminController {
 		bServiceInter = new MemberDeleteService(sqlSession);
 		bServiceInter.execute(model);
 
-		return "redirect:admin";
+		return "redirect:member";
 	}
 //////////////////////////////////////////////////////////////////////////
 	// 식당 글 수정 및 삭제
@@ -103,7 +155,7 @@ public class AdminController {
 		bServiceInter = new SikDeViewService(sqlSession);
 		bServiceInter.execute(model);
 
-		return "admin/sikdeview";
+		return "sikdeview";
 	}
 	
 //	글수정하기
@@ -116,7 +168,7 @@ public class AdminController {
 		bServiceInter = new SikDeModifyService(sqlSession);
 		bServiceInter.execute(model);
 //	
-		return "redirect:admin";
+		return "redirect:sikdang";
 	}
 //	글삭제하기
 	@RequestMapping("/sikdedelete")
@@ -128,7 +180,20 @@ public class AdminController {
 		bServiceInter = new SikDeDeleteService(sqlSession);
 		bServiceInter.execute(model);
 
-		return "redirect:admin";
+		return "redirect:sikdang";
+	}
+	
+//	글삭제하기
+	@RequestMapping("/sikdemultidelete")
+	public String sikdemultidelete(HttpServletRequest request, Model model) {
+		System.out.println("========sikdemultidelete=======");
+//		db에 디테일기능		
+		// toss
+		model.addAttribute("request", request);
+		bServiceInter = new SikDeMultiDeleteService(sqlSession);
+		bServiceInter.execute(model);
+
+		return "redirect:sikdang";
 	}
 
 }
