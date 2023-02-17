@@ -26,6 +26,7 @@ System.out.print("path : "+path);
 <a href="list">listttttttt go</a> <br />
 <a href="admin">admin list</a> <br />
 <a href="chat">chat</a> <br />
+<a href="menu">menulist</a> <br />
 </body>
 
 

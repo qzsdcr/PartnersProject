@@ -20,11 +20,12 @@ public class SikdangDto {
 	private String siktel; //식당전화번호
 	private Timestamp sikdate; //식당 글 업로드 날짜
 	private int sikhit; // 식당조회수
-	private String sikopenclose; //영업일 
+	private String sikopenclose; //영업일
+	private String filesrc; //첨부파일(이미지)
 	
 	
 	public SikdangDto(int sikno, String sikloca, String sikname, String sikcontent, String sikaddress, String siktel,
-			Timestamp sikdate, int sikhit, String sikopenclose) {
+			Timestamp sikdate, int sikhit, String sikopenclose, String filesrc) {
 
 		
 		this.sikno = sikno;
@@ -36,6 +37,7 @@ public class SikdangDto {
 		this.sikdate = sikdate;
 		this.sikhit = sikhit;
 		this.sikopenclose = sikopenclose;
+		this.filesrc = filesrc;
 	}
 	
 	
