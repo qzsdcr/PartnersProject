@@ -22,11 +22,9 @@ public class MenuController {
 	private SqlSession sqlSession;
 	
 	// 목록표현
-<<<<<<< HEAD
-	@RequestMapping("/menulist")
-=======
+
 	@RequestMapping("/menu")
->>>>>>> origin/inwoong
+
 	public String list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("========menulist 컨트롤러 지나감=======");
 		// db에서 데이터 가져오기
