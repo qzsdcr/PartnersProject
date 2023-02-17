@@ -60,9 +60,11 @@
 					
 					<a href="/partners/member" class="nav__link"> 
 					<ion-icon name="people-outline" class="nav__icon"></ion-icon> <span
-						class="nav_name">Team</span></a> <a href="#" class="nav__link"> <ion-icon
-							name="settings-outline" class="nav__icon"></ion-icon> <span
-						class="nav_name">Settings</span>
+						class="nav_name">Team</span></a> 
+						
+					<a href="/partners/smssand" class="nav__link"> 
+					<ion-icon name="mail-outline" class="nav__icon"></ion-icon> 
+					<span class="nav_name">SMS Service</span>
 					</a>
 				</div>
 				<a href="#" class="nav__link"> <ion-icon name="log-out-outline"

@@ -47,5 +47,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/sikdeview.jsp" />
 	</definition>
+	<definition name="smssand" extends="baseLayout">
+		<put-attribute name="title" value="SMS 발송" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/smssand.jsp" />
+	</definition>
 
 </tiles-definitions>

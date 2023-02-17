@@ -101,6 +101,21 @@ public class AdminController {
 		return "member";
 		
 	}
+	@RequestMapping("/smssand")
+	public String smssand(HttpServletRequest request, AdminSearchVO adminsearchVO, Model model) {
+		System.out.println("========admin=======");
+		// db에서 데이터 가져오기
+		
+		model.addAttribute("request", request);
+		model.addAttribute("adminsearchVO", adminsearchVO);
+		
+		bServiceInter = new MemberListService(sqlSession);	
+		bServiceInter.execute(model);
+	
+		
+		return "smssand";
+		
+	}
 //////////////////////////////////////////////////////////////////////////////23-02-03	
 //	상세페이지기능
 	@RequestMapping("/memberview")
