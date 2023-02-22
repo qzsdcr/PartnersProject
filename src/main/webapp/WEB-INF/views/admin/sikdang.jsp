@@ -55,7 +55,7 @@ function selectAll(selectAll)  {
 
 	<div style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
 	<h1 id="sikdang">관리자 페이지</h1>
-		<form action="admin#sikdang" method="post">
+		<form action="sikdang" method="post">
 			<div class="search">
 				<select class="search-select" name="searchType2">
 					<option value="SIKNO" name="SIKNO">사업자 번호 검색</option>
@@ -96,11 +96,68 @@ function selectAll(selectAll)  {
 						<td>${i.sikopenclose }</td>
 					</tr>
 				</c:forEach>
+					
 					<input type="submit" value="삭제" />
+					
 				</form>
-
+					<a href="sikdangwrite"><button>식당등록</button></a>
 			</table>
+			
 
+		</div>
+ 	 </div>
+	</div>
+	
+	<div style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
+	<h1 id="sikdang">리뷰 관리 </h1>
+		<form action="sikdang" method="post">
+			<div class="search">
+				<select class="search-select" name="searchType2">
+					<option value="SIKNO" name="SIKNO">사업자 번호 검색</option>
+					<option value="SIKNAME" name="SIKNAME">식당 이름 검색</option>
+				</select> <input type="text" class="search-input" name="searchName2" />
+				<button type="submit" class="btn search-bnt">검색</button>
+			</div>
+		</form>
+		
+		
+		<div >
+			<table border="1">
+				<tr>
+				
+					<td><input id="allCheck" type="checkbox" name="bid" onclick='selectAll(this)'/></td>
+					<td>사업자 번호</td>
+					<td>지역</td>
+					<td>식당이름</td>
+					<td>식당소개</td>
+					<td>식당주소</td>
+					<td>식당전화번호</td>
+					<td>등록날짜</td>
+					<td>식당조회수</td>
+					<td>영업일</td>
+				</tr>
+				<form action="sikdemultidelete">
+				<c:forEach items="${list }" var="i">
+					<tr>
+						<td style="text-align: center;"><input name="bid" type="checkbox" value="${i.sikno }"/></td>
+						<td><a href="sikdeview?bid=${i.sikno }">${i.sikno }</a></td>
+						<td>${i.sikloca }</td>
+						<td><a href="sikdeview?bid=${i.sikno }">${i.sikname }</a></td>
+						<td>${i.sikcontent }</td>
+						<td>${i.sikaddress }</td>
+						<td>${i.siktel }</td>
+						<td>${i.sikdate }</td>
+						<td>${i.sikhit }</td>
+						<td>${i.sikopenclose }</td>
+					</tr>
+				</c:forEach>
+					
+					<input type="submit" value="삭제" />
+					
+				</form>
+				
+			</table>
+			
 
 		</div>
  	 </div>

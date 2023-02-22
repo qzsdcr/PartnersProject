@@ -104,4 +104,9 @@ public interface IDao {
 	//암호화 재설정, 초기 암호화 설정이 안되어 있을 때 작동
 	public void passUpdate(String memid, String shpwd, String bcpwd);
 
+	public void sikwrite(String sikno, String sikloca, String sikname, String sikcontent, String sikaddress,
+			String sikaddress2, String siktel, String fname);
+
+	
+
 }

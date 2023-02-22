@@ -19,6 +19,7 @@ import com.tech.sprj09.service.sikdang.SikDeDeleteService;
 import com.tech.sprj09.service.sikdang.SikDeModifyService;
 import com.tech.sprj09.service.sikdang.SikDeMultiDeleteService;
 import com.tech.sprj09.service.sikdang.SikDeViewService;
+import com.tech.sprj09.service.sikdang.SikDangWriteService;
 import com.tech.sprj09.vopage.admin.AdminSearchVO;
 
 
@@ -171,6 +172,28 @@ public class AdminController {
 		bServiceInter.execute(model);
 
 		return "sikdeview";
+	}
+	// 쓰기 뷰어로 가기
+	@RequestMapping("/sikdangwrite")
+	public String Sikdangwriteform(HttpServletRequest request, Model model) {
+	
+		
+		return "sikdangwrite";
+	}
+	
+	
+//	쓰기
+	@RequestMapping("/sikwrite")
+	public String Sikdangwrite(HttpServletRequest request, Model model) throws Exception {
+		System.out.println("========sikwrite=======");
+//		db에 디테일기능		
+		// toss
+		model.addAttribute("request", request);
+		
+		bServiceInter = new SikDangWriteService(sqlSession);
+		bServiceInter.execute(model);
+		
+		return "redirect:sikdang";
 	}
 	
 //	글수정하기

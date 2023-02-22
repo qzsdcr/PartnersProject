@@ -41,25 +41,20 @@
 	<p id="chart">
 	<h3>통계</h3>
 	<div class="container">
-		<div class="row">
+		<div class="row row-cols-2">
 
-			<div class="col-md-4">
+			<div class="col">
 				<canvas id="Chart1" width="400" height="400"></canvas>
 			</div>
-			<div class="col-md-4">
+			<div class="col">
 				<canvas id="Chart2" width="400" height="400"></canvas>
 			</div>
 
-
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<canvas id="Chart3" width="400" height="400"></canvas>
+			<div class="col-12">
+				<canvas id="Chart3" width="1500" height="600"></canvas>
 			</div>
-			<div class="col-md-4">
-				<canvas id="Chart4" width="400" height="400"></canvas>
-			</div>
-		</div>
+			
+		
 	</div>
 	</p>
 
@@ -71,7 +66,6 @@
  	    const Chart1 = document.getElementById('Chart1').getContext('2d');
 		const Chart2 = document.getElementById('Chart2').getContext('2d');
 		const Chart3 = document.getElementById('Chart3').getContext('2d');
-		const Chart4 = document.getElementById('Chart4').getContext('2d');
 
 		
 		const barChartone = new Chart(Chart1, {
@@ -141,63 +135,51 @@
 				indexAxis: 'y'
 			}
 		});
-		const barChartThree = new Chart(Chart3, {
-		    type: 'doughnut',
-		    data:  {
-		    	  labels: [
-		    		    'Red',
-		    		    'Blue',
-		    		    'Yellow'
-		    		  ],
-		    		  datasets: [{
-		    		    label: 'My First Dataset',
-		    		    data: [300, 50, 100],
-		    		    backgroundColor: [
-		    		      'rgb(255, 99, 132)',
-		    		      'rgb(54, 162, 235)',
-		    		      'rgb(255, 205, 86)'
-		    		    ],
-		    		    hoverOffset: 4
-		    		  }]
-		    		},
-		    options: {
-		      scales: {
-		        y: {
-		          beginAtZero: true
-		        }
-		      }
-		    }
-		  });
-		const barChart4 = new Chart(Chart4, {
-			type : 'bar',
-			data : {
-				labels : [
-					<c:forEach var="list" items="${clist }">
-					
-					'<c:out value="${list.lv}"/>',
-					
-					</c:forEach>
-				],
-				datasets : [ {
-					label : 'My First Dataset',
-					data : [ 	<c:forEach var="list" items="${clist }">
-					
-					<c:out value="${list.sum}"/>,
-					
-					</c:forEach> ],
-					backgroundColor : [ 'rgb(255, 99, 132)',
-							'rgb(54, 162, 235)', 'rgb(255, 205, 86)' ],
-					hoverOffset : 4
-				} ]
-			},
-			options : {
+		const mixedChart  = new Chart(Chart3, {
+		    data: {
+		        datasets: [{
+		            type: 'bar',
+		            label: '전날 대비 증가 감소',
+		            data: [2, 1, -4, 6, 2, 3, 4] ,
+		            backgroundColor : [
+						'rgba(41, 238, 151,1.0)',
+					/* 	'rgba(41, 238, 53, 0.8)', 
+						'rgba(150, 200, 99, 0.6)', 
+						'rgba(180, 200, 88, 0.6)', 
+						'rgba(200, 200, 77, 0.6)', 
+						'rgba(220, 200, 66, 0.6)', 
+						'rgba(240, 200, 55, 0.6)',  */
+						],
+					borderWidth : 1,
+					hoverBorderWidth : 1
+		        }, {
+		            type: 'line',
+		            label: '주간 접속자 수',
+		            data: [15, 16, 12, 18, 20, 23, 27],
+		            backgroundColor :['rgba(255,0,50,1.0)']
+		        }],
+		        labels: ['월요일', '화요일','수요일','목요일','금요일','토요일','일요일',],
+		       
+		    },
+		    options:  {
 				scales : {
 					y : {
-						beginAtZero : true
-					}
-				}
-			}
+						beginAtZero : true,
+					},
+				},
+		    plugins: {
+		        beforeUpdate: function(chart) {
+		          chart.data.datasets.forEach(function(dataset) {
+		            dataset.backgroundColor = dataset.data.map(function(value) {
+		              return value < 0 ? 'rgba(255, 0, 0, 1.0)' : 'rgba(41, 238, 151,1.0)';
+		            });
+		          });
+		        },
+		      },
+		    
+		    },
 		});
+		
 
 	</script>
 

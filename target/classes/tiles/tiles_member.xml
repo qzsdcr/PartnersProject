@@ -6,10 +6,12 @@
 <tiles-definitions>
 	<definition name="baseLayout"
 		template="/WEB-INF/views/admin/layout.jsp">
+		
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/admin/header.jsp" />
 		<put-attribute name="side" value="/WEB-INF/views/admin/side.jsp" />
 		<put-attribute name="body" value="" />
+	
 		<put-attribute name="footer" value="/WEB-INF/views/admin/footer.jsp" />
 	</definition>
 
@@ -47,10 +49,24 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/sikdeview.jsp" />
 	</definition>
+
+	<definition name="sikdangwrite" extends="baseLayout">
+		<put-attribute name="title" value="식당 등록" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/sikdangwrite.jsp" />
+	</definition>
+	
+	
 	<definition name="smssand" extends="baseLayout">
 		<put-attribute name="title" value="SMS 발송" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/admin/smssand.jsp" />
+			value="/WEB-INF/views/sms/smssand.jsp" />
+	</definition>
+
+	<definition name="sms-one" extends="baseLayout">
+		<put-attribute name="title" value="SMS 발송" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/sms/send-one.jsp" />
 	</definition>
 
 </tiles-definitions>
