@@ -1,5 +1,6 @@
 package com.tech.sprj09.dao;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +107,18 @@ public interface IDao {
 
 	public void sikwrite(String sikno, String sikloca, String sikname, String sikcontent, String sikaddress,
 			String sikaddress2, String siktel, String fname);
+
+	//멤버 권한 가져오기
+	public String getMemberAdmin(String memid);
+	
+	//비밀번호 변경
+	public void passChange(String memid, String mempass, String shpwd, String bcpwd);
+	
+	//방문자수 +1
+	public void updateVisitorCount(String ip, LocalDateTime servertime, String refer, String agent);
+	
+	//총방문자수
+	public void incrementTotalVisitorCount();
 
 	
 

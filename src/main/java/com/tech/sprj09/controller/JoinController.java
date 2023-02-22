@@ -10,11 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tech.sprj09.dao.IDao;
 import com.tech.sprj09.service.BServiceInter;
 import com.tech.sprj09.service.JoinService;
+import com.tech.sprj09.service.MailService;
+import com.tech.sprj09.service.TempKey;
+import com.tech.sprj09.service.passChangeService;
 import com.tech.sprj09.vopage.SearchVO;
 
 @Controller
@@ -23,6 +27,12 @@ public class JoinController {
 
 	@Autowired
 	private SqlSession sqlSession;
+	private MailService mailService;
+	
+	@Autowired
+	public JoinController(MailService mailService) {
+		this.mailService = mailService;
+	}
 
 	// 회원타입
 	@RequestMapping("/jointype")
@@ -81,5 +91,28 @@ public class JoinController {
 
 		return result;
 	}
+	
+	// 이메일 인증
+	// 인증번호 생성
+	@ResponseBody
+	@RequestMapping("/tempkey")
+	public String getTempKey(HttpServletRequest request) {
+		System.out.println("=======이메일인증tempkey==========");
+
+		try {
+	    String tempkey = TempKey.generateTempKey();
+	    String toAddress = request.getParameter("email"); // 사용자 이메일주소
+	    String subject = "Partners 회원가입 인증을 위한 메일입니다";
+	    String fromAddress = "kowouk@gmail.com";
+	    String body = "인증 번호 : " + tempkey;
+
+	    mailService.sendEmail(toAddress, subject, body, fromAddress);
+	    
+	    return tempkey;
+	  } catch (Exception e) {
+	    e.printStackTrace();
+	    return null;
+	  }
+	}    
 
 }
