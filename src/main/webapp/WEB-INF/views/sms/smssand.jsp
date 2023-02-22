@@ -103,6 +103,7 @@ function fillForm(mempnum) {
 
 
 
+
 			전체 회원숫자 : ${mlist.size() }
 			<table border="1">
 				<tr>
