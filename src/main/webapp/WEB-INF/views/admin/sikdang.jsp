@@ -110,11 +110,11 @@ function selectAll(selectAll)  {
 	
 	<div style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
 	<h1 id="sikdang">리뷰 관리 </h1>
-		<form action="sikdang" method="post">
+		<form action="review" method="post">
 			<div class="search">
 				<select class="search-select" name="searchType2">
-					<option value="SIKNO" name="SIKNO">사업자 번호 검색</option>
-					<option value="SIKNAME" name="SIKNAME">식당 이름 검색</option>
+					<option value="MEMID" name="MEMID">작성자 아이디</option>
+					<option value="reviewcontent" name="reviewcontent">리뷰 내용</option>
 				</select> <input type="text" class="search-input" name="searchName2" />
 				<button type="submit" class="btn search-bnt">검색</button>
 			</div>
@@ -126,29 +126,24 @@ function selectAll(selectAll)  {
 				<tr>
 				
 					<td><input id="allCheck" type="checkbox" name="bid" onclick='selectAll(this)'/></td>
-					<td>사업자 번호</td>
-					<td>지역</td>
-					<td>식당이름</td>
-					<td>식당소개</td>
-					<td>식당주소</td>
-					<td>식당전화번호</td>
-					<td>등록날짜</td>
-					<td>식당조회수</td>
-					<td>영업일</td>
+					<td>리뷰번호</td>
+					<td>리뷰제목</td>
+					<td>리뷰내용</td>
+					<td>작성자 아이디</td>
+					<td>좋아요</td>
+					<td>스푼</td>
+					
 				</tr>
 				<form action="sikdemultidelete">
-				<c:forEach items="${list }" var="i">
+				<c:forEach items="${relist }" var="i">
 					<tr>
-						<td style="text-align: center;"><input name="bid" type="checkbox" value="${i.sikno }"/></td>
-						<td><a href="sikdeview?bid=${i.sikno }">${i.sikno }</a></td>
-						<td>${i.sikloca }</td>
-						<td><a href="sikdeview?bid=${i.sikno }">${i.sikname }</a></td>
-						<td>${i.sikcontent }</td>
-						<td>${i.sikaddress }</td>
-						<td>${i.siktel }</td>
-						<td>${i.sikdate }</td>
-						<td>${i.sikhit }</td>
-						<td>${i.sikopenclose }</td>
+						<td style="text-align: center;"><input name="bid" type="checkbox" value="${i.reviewno }"/></td>
+						<td>${i.reviewtitle }</td>
+						<td>${i.reviewcontent }</td>
+						<td>${i.memid }</td>
+						<td>${i.reviewlike }</td>
+						<td>${i.spoon }</td>
+						
 					</tr>
 				</c:forEach>
 					
