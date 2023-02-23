@@ -113,7 +113,7 @@ function selectAll(selectAll)  {
 		<form action="review" method="post">
 			<div class="search">
 				<select class="search-select" name="searchType2">
-					<option value="MEMID" name="MEMID">작성자 아이디</option>
+					<option value="MEMID" name="MEMID">리뷰 제목</option>
 					<option value="reviewcontent" name="reviewcontent">리뷰 내용</option>
 				</select> <input type="text" class="search-input" name="searchName2" />
 				<button type="submit" class="btn search-bnt">검색</button>
@@ -129,18 +129,20 @@ function selectAll(selectAll)  {
 					<td>리뷰번호</td>
 					<td>리뷰제목</td>
 					<td>리뷰내용</td>
-					<td>작성자 아이디</td>
+					
 					<td>좋아요</td>
 					<td>스푼</td>
 					
 				</tr>
-				<form action="sikdemultidelete">
-				<c:forEach items="${relist }" var="i">
+				<form action="reviewdel">
+				<c:forEach items="${reviewList }" var="i">
 					<tr>
 						<td style="text-align: center;"><input name="bid" type="checkbox" value="${i.reviewno }"/></td>
+						
+						<td>${i.reviewno }</td>
 						<td>${i.reviewtitle }</td>
 						<td>${i.reviewcontent }</td>
-						<td>${i.memid }</td>
+					
 						<td>${i.reviewlike }</td>
 						<td>${i.spoon }</td>
 						

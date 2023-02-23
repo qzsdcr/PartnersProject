@@ -18,9 +18,7 @@ public class ReviewDto {
 	private int reviewlike; //도움이 돼요
 	private Timestamp reviewdate; //작성된 날짜
 	private int spoon; //별점
-	private int taste; //맛
-	private int price; //가격
-	private int clean; //청결도
+	private int gsikno; //별점
 	private int singo; //신고
 	private String reviewfile; //리뷰 작성시 첨부파일(이미지)
 	
@@ -31,7 +29,7 @@ public class ReviewDto {
 
 
 	public ReviewDto(int reviewno, int memno, int sikno, String reviewtitle, String reviewcontent, int reviewlike,
-			Timestamp reviewdate, int spoon, int taste, int price, int clean, int singo, String reviewfile) {
+			Timestamp reviewdate, int spoon,int gsikno, int singo, String reviewfile) {
 
 		this.reviewno = reviewno;
 		this.memno = memno;
@@ -41,9 +39,7 @@ public class ReviewDto {
 		this.reviewlike = reviewlike;
 		this.reviewdate = reviewdate;
 		this.spoon = spoon;
-		this.taste = taste;
-		this.price = price;
-		this.clean = clean;
+		this.gsikno = gsikno;
 		this.singo = singo;
 		this.reviewfile = reviewfile;
 	}
