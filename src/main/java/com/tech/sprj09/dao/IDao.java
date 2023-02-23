@@ -99,11 +99,16 @@ public interface IDao {
 	
 	
 	//메뉴 리스트 
-	public List<MenuDto> selectMenuList(int sikno); 
+	public List<MenuDto> selectMenuList(int menuid, int sikno); 
 	public List<MenuDto> selectMenuList();
 
-	public void menuwrite(String menulist, String menudate, String menufilesrc);
+	public List<MenuDto> menuwrite(String menulist, String menudate, String menufilesrc);
+	public MenuDto menucontentview(String menuid);
+	public MenuDto menucontentupdate(String menuid);
+	public void menudelete(String menuid);
+	public MenuDto menumodify(String menulist, String menudate, String menufilesrc);
 	
+	public MenuDto calendardetail(String sikno, String menudate);
 	
 	//로그인 암호화처리
 	public String shpwd(String memid);
@@ -113,6 +118,7 @@ public interface IDao {
 	//암호화 재설정, 초기 암호화 설정이 안되어 있을 때 작동
 	public void passUpdate(String memid, String shpwd, String bcpwd);
 
+<<<<<<< HEAD
 	public void sikwrite(String sikno, String sikloca, String sikname, String sikcontent, String sikaddress,
 			String sikaddress2, String siktel, String fname);
 
@@ -129,5 +135,8 @@ public interface IDao {
 	public void incrementTotalVisitorCount();
 
 	
+=======
+
+>>>>>>> origin/menumenu
 
 }
