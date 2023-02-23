@@ -39,7 +39,7 @@
 			<div>
 				<div class="nav__brand">
 					<ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-					<a href="#" class="nav__logo">파트너스</a>
+					<a href="/partners" class="nav__logo">파트너스</a>
 				</div>
 				<div class="nav__list">
 
@@ -67,7 +67,7 @@
 					<span class="nav_name">SMS Service</span>
 					</a>
 				</div>
-				<a href="#" class="nav__link"> <ion-icon name="log-out-outline"
+				<a href="/partners/logout" class="nav__link"> <ion-icon name="log-out-outline"
 						class="nav__icon"></ion-icon> <span class="nav_name">Logout</span>
 				</a>
 			</div>
