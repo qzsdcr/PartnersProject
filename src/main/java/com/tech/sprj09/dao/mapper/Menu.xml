@@ -3,16 +3,45 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tech.sprj09.dao.IDao">
 
- 	<select id="selectMenuList"
+	<select id="selectMenuList"
 		resultType="com.tech.sprj09.dto.MenuDto">
-		SELECT * FROM MENU 
+		SELECT * FROM MENU
 	</select>
-	
-	<select  id="menuwrite" 
-	resultType="com.tech.sprj09.dto.MenuDto">
-	INSERT INTO MENU(MENUID,SIKNO,MENULIST,MENUDATE,
-	MENUFILESRC) VALUES(MENU_SEQ.NEXTVAL,0,
-	#{param1},#{param2},#{param3})
+
+	<select id="menuwrite" resultType="com.tech.sprj09.dto.MenuDto">
+		INSERT INTO
+		MENU(MENUID,SIKNO,MENULIST,MENUDATE,
+		MENUFILESRC)
+		VALUES(MENU_SEQ.NEXTVAL,0,
+		#{param1},#{param2},#{param3})
 	</select>
-	
+
+	<select id="menucontentview"
+		resultType="com.tech.sprj09.dto.MenuDto">
+		SELECT MENUID, SIKNO, MENULIST, MENUDATE, MENUFILESRC
+		FROM
+		MENU WHERE MENUID=#{param1}
+	</select>
+
+	<select id="menucontentupdate"
+		resultType="com.tech.sprj09.dto.MenuDto">
+		SELECT MENUID, SIKNO, MENULIST, MENUDATE, MENUFILESRC
+		FROM
+		MENU WHERE MENUID=#{param1}
+	</select>
+
+	<update id="menumodify" >
+		UPDATE MENU SET MENULIST=#{PARAM2},
+		MENUDATE=#{PARAM3},
+		MENUFILESRC=#{PARAM4} WHERE MENUID=#{PARAM1}
+	</update>
+
+	<delete id="menudelete" >
+		DELETE FROM MENU WHERE MENUID=#{PARAM1}
+	</delete> 
+
+	<select id="calendardetail" resultType="com.tech.sprj09.dto.MenuDto">
+	select * from menu where sikno = #{param1} and menudate = #{param2}
+	</select>
+
 </mapper> 

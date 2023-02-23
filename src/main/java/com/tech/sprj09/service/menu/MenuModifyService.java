@@ -14,11 +14,11 @@ import com.tech.sprj09.dao.IDao;
 import com.tech.sprj09.service.BServiceInter;
 
 @Service
-public class MenuWriteService implements BServiceInter {
+public class MenuModifyService implements BServiceInter {
 
 	private SqlSession sqlSession;
 
-	public MenuWriteService(SqlSession sqlSession) {
+	public MenuModifyService(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 
@@ -30,7 +30,7 @@ public class MenuWriteService implements BServiceInter {
 
 		String attachPath = "resources\\upload\\";
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
-		System.out.println("uploadpathhhhh:" + uploadPath);
+		System.out.println("menumodifyuploadpathhhhh:" + uploadPath);
 
 		String path = "C:\\2022spring\\springwork1\\Partenersproject\\src\\main\\webapp\\resources\\menuupload"; // 경로 수정 필요 
 
@@ -45,13 +45,14 @@ public class MenuWriteService implements BServiceInter {
 		String menulist = req.getParameter("menulist");
 		String menudate = req.getParameter("menudate");
 		String menufilesrc = req.getFilesystemName("file");
-
+		
 		if (menufilesrc == null)
 			menufilesrc = "";
 
+
 //		db에 연결해서 sql write는 dao에서 처리
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.menuwrite(menulist, menudate, menufilesrc);
+		dao.menumodify(menulist, menudate, menufilesrc);
 
 	}
 }

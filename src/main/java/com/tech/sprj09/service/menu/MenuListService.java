@@ -38,6 +38,8 @@ public class MenuListService implements BServiceInter {
 				(SearchVO)map.get("searchVO");
 		
 		
+		
+		
 		IDao dao=sqlSession.getMapper(IDao.class);
 		
 		String[] brdtitle=request.getParameterValues("searchType");	
@@ -59,6 +61,7 @@ public class MenuListService implements BServiceInter {
 				//		키워드 가져오기
 		String searchKeyword=request.getParameter("sk");
 		
+		
 		if(searchKeyword==null)
 			searchKeyword="";
 		
@@ -75,55 +78,8 @@ public class MenuListService implements BServiceInter {
 		int page=Integer.parseInt(strPage);
 		searchVO.setPage(page);
 		
-//		//토탈 글의 갯수 구하기
-////		int total=dao.selectBoardTotCount();
-//		int total=0;
-//		if(menudate.equals("menudate") && menulist.equals("")) {
-//			total=dao.selectBoardTotCount1(searchKeyword);
-//		}else if(menudate.equals("") && menulist.equals("menulist")) {
-//			total=dao.selectBoardTotCount2(searchKeyword);
-//		}else if(menudate.equals("menudate") && menulist.equals("menulist")) {
-//			total=dao.selectBoardTotCount3(searchKeyword);
-//		}else if(menudate.equals("") && menulist.equals("")) {
-//			total=dao.selectBoardTotCount4(searchKeyword);
-//		}
-//				
-////		System.out.println("total : "+total);
-//		searchVO.pageCalculate(total);
-//		
-//		//계산된 내용 출력
-//		System.out.println("totRow : "+total);
-//		System.out.println("clickpage : "+page);
-//		System.out.println("pageStart : "+searchVO.getPageStart());
-//		System.out.println("pageEnd : "+searchVO.getPageEnd());
-//		System.out.println("pageTot : "+searchVO.getTotPage());
-//		System.out.println("rowStart : "+searchVO.getRowStart());
-//		System.out.println("rowEnd : "+searchVO.getRowEnd());
-//	
-//		int rowStart=searchVO.getRowStart();
-//		int rowEnd=searchVO.getRowEnd();
-//		
-//
-//		
-//		if(menudate.equals("menudate") && menulist.equals("")) {
-//
-//			model.addAttribute("list",dao.list(rowStart,rowEnd,searchKeyword,"1"));
-//		}else if(menudate.equals("") && menulist.equals("menulist")) {
-//
-//			model.addAttribute("list",dao.list(rowStart,rowEnd,searchKeyword,"2"));
-//		}else if(menudate.equals("menudate") && menulist.equals("menulist")) {
-////	
-//			model.addAttribute("list",dao.list(rowStart,rowEnd,searchKeyword,"3"));
-//		}else if(menudate.equals("") && menulist.equals("")) {
-//
-//			model.addAttribute("list",dao.list(rowStart,rowEnd,searchKeyword,"4"));
-//		}
-//		
-		model.addAttribute("list",dto);
-		
-//		model.addAttribute("totRowcnt",total);
-//		model.addAttribute("searchVo",searchVO);
-//		
+
+		model.addAttribute("list",dto);		
 		
 		
 
