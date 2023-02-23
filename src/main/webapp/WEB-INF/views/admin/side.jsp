@@ -43,7 +43,7 @@
 				</div>
 				<div class="nav__list">
 
-					<a href="/partners" class="nav__link active"> 
+					<a href="/partners/admin" class="nav__link active"> 
 					<ion-icon	name="home-outline" class="nav__icon"> </ion-icon> 
 					<span class="nav_name">홈으로</span>
 					</a> 

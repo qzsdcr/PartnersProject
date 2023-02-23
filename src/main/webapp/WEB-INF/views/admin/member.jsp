@@ -41,10 +41,10 @@
 <body>
 
 	<div
-		style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px; font-family: 'Noto Sans KR', sans-serif;">
+		style="overflow-x: hidden; width: 90%; height: 95%; margin-left: 150px; font-family: 'Noto Sans KR', sans-serif;">
 		<p id="memberchart">
 		<h1>회원 관리 페이지</h1>
-		<form action="admin#memberchart" method="post">
+		<form action="member#memberchart" method="post">
 			<div class="search">
 				<select class="search-select" name="searchType">
 					<option value="MEMID" name="MEMID">아이디 검색</option>

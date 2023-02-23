@@ -126,5 +126,10 @@
 		DELETE FROM SIKDANG WHERE
 		SIKNO=#{param1}
 	</delete>
+	
+	<insert id="sikwrite">
+	INSERT INTO SIKDANG(SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKADDRESS,SIKADDRESS2,SIKTEL,SIKDATE,FILESRC,SIKOPENCLOSE) 
+	VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},SYSDATE,#{param8},'영업중')
+	</insert>
 
 </mapper>

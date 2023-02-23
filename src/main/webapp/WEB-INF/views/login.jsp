@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
             </div>
         </form>
         <div class="caption">
-            <a href="findpasswordform">Forgot Password</a> <!-- 비밀번호 찾기 링크 추가 필요-->
+            <a href="findpassword">Forgot Password</a> <!-- 비밀번호 찾기 링크 추가 -->
             <a href="joinform1">회원가입</a>
         </div>
     </section>
