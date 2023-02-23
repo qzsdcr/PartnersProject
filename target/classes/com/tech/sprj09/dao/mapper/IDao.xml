@@ -84,106 +84,43 @@
 		FROM SIKDANG WHERE SIKNO=#{param1, jdbcType=VARCHAR}
     </select>
     
-    <select id="reviewlist" resultType="com.tech.sprj09.dto.ReviewDto">
+    <select id="reviewList" resultType="com.tech.sprj09.dto.ReviewDto">
     	SELECT REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,REVIEWLIKE,
 		REVIEWDATE,SPOON,TASTE,PRICE,SINGO,REVIEWFILE
 		FROM REVIEW ORDER BY REVIEWDATE DESC
 		<!-- WHERE REVIEWNO=#{param1, jdbcType=VARCHAR} -->
     </select>
- 
-    <!-- <insert id="write">
-    	INSERT INTO MBOARD(BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC)
-		VALUES(MBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},
-		SYSDATE,0,MBOARD_SEQ.CURRVAL,0,0,#{param4})
-    </insert>
     
-    <select id="contentview"  resultType="com.tech.sprj09.dto.BoardDto">
-    	SELECT BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC
-		FROM MBOARD WHERE BID=#{param1}
-    </select>
-    
-    <select id="contentupdate"  resultType="com.tech.sprj09.dto.BoardDto">
-    	SELECT BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC
->>>>>>> origin/inwoong
-		FROM MBOARD WHERE BID=#{param1}
-	</select>
-
-	<update id="upHit">
-		UPDATE MBOARD SET BHIT=BHIT+1
-		WHERE BID=#{param1}
-
-	</update>
-	
-	<update id="modify">
-		UPDATE MBOARD SET BNAME=#{param2},
-		BTITLE=#{param3},
-		BCONTENT=#{param4}
-		WHERE BID=#{param1}
-	</update>
-	
-	<delete id="delete">
-		DELETE FROM MBOARD WHERE BID=#{param1}
-	</delete>
-<<<<<<< HEAD
-	<select id="replyview" resultType="com.tech.sprj09.dto.BoardDto">
-		SELECT BID,BNAME,BTITLE,BCONTENT,
-		BDATE,BHIT,BGROUP,BSTEP,BINDENT
-		FROM MBOARD WHERE BID=#{param1}
-	</select>
-
-	<update id="replyShape">
-		UPDATE MBOARD
-		SET BSTEP=BSTEP+1
-		WHERE BGROUP=#{param1} AND BSTEP>#{param2}
-	</update>
-
-	<insert id="reply">
-		INSERT INTO MBOARD(BIDa,BNAME,BTITLE,BCONTENT,
-		BDATE,BGROUP,BSTEP,BINDENT)
-		VALUES(MBOARD_SEQ.NEXTVAL,
-		#{param2},#{param3},
-		#{param4},
-		SYSDATE,#{param5},
-		#{param6}+1,#{param7}+1)
-	</insert>
-	<select id="sonReply" resultType="com.tech.sprj09.dto.BoardDto">
-		SELECT * FROM MBOARD WHERE
-		BGROUP=#{param1}
-		ORDER BY BSTEP ASC
-	</select>
-
-
-=======
-	
-	<select id="replyview"  resultType="com.tech.sprj09.dto.BoardDto">
-    	SELECT BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT
-		FROM MBOARD WHERE BID=#{param1}
-    </select>
-    
-    <update id="replyShape">
-    	UPDATE MBOARD
-		SET BSTEP=BSTEP+1 
-		WHERE BGROUP=#{param1} AND BSTEP>#{param2}
+    <update id="upLikeHit">
+    	UPDATE REVIEW SET REVIEWLIKE=#{param2, jdbcType=VARCHAR} WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
     </update>
     
-    <insert id="reply">
-    	INSERT INTO MBOARD(BIDa,BNAME,BTITLE,BCONTENT,
-			BDATE,BGROUP,BSTEP,BINDENT) 
-			VALUES(MBOARD_SEQ.NEXTVAL,
-			#{param2},#{param3},
-			#{param4},
-			SYSDATE,#{param5},
-			#{param6}+1,#{param7}+1)
+    <insert id="reviewWrite">
+    	INSERT INTO REVIEW(REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,
+    	REVIEWLIKE,REVIEWDATE,SPOON,TASTE,PRICE,CLEAN,SINGO,REVIEWFILE)
+		VALUES(REVIEW_SEQ.NEXTVAL,#{param1, jdbcType=VARCHAR},#{param2, jdbcType=VARCHAR},
+		#{param3, jdbcType=VARCHAR},#{param4, jdbcType=VARCHAR},
+		0,SYSDATE,#{param5, jdbcType=VARCHAR},0,0,0,0,#{param6, jdbcType=VARCHAR})
     </insert>
     
-	<select id="sonReply" resultType="com.tech.sprj09.dto.BoardDto">
-		SELECT * FROM MBOARD WHERE BGROUP=#{param1}
-			ORDER BY BSTEP ASC
-	</select> -->
+    <select id="reviewUpdate" resultType="com.tech.sprj09.dto.ReviewDto">
+    	SELECT REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,REVIEWLIKE,
+		REVIEWDATE,SPOON,TASTE,PRICE,SINGO,REVIEWFILE
+		FROM REVIEW WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
+    </select>
+    
+    <update id="reviewModify">
+    	UPDATE REVIEW SET REVIEWCONTENT=#{param2, jdbcType=VARCHAR},
+    	SPOON=#{param3, jdbcType=VARCHAR},REVIEWFILE=#{param4, jdbcType=VARCHAR} 
+    	WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
+    </update>
+    
+    <delete id="reviewDelete">
+    	DELETE FROM REVIEW WHERE REVIEWNO=#{param1}
+    </delete>
+    
+    
+    
 	
 	<!-- 회원가입DB Insert -->
     <insert id="join" >

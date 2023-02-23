@@ -210,33 +210,44 @@ border-bottom:1px dashed #666;
 	float: right;
 }
 
+.review-item clearfix{
+	float: right;
+}
+
+.star_rating {
+    font-size: 20px;
+}
+.star {
+    color: gold;
+    margin-right: 2px;
+}
+
+.heart-container {
+	float: right;
+	font-size: 30px;
+}
+
+.heart-container input{
+	display: none;
+}
+
+.heart-container label {
+	-webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 2.3px;
+	-webkit-text-stroke-color: red; /* #FF0000 */
+	cursor: pointer;
+}
+
+.heart-container :checked ~ label {
+  -webkit-text-fill-color: red;
+}
+
 </style>
 
 <button type="button" name="review" id="onReview">리뷰 작성</button>
 <div class="sikdang-page-content" id="review">
-	<!-- <ul id="myTap" class="nav nav-tabs">
-		<li class="active">
-			<a href="#" data-togle="tab">리뷰</a>
-		</li>
-	</ul> -->
 	<div class="tab-content" style="width:100%;">
 		<div class="tab-pane fade in active">
-		<c:forEach items="${review}" var="review">
-			<div class="review-item clearfix">
-				<div class="review-item-submitted">
-					<strong>aa</strong>
-					<em>aa</em>
-				</div>
-				<div class="reivew-item-content">
-					<input class="inlinereview" value = "aa" readonly>
-					<c:if test="aa">
-						<a href="aa" class="reviewBTN del">삭제</a>
-						<a href="#" class="reviewBTN mdf" id="mdf">수정</a>
-						<a href="aa" class="reviewBTN mdfOk" id="mdfOk" style="display:none;">수정 완료</a>
-					</c:if>
-				</div>
-			</div>
-		</c:forEach>
 			<form class="reviews-form" role="form" style="display:none;">
 				<h2>리뷰 작성</h2>
 				<div class="form-group">
@@ -244,11 +255,11 @@ border-bottom:1px dashed #666;
 						이름
 						<span class="require"></span>
 					</label>
-					<input type="text" class="form-control" id="username" value="aa" readonly style="width:14%;">
+					<input type="text" class="form-control" id="username" value="작성자" readonly style="width:14%;">
 				</div>
 				
 				<div class="star-rating">
-					<input type="radio" id="5-stars" name="rating" value="5" />
+					<input type="radio" id="5-stars" name="rating" value="5" required="required" />  <!-- required 별점 선택 안하면 작성 안되게 막음 -->
 					<label for="5-stars" class="star">&#9733;</label>
 					<input type="radio" id="4-stars" name="rating" value="4" />
 					<label for="4-stars" class="star">&#9733;</label>
@@ -259,21 +270,18 @@ border-bottom:1px dashed #666;
 					<input type="radio" id="1-star" name="rating" value="1" />
 					<label for="1-star" class="star">&#9733;</label>
 				</div>
-				
-				<!-- <div class="form-group">
-					<label for="useremail">Email</label>
-					<input type="text" value="aa" id="useremail" readonly>
-				</div> -->
+
 				<div class="form-group">
 					<label for="review">리뷰</label>
 					<textarea class="form-control" rows="8" id="reviewTxt" style="word-break:break-all;width:100%;text-align:center;"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="file">파일첨부</label>
-					<input type="file" name="file" />
+					<input type="file" name="file" id="file-input" />
 				</div>
 				<div class="padding-top-20" style="float: right">
-					<button type="submit" class="btn btn-primary reviewBtn">작성하기</button>
+					<!-- <button type="submit" class="btn btn-primary reviewBtn">작성하기</button> -->
+					<input type="submit" value="작성하기" />
 				</div>
 			</form>
 		</div>
@@ -284,41 +292,85 @@ border-bottom:1px dashed #666;
 <div class="review">
 <div>리뷰</div>
 
-<c:forEach items="${reviewlist }" var="rdto">
-	<div class="container">
-		<ul class="review_list">
-			<li class="review-clazz=more">
-				<div class="top_info">
-					<span class="point_type">
-						<span class="star_mark" style="width: 100%">${rdto.spoon }</span>
-					</span>
-					<span class="bar"> | </span>
-					<span class="memid">${rdto.memno }</span>
-					<span class="bar"> | </span>
-					<span class="date">
-						<fmt:formatDate value="${rdto.reviewdate }"
-                     	pattern="yyyy-MM-dd" />
-					</span>
-				</div>
-				<div class="review_tit_cont">
-					<div class="tit_cont">
-						<div class="tit_A">
-							<p class="tit">${rdto.reviewtitle }</p>
+<div class="container">
+    <select id="sort">
+        <option value="date">최신순</option>
+        <option value="high">별점높은순</option>
+        <option value="low">별점낮은순</option>
+    </select>
+
+    <ul class="review_list">
+        <c:forEach items="${reviewList}" var="rdto">
+            <li>
+                <!-- 리뷰 출력 내용 -->
+                <div id="reviewlist" class="container">
+                <input type="hidden" name="reviewno" value="${rdto.reviewno }" />
+					<div class="top_info">
+						<span class="point_type" style="display: none;">
+							<span class="star_mark" style="width: 100%">${rdto.spoon }</span>
+						</span>
+						
+						<span class="star_rating">
+			                <c:choose>
+			                    <c:when test="${rdto.spoon == 1}">
+			                        <span class="star">&#9733;</span>
+			                    </c:when>
+			                    <c:when test="${rdto.spoon == 2}">
+			                        <span class="star">&#9733;</span><span class="star">&#9733;</span>
+			                    </c:when>
+			                    <c:when test="${rdto.spoon == 3}">
+			                        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+			                    </c:when>
+			                    <c:when test="${rdto.spoon == 4}">
+			                        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+			                    </c:when>
+			                    <c:when test="${rdto.spoon == 5}">
+			                        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
+			                    </c:when>
+			                </c:choose>
+	            		</span>
+						
+						<span class="bar"> | </span>
+						<span class="memno">${rdto.memno }</span>
+						<span class="bar"> | </span>
+						<span class="date">
+							<fmt:formatDate value="${rdto.reviewdate }"
+	                     	pattern="yyyy-MM-dd HH:mm:ss" />
+	                     	<%-- ${rdto.reviewdate } --%>
+						</span>
+						<div class="heart-container">
+							<input type="checkbox" id="${rdto.reviewno}_heart" name="reviewlike" ${localStorage.getItem(rdto.reviewno) == 'true' ? 'checked' : ''}>
+							<label for="${rdto.reviewno}_heart">&#10084;</label>
+							<div class="reviewlike_totcnt">${rdto.reviewlike }</div>
 						</div>
-						<div class="cont">${rdto.reviewcontent }</div>
 					</div>
-					<div class="pto_thumb">
-						<div class="thumb_wrap">
-							<div class="review_file">
-								<img src="resources/images/coming-soon1.jpg" alt="" />
+					<div class="review_tit_cont">
+						<div class="tit_cont">
+							<div class="tit_A">
+								<p class="tit">${rdto.reviewtitle }</p>
+							</div>
+							<div class="cont">${rdto.reviewcontent }</div>
+						</div>
+						<div class="pto_thumb">
+							<div class="thumb_wrap">
+								<div class="review_file">
+									<img src="resources/upload/${rdto.reviewfile }" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="review-item clearfix">
+							<div class="reivew-item-content">
+								<a href="#" class="reviewBTN del" onclick="deleteReview(${rdto.reviewno})">삭제</a>
+								<a href="reviewupdate?reviewno=${rdto.reviewno }" class="reviewBTN mdf" id="mdf">수정</a>
+								<a href="${rdto.reviewno }" class="reviewBTN mdfOk" id="mdfOk" style="display:none;">수정 완료</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</li>
-		</ul>
-	</div>
-</c:forEach>
+            </li>
+        </c:forEach>
+    </ul>
+</div>
 
 </div>
 
@@ -338,143 +390,136 @@ $("#onReview").on("click",function(e){
 	}
 });
 
-//작성하기 버튼 클릭시 
-$(".reviewBtn").on("click",function(e){
-	e.preventDefault();
-	var username = $("#username").val(); // username 변수 정의
-	var reviewcontents = $("#reviewTxt").val();
-	if(username == ""){
-		alert("로그인 후 이용해주세요");
-		return;
-	}
-	else if(reviewcontents == null){
-		alert("내용을 입력해주세요");
-		return;
-	}
-	reviewService.addreview(
-		{username:username, reviewcontents:reviewcontents},		
-		function(result){
-			if(result > 0){
-				alert(result+"번 리뷰 작성 성공!");
-				location.reload();
-			}
+//리뷰 작성 폼
+$(document).ready(function() {
+    // 파일 선택 시 미리보기
+    $("#file-input").change(function() {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $("#image-preview").html("<img src='" + e.target.result + "' />");
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // 리뷰 폼 제출 시 AJAX로 전송
+    $("#review-form").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        if (confirm("해당 내용으로 리뷰를 작성하시겠습니까?")) {
+	        $.ajax({
+	            url: "reviewWrite",
+	            type: "POST",
+	            data: formData,
+	            processData: false,
+	            contentType: false,
+	            success: function(response) {
+	            	//location.reload(true);
+	            	//location.href = "contentview?sikno="+15;
+	            		
+            		setTimeout(function() {
+	                   	location.reload(true);
+	                       //location.href = "contentview?sikno="+15;
+	                   	}, 2000); // 2초 후에 페이지 이동
+					
+	            }
+	        });
+        }else {
+			return;
 		}
-	);
+    });
+});
+
+//셀렉트 박스 이벤트 핸들러 등록
+document.getElementById('sort').addEventListener('change', function() {
+	// 현재 선택한 옵션의 값 가져오기
+	var selectedValue = this.value;
+
+	// 리뷰 목록을 담고 있는 ul 요소 선택
+	var reviewList = document.querySelector('.review_list');
+
+	// 리뷰 목록의 li 요소들을 배열로 저장
+	var reviewItems = Array.from(reviewList.children);
+	
+	// 배열에 저장된 li 요소들을 선택한 값에 따라 정렬
+	if (selectedValue === 'date') { //최신순
+	  reviewItems.sort(function(a, b) {
+	    var date1 = new Date(a.querySelector('.date').textContent);
+	    var date2 = new Date(b.querySelector('.date').textContent);
+	    return date2 - date1;
+	  });
+	} else if (selectedValue === 'high') { //별점높은순
+	  reviewItems.sort(function(a, b) {
+	    var rating1 = a.querySelector('.star_mark').textContent;
+	    var rating2 = b.querySelector('.star_mark').textContent;
+	    return rating2 - rating1;
+	  });
+	} else if (selectedValue === 'low') { //별점낮은순
+	  reviewItems.sort(function(a, b) {
+	    var rating1 = a.querySelector('.star_mark').textContent;
+	    var rating2 = b.querySelector('.star_mark').textContent;
+	    return rating1 - rating2;
+	  });
+	}
+	
+	// 정렬된 li 요소들을 다시 ul 요소에 추가
+	
+	for (var i = 0; i < reviewItems.length; i++) {
+	  reviewList.appendChild(reviewItems[i]);
+	}
+});
+
+$(document).ready(function() {
+	// 하트 버튼 클릭 시 서버로 데이터 전송
+	$('input[name="reviewlike"]').click(function() {
+		var reviewno = $(this).closest('.container').find('input[name="reviewno"]').val();
+		var reviewlike = $(this).is(':checked') ? true : false; // 체크 상태에 따라 좋아요 여부
+		localStorage.setItem(reviewno, reviewlike); // Local Storage에 저장
+		var totcntEl = $(this).closest('.heart-container').find('.reviewlike_totcnt');
+		var totcnt = parseInt(totcntEl.text()) + (reviewlike ? +1 : -1); // 현재 좋아요 수
+		totcntEl.text(totcnt); // 좋아요 수 업데이트
+		$.ajax({
+		  type: 'POST',
+		  url: 'contentview',
+		  data: {
+		    'reviewno': reviewno,
+		    'reviewlike': reviewlike ? +1 : 0
+		  }
+		});
+		location.reload(); // 현재 페이지 새로고침
+	});
+
+	// 페이지 로드 시 Local Storage에서 하트 상태를 복원
+	$('input[name="reviewlike"]').each(function() {
+		var reviewno = $(this).closest('.container').find('input[name="reviewno"]').val();
+		if (localStorage.getItem(reviewno) == 'true') {
+		  $(this).prop('checked', true);
+		}
+	});
 });
 
 //리뷰 삭제
-$(".del").on("click",function(e){
-	e.preventDefault();
-	var reviewnum = $(this).attr('href');
-	buyService.drop(
-			reviewnum,
-		function(result){
-			if(result == "success"){
-				alert(reviewnum+"번 리뷰 삭제 성공!");
-				location.reload();
-			}
-		}
-	)
-})
-
-//리뷰 수정 버튼 눌렀을 시 수정 버튼은 숨기고 수정 완료버튼 보여주기 
-var mf = false;
-$("#mdf").on("click",function(e){
-	e.preventDefault();
-	if(mf == true){
-		alert("이미 수정중인 리뷰가 있습니다");
-		return;
+function deleteReview(reviewno) {
+	if (confirm("삭제 하시겠습니까?")) {
+	  $.ajax({
+	    url: "reviewDelete",
+	    type: "POST",
+	    data: {
+	      reviewno: reviewno
+	    },
+	    success: function() {
+	      // 삭제 성공 시 처리할 내용
+	      location.reload();
+	    },
+	    error: function(xhr, status, error) {
+	      // 삭제 실패 시 처리할 내용
+	      alert("삭제 실패: " + error);
+	    }
+	  });
 	}
-	mf = true;
-	$(".inlinereview").attr("readonly",false);
-	$(this).hide();
-	$(this).next().show();
-})
-
-//수정 완료 버튼
-$("#mdfOk").on("click",function(e){
-	e.preventDefault();
-	mf == false;
-	var reviewcontents = $(".inlinereview").val();
-	var reviewnum = $(this).attr('href');
-	 buyService.modify(
-		{reviewcontents:reviewcontents, reviewnum:reviewnum},
-		function(result){
-			if(result=="success"){
-				alert("리뷰를 수정 하였습니다.");
-				$(".inlinereview").attr("readonly",true);
-				$(this).show();
-				$(this).prev().hide();
-				location.reload();
-			}
-		} 
-	)
-})
+}
 
 </script>
-
-<script>
-const reviewService = (function(){
-	//리뷰 작성 ajax
-	function review(review, callback){
-		$.ajax({
-			type:"POST",
-			url:"/review",
-			data:JSON.stringify(review),
-			contentType:"application/json; charset=utf-8",
-			success:function(result){
-				if(callback){
-					callback(result);
-				}
-			},
-			error:function(err){
-				alert("리뷰 작성 실패!");
-			}
-		})
-	}
-	
-	//리뷰 삭제
-	function reviewDelete(review,callback){
-		$.ajax({
-			type:"POST",
-			url:"/buy/reviewDelete",
-			data:JSON.stringify(review),
-			contentType:"application/json; charset=utf-8",
-			success:function(result){
-				if(callback){
-					callback(result);
-				}
-			},
-			error:function(err){
-				alert("리뷰를 삭제하지 못했습니다. 다시 시도해 주세요.");
-			}
-		})
-	}
-	
-	//리뷰 수정
-	function reviewModify(review,callback){
-		$.ajax({
-			type:"PUT",
-			url:"/buy/"+review.reviewnum,
-			data:JSON.stringify(review),
-			contentType:"application/json; charset=utf-8",
-			success:function(result){
-				if(callback){
-					callback(result);
-				}
-			},
-			error:function(err){
-				alert("리뷰 수정 실패. 다시 시도해주세요~");
-			}
-		})
-	}
-	
-	//return {addreview:review, drop:reviewDelete, modify:reviewModify};
-	return {addreview:review};
-})();
-
-</script>
-
 
 <div>
   <div id="footer">

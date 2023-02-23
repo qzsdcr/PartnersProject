@@ -7,11 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tech.sprj09.service.BServiceInter;
 import com.tech.sprj09.service.ContentViewService;
 import com.tech.sprj09.service.ListService;
-import com.tech.sprj09.service.ReviewListService;
+import com.tech.sprj09.service.review.ReviewDeleteService;
+import com.tech.sprj09.service.review.ReviewListService;
+import com.tech.sprj09.service.review.ReviewModifyService;
+import com.tech.sprj09.service.review.ReviewUpdateService;
+import com.tech.sprj09.service.review.ReviewWriteService;
 import com.tech.sprj09.vopage.SearchVO;
 
 @Controller
@@ -70,7 +75,63 @@ public class MainController {
 		return "contentview";
 	}
 
+//	리뷰 글쓰기
+	@RequestMapping("/reviewWrite")
+	public String review(HttpServletRequest request, Model model) {
+		System.out.println("========reviewWrite=======");
+		//db에서 데이터 가져오기
+				
+		model.addAttribute("request",request);
+
+		bServiceInter=new ReviewWriteService(sqlSession);
+		bServiceInter.execute(model);
+		
+//		return "redirect:contentview?sikno=15";
+		return "redirect:contentview";
+	}
+//	리뷰 수정폼으로
+	@RequestMapping("/reviewUpdate")
+	public String reviewupdate(HttpServletRequest request, Model model) {
+		System.out.println("=======reviewUpdate=======");
+//		db에 디테일 기능
+		//toss
+		model.addAttribute("request",request);
+		
+		bServiceInter=new ReviewUpdateService(sqlSession);
+		bServiceInter.execute(model);
+		
+		return "reviewUpdate";
+	}
 	
+//	리뷰 수정하기
+	@RequestMapping(method = RequestMethod.POST,value = "/reviewModify")
+	public String reviewModify(HttpServletRequest request, Model model) {
+		System.out.println("=======reviewModify=======");
+//		db에 디테일 기능
+		//toss
+		model.addAttribute("request",request);
+		
+		bServiceInter=new ReviewModifyService(sqlSession);
+		bServiceInter.execute(model);
+		
+		return "redirect:contentview?sikno=15";
+//		return "redirect:contentview";
+	}
+	
+//	리뷰 삭제
+	@RequestMapping("/reviewDelete")
+	public String reviewDelete(HttpServletRequest request, Model model) {
+		System.out.println("========reviewDelete=======");
+		//db에서 데이터 가져오기
+				
+		model.addAttribute("request",request);
+
+		bServiceInter=new ReviewDeleteService(sqlSession);
+		bServiceInter.execute(model);
+		
+//		return "redirect:contentview?sikno=15";
+		return "redirect:contentview";
+	}
 	
 	
 }

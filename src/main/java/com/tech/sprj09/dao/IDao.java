@@ -15,9 +15,17 @@ public interface IDao {
 	   
 	public SikdangDto contentview(String gsikno);
 	
-	public ArrayList<ReviewDto> review(String memno,String sikno,String reviewtitle,String reviewcontent,String spoon,String reviewfile);
+	public void reviewWrite(String memno,String sikno,String reviewtitle,String reviewcontent,String spoon,String rname);
 	
-	public ArrayList<ReviewDto> reviewlist();
+	public ArrayList<ReviewDto> reviewList();
+	
+	public void upLikeHit(String reviewno,String reviewlike);
+	
+	public ReviewDto reviewUpdate(String reviewno);
+	
+	public void reviewModify(String reviewno,String reviewcontent,String spoon,String rname);
+	
+	public void reviewDelete(String reviewno);
 	
 	public int selectBoardTotCount1(String searchKeyword);
 	
