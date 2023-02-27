@@ -32,7 +32,7 @@ public class MenuWriteService implements BServiceInter {
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
 		System.out.println("uploadpathhhhh:" + uploadPath);
 
-		String path = "C:\\2022spring\\springwork1\\Partenersproject\\src\\main\\webapp\\resources\\menuupload"; // 경로 수정 필요 
+		String path = "C:\\2022spring\\springwork1\\Partenersproject\\src\\main\\webapp\\resources\\menuupload"; // 경로
 
 		MultipartRequest req = null;
 		try {
@@ -42,16 +42,18 @@ public class MenuWriteService implements BServiceInter {
 			// TODO: handle exception
 		}
 
+		String sikno = req.getParameter("sikno");
 		String menulist = req.getParameter("menulist");
 		String menudate = req.getParameter("menudate");
 		String menufilesrc = req.getFilesystemName("file");
 
+		
 		if (menufilesrc == null)
 			menufilesrc = "";
 
 //		db에 연결해서 sql write는 dao에서 처리
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.menuwrite(menulist, menudate, menufilesrc);
+		dao.menuwrite(sikno, menulist, menudate, menufilesrc);
 
 	}
 }

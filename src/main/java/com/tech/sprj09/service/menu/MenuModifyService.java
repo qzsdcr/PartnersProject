@@ -41,10 +41,12 @@ public class MenuModifyService implements BServiceInter {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
-		String menulist = req.getParameter("menulist");
-		String menudate = req.getParameter("menudate");
+		
+		String menuid =request.getParameter("menuid");
+		String menulist = request.getParameter("menulist");
+		String menudate = request.getParameter("menudate");
 		String menufilesrc = req.getFilesystemName("file");
+		
 		
 		if (menufilesrc == null)
 			menufilesrc = "";
@@ -52,7 +54,7 @@ public class MenuModifyService implements BServiceInter {
 
 //		db에 연결해서 sql write는 dao에서 처리
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.menumodify(menulist, menudate, menufilesrc);
+		dao.menumodify(menuid,menulist, menudate, menufilesrc);
 
 	}
 }

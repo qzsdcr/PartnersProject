@@ -5,15 +5,17 @@
 
 	<select id="selectMenuList"
 		resultType="com.tech.sprj09.dto.MenuDto">
-		SELECT * FROM MENU
+		SELECT M.MENUID,M.SIKNO,M.MENULIST,M.MENUDATE,M.MENUFILESRC,S.SIKNAME
+		FROM MENU M INNER JOIN SIKDANG S 
+		ON M.SIKNO=S.SIKNO
 	</select>
 
 	<select id="menuwrite" resultType="com.tech.sprj09.dto.MenuDto">
 		INSERT INTO
 		MENU(MENUID,SIKNO,MENULIST,MENUDATE,
 		MENUFILESRC)
-		VALUES(MENU_SEQ.NEXTVAL,0,
-		#{param1},#{param2},#{param3})
+		VALUES(MENU_SEQ.NEXTVAL,#{param1},
+		#{param2},#{param3},#{param4})
 	</select>
 
 	<select id="menucontentview"
@@ -30,18 +32,24 @@
 		MENU WHERE MENUID=#{param1}
 	</select>
 
-	<update id="menumodify" >
-		UPDATE MENU SET MENULIST=#{PARAM2},
-		MENUDATE=#{PARAM3},
-		MENUFILESRC=#{PARAM4} WHERE MENUID=#{PARAM1}
-	</update>
+<update id="menumodify">
+    UPDATE MENU SET MENULIST=#{menuList, jdbcType=VARCHAR}, MENUDATE=#{menuDate, jdbcType=TIMESTAMP},
+     MENUFILESRC=#{menuFileSrc, jdbcType=VARCHAR} WHERE MENUID=#{menuId}
+</update>
 
-	<delete id="menudelete" >
+	<delete id="menudelete">
 		DELETE FROM MENU WHERE MENUID=#{PARAM1}
-	</delete> 
+	</delete>
 
-	<select id="calendardetail" resultType="com.tech.sprj09.dto.MenuDto">
-	select * from menu where sikno = #{param1} and menudate = #{param2}
+	<select id="calendardetail"
+		resultType="com.tech.sprj09.dto.MenuDto">
+		select * from menu where sikno = #{param1} and menudate =
+		#{param2}
+	</select>
+
+	<select id="sikdangList"
+		resultType="com.tech.sprj09.dto.SikdangDto">
+		select * from sikdang
 	</select>
 
 </mapper> 
