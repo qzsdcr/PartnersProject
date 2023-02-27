@@ -86,9 +86,8 @@ function fillForm(mempnum) {
 
 <body>
 
-	<main style="margin-left: 100px">
-		<div
-			style="overflow-x: hidden; width: 30%; height: 95%; margin-left: 150px; font-family: 'Noto Sans KR', sans-serif; float: left;">
+	<main>
+		<div>
 			<p id="">
 			<h1>회원 관리 페이지</h1>
 			<form action="smssand" method="post">
@@ -125,14 +124,13 @@ function fillForm(mempnum) {
 			</p>
 		</div>
 
-		<div
-			style="overflow-x: hidden; width: 30%; height: 95%; margin-left: 150px; font-family: 'Noto Sans KR', sans-serif; float: right;">
+		<div>
 
 			<h1>문자 메시지</h1>
 		
 
 				<form action="/partners/send-one">
-					<table border="1">
+					<table border="1" style="text-align: center;">
 						<tr>
 							<td>보내는 번호</td>
 							<td><input type="text" name="mempnum" value="보내는 번호" /></td>

@@ -50,7 +50,7 @@
 				<canvas id="Chart2" width="400" height="400"></canvas>
 			</div>
 
-			<div class="col-12">
+			<div class="col-12" id="chart-bar">
 				<canvas id="Chart3" width="1500" height="600"></canvas>
 			</div>
 			
@@ -179,6 +179,7 @@
 		    
 		    },
 		});
+		
 		
 
 	</script>
