@@ -184,8 +184,8 @@ public class MainController {
 		bServiceInter=new ReviewModifyService(sqlSession);
 		bServiceInter.execute(model);
 		
-		return "redirect:contentview?sikno=15";
-//		return "redirect:contentview";
+	
+	return "redirect:contentview";
 	}
 	
 //	리뷰 삭제

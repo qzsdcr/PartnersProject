@@ -6,16 +6,7 @@
 
 	<sql id="includelist">
 		<choose>
-<!-- 		    <when test="param4==1">
-		      WHERE SIKLOCA LIKE '%'||#{param3}||'%'
-		    </when>
-		   <when test="param4==2">
-		      WHERE SIKCONTENT LIKE '%'||#{param3}||'%'
-		    </when>
-		    <when test="param4==3">
-		      WHERE SIKCONTENT LIKE '%'||#{param3}||'%' OR SIKLOKA LIKE '%'||#{param3}||'%'
-		    </when>
- -->		    
+		
 		    <when test="param4==1">
 		      WHERE SIKLOCA LIKE '%'||#{param3}||'%' OR SIKNAME LIKE '%'||#{param3}||'%' AND SIKLOCA LIKE '%'||#{param5}||'%'
 		    </when>
@@ -26,12 +17,7 @@
 	</sql>
 
 
-<!--     <select id="selectBoardTotCount1" resultType="Integer">
-    	SELECT COUNT(*) FROM SIKDANG WHERE SIKLOCA LIKE '%'||#{param1}||'%'
-    </select>
-    <select id="selectBoardTotCount2" resultType="Integer">
-    	SELECT COUNT(*) FROM SIKDANG WHERE SIKCONTENT LIKE '%'||#{param1}||'%'
-    </select> -->
+
     <select id="selectBoardTotCount1" resultType="Integer">
     	SELECT COUNT(*) FROM SIKDANG WHERE SIKLOCA LIKE '%'||#{param1}||'%' OR SIKNAME LIKE '%'||#{param1}||'%' AND SIKLOCA LIKE '%'||#{param2}||'%'
     </select>
@@ -39,30 +25,7 @@
     	SELECT COUNT(*) FROM SIKDANG WHERE SIKLOCA LIKE '%'||#{param2}||'%'
     </select>
     
-    <!-- <select id="list" resultType="com.tech.sprj09.dto.BoardDto">	
-		SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,
-		BHIT,BGROUP,BSTEP,BINDENT
-		FROM (SELECT ROWNUM NUM, N.* FROM 
-		(SELECT * FROM MBOARD ORDER BY BDATE DESC) N)
-		WHERE NUM BETWEEN #{param1} AND #{param2}
-		
-		SELECT BID,BNAME,BTITLE,BCONTENT,
-		BDATE,BHIT,BGROUP,BSTEP,BINDENT
-		FROM (SELECT ROWNUM NUM, N.* FROM 
-		(SELECT * FROM MBOARD ORDER BY 
-		BGROUP DESC, BSTEP ASC) N)
-		WHERE NUM BETWEEN #{param1} AND #{param2}
-		
-		SELECT BID,BNAME,BTITLE,BCONTENT,
-		BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC
-		FROM (SELECT ROWNUM NUM, N.* FROM 
-		(SELECT * FROM MBOARD ORDER BY 
-		BGROUP DESC, BSTEP ASC) N
-        <include refid="includelist" />
-        )
-		WHERE NUM BETWEEN #{param1} AND #{param2}
-		
-    </select> -->
+   
     
     <select id="list" resultType="com.tech.sprj09.dto.SikdangDto">
     	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
@@ -74,12 +37,6 @@
 		WHERE NUM BETWEEN #{param1} AND #{param2}
     </select>
     
-<!--         <select id="gslist" resultType="com.tech.sprj09.dto.SikdangDto">
-    	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
-		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
-		FROM SIKDANG WHERE SIKLOCA='가산'
-		
-    </select> -->
 	
 	<select id="gslist" resultType="com.tech.sprj09.dto.SikdangDto">
         	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
@@ -136,8 +93,10 @@
 		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
 		FROM SIKDANG WHERE SIKNO=#{param1, jdbcType=VARCHAR}
     </select>
+  
+  
     
-    <select id="reviewlist" resultType="com.tech.sprj09.dto.ReviewDto">
+    <select id="reviewList" resultType="com.tech.sprj09.dto.ReviewDto">
     	SELECT REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,REVIEWLIKE,
 		REVIEWDATE,SPOON,REVIEWFILE
 		FROM REVIEW ORDER BY REVIEWDATE DESC
@@ -145,17 +104,6 @@
     </select>
     
 
-    
- 
- 
-    <insert id="write">
-    	INSERT INTO MBOARD(BID,BNAME,BTITLE,BCONTENT,
-    	BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC)
-		VALUES(MBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},
-		SYSDATE,0,MBOARD_SEQ.CURRVAL,0,0,#{param4})
-    </insert>
-
-    
     <update id="upLikeHit">
     	UPDATE REVIEW SET REVIEWLIKE=#{param2, jdbcType=VARCHAR} WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
     </update>
