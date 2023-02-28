@@ -31,6 +31,7 @@ public class ContentViewService implements BServiceInter{
 				(HttpServletRequest)map.get("request");
 //		String bid=request.getParameter("bid");
 		String sikno=request.getParameter("sikno");
+		String sikname=request.getParameter("sikname");
 //		System.out.println("bid : "+bid);
 //		BoardDao dao=new BoardDao();
 		

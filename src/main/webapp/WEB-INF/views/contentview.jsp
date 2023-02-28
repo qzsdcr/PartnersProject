@@ -73,6 +73,7 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<div id="main">
 
 			<div id="content">
@@ -143,6 +144,30 @@
 	width: 100%;
 	padding-bottom: 11px;
 	padding-top: 14px;
+=======
+         
+    </style>
+<div id="table">
+    <div class="row">
+        <div class="cell col1"><img src="resources/upload/${content_view.filesrc}" width="300" height="300" alt=""></div>
+        <div class="cell col2">
+            <div>식당이름: ${content_view.sikname}</div>
+            <div>별점</div>
+            <div>식당내용: ${content_view.sikcontent}</div>
+            <%-- <div>조회수: ${content_view.bhit }</div> --%>
+            <div>주소: ${content_view.sikaddress}</div>
+            <button type="button" onclick="location.href='/partners/calendar?sikno=${content_view.sikno}&sikname=${content_view.sikname}'">식단</button>
+        </div>
+    </div>
+</div>
+	</div>
+	
+	<!-- 리뷰 -->
+	
+<style>
+.review{
+border-bottom:1px dashed #666;
+>>>>>>> origin/menumodify
 }
 
 .row {

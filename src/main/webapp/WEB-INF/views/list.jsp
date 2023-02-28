@@ -60,6 +60,7 @@
 					<li><a href="#">테마</a></li>
 					<li><a href="review">리뷰</a></li>
 
+<<<<<<< HEAD
 				</ul>
 			</div>
 			<div id="sub-navigation">
@@ -69,6 +70,164 @@
 					<li><a href="#m3">여의도</a></li>
 					<li><a href="#m4">강남</a></li>
 					<li><a href="#m5">판교</a></li>
+=======
+      </ul>
+    </div>
+    <div id="sub-navigation">
+      <ul>
+        <li><a href="#m1">가산</a></li>
+        <li><a href="#m2">구로</a></li>
+        <li><a href="#m3">여의도</a></li>
+        <li><a href="#m4">강남</a></li>
+        <li><a href="#m5">판교</a></li>
+        
+      </ul>
+      <div id="search">
+        <form action="#" method="get" accept-charset="utf-8">
+          <label for="search-field">SEARCH</label>
+          <input type="text" name="search field" value="Enter search here" id="search-field" class="blink search-field"  />
+          <input type="submit" value="GO!" class="search-button" />
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="main">
+    <div id="content">
+      <div class="box">
+        <div class="head">
+          <h2>가산</h2>
+          <p class="text-right"><a href="gasan">모두보기</a></p>
+        </div>
+        <c:forEach items="${list }" var="dto" varStatus="status">
+        	<fmt:formatNumber value="${status.count}" type="number" var="numberType" />
+        	<div id="m1" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
+        	<div class="movie-image"> 
+	          <span class="play"><span class="name">파트너스</span></span> 
+	          <a href="contentview?sikno=${dto.sikno }&sikname=${dto.sikname }"><img src="resources/upload/${dto.filesrc }" alt="" /></a> 
+	          </div>
+	          
+	          <div class="rating">
+	            <p>${dto.sikname }</p>
+	            <div class="stars">
+	              <div class="stars-in"> </div>
+	            </div>
+	            <span class="comments">12</span> </div>
+	        </div>
+	      </c:forEach>
+        <div class="cl">&nbsp;</div>
+      </div>
+      
+      <div class="box">
+        <div class="head">
+          <h2>구로</h2>
+          <p class="text-right"><a href="gulo">모두보기</a></p>
+        </div>
+         <c:forEach items="${list }" var="dto" varStatus="status">
+         	<fmt:formatNumber value="${status.count}" type="number" var="numberType" />
+        	<div id="m2" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
+	          <div class="movie-image"> 
+	          <span class="play"><span class="name">파트너스</span></span> 
+	          <a href="#"><img src="resources/upload/${dto.filesrc }" alt="" /></a> 
+	          </div>
+	          <div class="rating">
+	            <p>${dto.sikname }</p>
+	            <div class="stars">
+	              <div class="stars-in"> </div>
+	            </div>
+	            <span class="comments">12</span> </div>
+	        </div>
+	      </c:forEach>
+        <div class="cl">&nbsp;</div>
+      </div>
+      
+      <div class="box">
+        <div class="head">
+          <h2>여의도</h2>
+          <p class="text-right"><a href="yeouido">모두보기</a></p>
+        </div>
+         <c:forEach items="${list }" var="dto" varStatus="status">
+         	<fmt:formatNumber value="${status.count}" type="number" var="numberType" />
+        	<div id="m3" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
+	          <div class="movie-image"> 
+	          <span class="play"><span class="name">파트너스</span></span> 
+	          <a href="#"><img src="resources/upload/${dto.filesrc }" alt="" /></a> 
+	          </div>
+	          <div class="rating">
+	            <p>${dto.sikname }</p>
+	            <div class="stars">
+	              <div class="stars-in"> </div>
+	            </div>
+	            <span class="comments">12</span> </div>
+	        </div>
+	      </c:forEach>
+        <div class="cl">&nbsp;</div>
+      </div>
+      
+      <div class="box">
+        <div class="head">
+          <h2>강남</h2>
+          <p class="text-right"><a href="gangnam">모두보기</a></p>
+        </div>
+         <c:forEach items="${list }" var="dto" varStatus="status">
+         	<fmt:formatNumber value="${status.count}" type="number" var="numberType" />
+        	<div id="m4" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
+	          <div class="movie-image"> 
+	          <span class="play"><span class="name">파트너스</span></span> 
+	          <a href="#"><img src="resources/upload/${dto.filesrc }" alt="" /></a> 
+	          </div>
+	          <div class="rating">
+	            <p>${dto.sikname }</p>
+	            <div class="stars">
+	              <div class="stars-in"> </div>
+	            </div>
+	            <span class="comments">12</span> </div>
+	        </div>
+	      </c:forEach>
+        <div class="cl">&nbsp;</div>
+      </div>
+      
+      <div class="box">
+        <div class="head">
+          <h2>판교</h2>
+          <p class="text-right"><a href="pangyo">모두보기</a></p>
+        </div>
+         <c:forEach items="${list }" var="dto" varStatus="status">
+         	<fmt:formatNumber value="${status.count}" type="number" var="numberType" />
+        	<div id="m5" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
+	          <div class="movie-image"> 
+	          <span class="play"><span class="name">파트너스</span></span> 
+	          <a href="#"><img src="resources/upload/${dto.filesrc }" alt="" /></a> 
+	          </div>
+	          <div class="rating">
+	            <p>${dto.sikname }</p>
+	            <div class="stars">
+	              <div class="stars-in"> </div>
+	            </div>
+	            <span class="comments">12</span> </div>
+	        </div>
+	      </c:forEach>
+        <div class="cl">&nbsp;</div>
+      </div>
+        
+       </div>
+    </div>
+    
+    
+<!--     <style>
+	div { display:none; }
+	</style> -->
+	<div>Content</div>
+<div>Content</div>
+<div>Content</div>
+<div>Content</div>
+<div>Content</div>
+<div>Content</div>
+<div>Content</div>
+<div>Content</div>
+<div>Content</div>
+<div>Content</div>
+<a href="#" id="load">더 보기</a>
+>>>>>>> origin/menumodify
 
 				</ul>
 				<div id="search">

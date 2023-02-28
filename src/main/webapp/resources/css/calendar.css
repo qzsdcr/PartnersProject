@@ -1,0 +1,72 @@
+/* Calendar container */
+.calendar_container {
+  margin: 20px auto;
+  width: 80%;
+  font-size: 1.2rem;
+}
+
+/* Calendar table */
+.calendar_container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.calendar_container td {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px;
+}
+
+.calendar_container td:first-child {
+  color: red;
+}
+
+.calendar_container td:last-child {
+  color: blue;
+}
+
+/* Calendar navigation links */
+.calendar_container a {
+  text-decoration: none;
+  color: #333;
+}
+
+.calendar_container a:hover {
+  text-decoration: underline;
+}
+
+.calendar_container b {
+  font-size: 1.5rem;
+}
+
+/* Empty cells */
+.calendar_container td:empty {
+  background-color: #f1f1f1;
+}
+.cal-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cal-nav .prev-month,
+.cal-nav .next-month {
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cal-nav .prev-month {
+  left: 0;
+}
+
+.cal-nav .next-month {
+  right: 0;
+}
+.center {
+    display: flex;
+    justify-content: center;
+}
