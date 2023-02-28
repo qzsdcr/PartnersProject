@@ -137,17 +137,6 @@
 		FROM SIKDANG WHERE SIKNO=#{param1, jdbcType=VARCHAR}
     </select>
     
-<<<<<<< HEAD
-    
-    
-    
-    <select id="reviewList" resultType="com.tech.sprj09.dto.ReviewDto">
-    	SELECT REVIEWNO,MEMNO,REVIEWTITLE,REVIEWCONTENT,REVIEWLIKE,
-		REVIEWDATE,SPOON,SIKNO,SINGO,REVIEWFILE
-		FROM REVIEW ORDER BY REVIEWDATE DESC
-		<!-- WHERE REVIEWNO=#{param1, jdbcType=VARCHAR} -->
-    </select>
-=======
     <select id="reviewlist" resultType="com.tech.sprj09.dto.ReviewDto">
     	SELECT REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,REVIEWLIKE,
 		REVIEWDATE,SPOON,REVIEWFILE
@@ -159,13 +148,13 @@
     
  
  
-    <!-- <insert id="write">
+    <insert id="write">
     	INSERT INTO MBOARD(BID,BNAME,BTITLE,BCONTENT,
     	BDATE,BHIT,BGROUP,BSTEP,BINDENT,FILESRC)
 		VALUES(MBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},
 		SYSDATE,0,MBOARD_SEQ.CURRVAL,0,0,#{param4})
     </insert>
->>>>>>> origin/listjh
+
     
     <update id="upLikeHit">
     	UPDATE REVIEW SET REVIEWLIKE=#{param2, jdbcType=VARCHAR} WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
