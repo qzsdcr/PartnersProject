@@ -17,7 +17,7 @@ System.out.print("path : "+path);
 <script>
 $(document).ready(function(){
     $.ajax({
-        url: "/sprj09/VisitCount",
+        url: "./VisitCount",
         type: "GET",
         dataType: "json",
         success: function(data) {
@@ -79,17 +79,6 @@ ID 권한 : ${sessionScope.loginCheck} <br />
 </c:if>
 
 <hr />
-<<<<<<< HEAD
-<P> The time on the server is ${serverTime}. </P>
-
-=======
-<P>  The time on the server is ${serverTime}. </P>
-<a href="list">listttttttt go</a> <br />
-<a href="admin">admin list</a> <br />
-<a href="chat">chat</a> <br />
-<a href="menulist">메뉴리스트</a> <br />
-<a href="calendar">캘린더</a>
->>>>>>> origin/menumenu
 </body>
 
 
