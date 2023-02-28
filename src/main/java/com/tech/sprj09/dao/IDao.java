@@ -143,7 +143,6 @@ public interface IDao {
 	public void modifyMember(String memid, String mempass, String memname, String membirth, String memsex,
 			String mememail, String mempnum, String memaddress, String memlikemenu, String shpwd, String bcpwd);
 
-<<<<<<< HEAD
 
 	// 비밀번호 변경
 	public void passChange(String memid, String mempass, String shpwd, String bcpwd);
