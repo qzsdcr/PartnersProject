@@ -127,8 +127,7 @@ body {
 						<div class="col-md-6 mb-3" style="margin-top: auto;"
 							style="margin-bottom: auto;">
 							<button type="button" class="btn btn-primary"
-								style="width: 100%;" id="get_auth_num"
-								onclick="handleButtonClick()">인증번호 받기</button>
+								style="width: 100%;" id="get_auth_num" onclick="handleButtonClick()">인증번호 받기</button>
 						</div>
 					</div>
 					
@@ -143,7 +142,7 @@ body {
 						<div class="col-md-6 mb-3" style="margin-top: auto;"
 							style="margin-bottom: auto;">
 							<button type="button" class="btn btn-primary"
-								style="width: 100%;" id="mail_auth_button">메일 인증</button>
+								style="width: 100%;" id="mail_auth_button" disabled>메일 인증</button>
 						</div>
 					</div>
 
@@ -171,6 +170,7 @@ body {
 							</select>
 						</div>
 					</div>
+					
 					<!-- 		  가입경로 & 추천인코드 비활성화
           <div class="row">
             <div class="col-md-8 mb-3">
@@ -558,23 +558,24 @@ function handleButtonClick() {
 	});
 
 	function verifyTempkey(tempkey) {
-		
-		  var inputkey = $('#mail_chk').val();
-		  
-		  if (tempkey == inputkey) {
+		var inputkey = $('#mail_chk').val();
+		if(tempkey == "" || inputkey == ""){
+		    $("#join_button").attr("disabled", true);
+		    $("#mail_chk").val("");
+		    $("#mail_chk").attr("placeholder", "이메일 인증번호를 다시 받으세요.");
+		    $("#mail_auth_button").text("인증번호 재전송");
+		    $("#mail_auth_button").attr("disabled", true);
+		    $( "#submit1" ).prop( "disabled", true );
+		} else if (tempkey == inputkey) {
 		    $("#tempkey").val(tempkey);
 		    $("#join_button").attr("disabled", false);
 		    $("#mail_auth_button").text("인증 완료");
 		    $("#mail_auth_button").attr("disabled", true);
 		    $( "#submit1" ).prop( "disabled", false );
-		  } else {
-		    $("#join_button").attr("disabled", true);
-		    $("#mail_chk").val("");
-		    $("#mail_chk").attr("placeholder", "이메일 인증번호를 다시 받으세요.");
-		    $("#mail_auth_button").attr("disabled", true);
-		    $( "#submit1" ).prop( "disabled", true );
-		  }
+		} else{
+			$( "#submit1" ).prop( "disabled", true );
 		}
+	}
 </script>
 
 </body>

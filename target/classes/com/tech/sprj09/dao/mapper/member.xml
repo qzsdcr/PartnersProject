@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tech.sprj09.dao.IDao">
+
+	<!-- UserPage 기능 구현 -->
+	<!-- 회원 정보 조회 -->
+  <select id="getMember" parameterType="String" resultType="com.tech.sprj09.dto.MemberDto">
+    SELECT * FROM MEMBER WHERE MEMID=#{param1}
+  </select>
+  
+  	<!-- 회원 정보 업데이트 -->
+  <update id="modifyMember">
+    UPDATE MEMBER 
+    SET MEMPASS = #{param2},
+        MEMNAME = #{param3},
+        MEMBIRTH = #{param4},
+        MEMSEX = #{param5},
+        MEMEMAIL = #{param6},
+        MEMPNUM = #{param7},
+        MEMADDRESS = #{param8},
+        MEMLIKEMENU = #{param9},
+        SHPWD = #{param10},
+        BCPWD = #{param11}
+    WHERE MEMID = #{param1}
+</update>
+  
+</mapper>

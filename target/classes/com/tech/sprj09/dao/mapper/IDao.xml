@@ -244,13 +244,5 @@
 		SHPWD=#{param3},BCPWD=#{param4} 
 		WHERE MEMID=#{param1}
 	</update>
-	
-	<!-- 일일방문자수 -->
-    <insert id="updateVisitorCount" >
-    INSERT INTO VISITORCOUNT(NO,IP,TIME,REFFER,AGENT) 
-    VALUES(MEMBER_SEQ.NEXTVAL,#{PARAM1},#{PARAM2},#{PARAM3},#{PARAM4})
-    </insert>
-	
-	<!-- 총방문자수 -->    
 
 </mapper>
