@@ -91,6 +91,18 @@ $(document).ready(function() {
 });
 </script>
 
+<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+
+		<!-- Main Content -->
+		<div id="content">
+
+			<!-- Topbar -->
+			<nav
+				class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+
+
 	<div
 		style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
 		<h1 id="sikdang">관리자 페이지</h1>
@@ -149,57 +161,14 @@ $(document).ready(function() {
 	</div>
 
 
-	<%-- <div
-		style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
-		<h1 id="sikdang">리뷰 관리</h1>
-		<form action="review" method="post">
-			<div class="search">
-				<select class="search-select" name="searchType2">
-					<option value="MEMID" name="MEMID">리뷰 제목</option>
-					<option value="reviewcontent" name="reviewcontent">리뷰 내용</option>
-				</select> <input type="text" class="search-input" name="searchName2" />
-				<button type="submit" class="btn search-bnt">검색</button>
+
 			</div>
-		</form>
-
-
-		<div>
-			<table id="reviewTable" border="1">
-				<tr>
-					<td><input id="allCheck" type="checkbox" name="bid"
-						onclick="selectAll(this)" /></td>
-					<td>리뷰번호</td>
-					<td>리뷰제목</td>
-					<td>리뷰내용</td>
-					<td>좋아요</td>
-					<td>스푼</td>
-				</tr>
-				<form action="reviewdel">
-					<c:forEach items="${reviewList }" var="i" varStatus="loop">
-						<tr class="review-row"
-							style="${loop.index > 10 ? 'display:none;' : ''}">
-							<td style="text-align: center;"><input name="bid"
-								type="checkbox" value="${i.reviewno }" /></td>
-							<td>${i.reviewno }</td>
-							<td>${i.reviewtitle }</td>
-							<td>${i.reviewcontent }</td>
-							<td>${i.reviewlike }</td>
-							<td>${i.spoon }</td>
-						</tr>
-					</c:forEach>
-					<input type="submit" value="삭제" />
-				</form>
-				<tr class="load-more-row">
-					<td colspan="6">
-						<button id="loadMoreButton">더보기</button>
-					</td>
-				</tr>
-			</table>
-
-
-
+					<!-- /.container-fluid -->
 		</div>
-	</div> --%>
+		<!-- End of Main Content -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 </body>
 </html>

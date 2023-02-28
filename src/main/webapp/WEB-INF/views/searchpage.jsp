@@ -21,26 +21,25 @@
 <script type="text/javascript" src="resources/js/jquery-3.6.3.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery-func.js"></script>
 <script type="text/javascript">
-	function showPageMore(name) {
 
-		var displayedDivCount = $("#" + name).find(".movie").filter(
-				function(x) {
-					return $(this).css('display') != 'none';
-				}).length / 6;
-
-		$("[name='" + name + "_" + (displayedDivCount + 1) + "']").css(
-				'display', 'block');
-
-		var undisplayedDivCount = $("#" + name).find(".movie").filter(
-				function(x) {
-					return $(this).css('display') == 'none';
-				}).length;
-
-		if (undisplayedDivCount == 0) {
-			$("[name='" + name + "_moreBtn']").css('display', 'none');
+	function showPageMore(name){
+		
+		var displayedDivCount = $("#"+name).find(".movie").filter(function(x){
+			return $(this).css('display') != 'none';
+		}).length/6;
+		
+		$("[name='"+name+"_"+(displayedDivCount+1)+"']").css('display', 'block');
+		
+		var undisplayedDivCount = $("#"+name).find(".movie").filter(function(x){
+			return $(this).css('display') == 'none';
+		}).length;
+		
+		if(undisplayedDivCount == 0){
+			$("[name='"+name+"_moreBtn']").css('display', 'none');
 		}
-
+		
 	}
+
 </script>
 
 </head>
@@ -64,11 +63,11 @@
 			</div>
 			<div id="sub-navigation">
 				<ul>
-					<li><a href="#m1">가산</a></li>
-					<li><a href="#m2">구로</a></li>
-					<li><a href="#m3">여의도</a></li>
-					<li><a href="#m4">강남</a></li>
-					<li><a href="#m5">판교</a></li>
+					<li><a href="gasan?com=가산">가산</a></li>
+					<li><a href="gulo?com=구로">구로</a></li>
+					<li><a href="yeouido?com=여의도">여의도</a></li>
+					<li><a href="gangnam?com=강남">강남</a></li>
+					<li><a href="pangyo?com=판교">판교</a></li>
 
 				</ul>
 				<div id="search">
@@ -96,8 +95,8 @@
 						<input type="text" name="sk" value="${resk }" id="search-field"
 							class="blink search-field" placeholder="지역 및 식당이름"
 							onfocus="this.placeholder=''"
-							onblur="this.placeholder='지역 및 식당이름'" /> 
-						<input type="submit" value="GO!" class="search-button" />
+							onblur="this.placeholder='지역 및 식당이름'" /> <input type="submit"
+							value="GO!" class="search-button" />
 					</form>
 				</div>
 			</div>
@@ -134,16 +133,16 @@
 									<div class="stars">
 										<div class="stars-in"></div>
 									</div>
-									<span class="comments"> ${dto.sikhit }</span>
+									<span class="comments">12</span>
 								</div>
 							</div>
 							<c:set var="gs" value="${gs+1 }" />
 
 						</c:forEach>
 						<c:if test="${gs >=13 }">
-							<div >
+							<div>
 								<input type="button" name="m1_moreBtn"
-									onclick="showPageMore('m1');" value="더보기" style=" width: 100%;"    >
+									onclick="showPageMore('m1');" value="더보기" style="width: 100%;">
 							</div>
 						</c:if>
 					</div>
@@ -314,7 +313,6 @@
 						</div>
 					</c:if>
 					<div class="cl">&nbsp;</div>
-					
 				</div>
 			</div>
 		</div>

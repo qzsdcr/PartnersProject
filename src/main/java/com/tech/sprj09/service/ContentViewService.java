@@ -39,7 +39,7 @@ public class ContentViewService implements BServiceInter{
 		
 //		BoardDto dto=dao.contentview(bid);
 		SikdangDto sdto=dao.contentview(sikno);
-		
+		/* dao.sikHit(sikno); */
 		//리턴받은 db의 선택글을 모델에 담기
 		model.addAttribute("content_view",sdto);
 		

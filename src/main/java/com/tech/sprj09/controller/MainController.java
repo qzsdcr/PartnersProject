@@ -36,11 +36,24 @@ public class MainController {
 				
 		model.addAttribute("request",request);
 		model.addAttribute("searchVO",searchVO);
-
+		
 		bServiceInter=new ListService(sqlSession);
 		bServiceInter.execute(model);
 		
 		return "list";
+	}	
+	@RequestMapping("/searchpage")
+	public String searchpage(HttpServletRequest request,SearchVO searchVO, Model model) {
+		System.out.println("========searchpage=======");
+		//db에서 데이터 가져오기
+				
+		model.addAttribute("request",request);
+		model.addAttribute("searchVO",searchVO);
+
+		bServiceInter=new ListService(sqlSession);
+		bServiceInter.execute(model);
+		
+		return "searchpage";
 	}
 	
 //	가산
@@ -52,10 +65,67 @@ public class MainController {
 		model.addAttribute("request",request);
 		model.addAttribute("searchVO",searchVO);
 
+		
 		bServiceInter=new ListService(sqlSession);
 		bServiceInter.execute(model);
 		
 		return "gasan";
+	}
+	
+	@RequestMapping("/gulo")
+	public String gulo(HttpServletRequest request,SearchVO searchVO, Model model) {
+		System.out.println("========gulo=======");
+		//db에서 데이터 가져오기
+				
+		model.addAttribute("request",request);
+		model.addAttribute("searchVO",searchVO);
+
+		bServiceInter=new ListService(sqlSession);
+		bServiceInter.execute(model);
+		
+		return "gulo";
+	}
+	
+	@RequestMapping("/yeouido")
+	public String yeouido(HttpServletRequest request,SearchVO searchVO, Model model) {
+		System.out.println("========yeouido=======");
+		//db에서 데이터 가져오기
+				
+		model.addAttribute("request",request);
+		model.addAttribute("searchVO",searchVO);
+
+		bServiceInter=new ListService(sqlSession);
+		bServiceInter.execute(model);
+		
+		return "yeouido";
+	}
+	
+	@RequestMapping("/gangnam")
+	public String gangnam(HttpServletRequest request,SearchVO searchVO, Model model) {
+		System.out.println("========gangnam=======");
+		//db에서 데이터 가져오기
+				
+		model.addAttribute("request",request);
+		model.addAttribute("searchVO",searchVO);
+
+		bServiceInter=new ListService(sqlSession);
+		bServiceInter.execute(model);
+		
+		return "gangnam";
+	}
+	
+	@RequestMapping("/pangyo")
+	public String pangyo(HttpServletRequest request,SearchVO searchVO, Model model) {
+		System.out.println("========pangyo=======");
+		//db에서 데이터 가져오기
+				
+		model.addAttribute("request",request);
+		model.addAttribute("searchVO",searchVO);
+
+		bServiceInter=new ListService(sqlSession);
+		bServiceInter.execute(model);
+		
+		return "pangyo";
 	}
 	
 //	상세페이지기능

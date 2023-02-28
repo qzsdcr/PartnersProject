@@ -16,6 +16,9 @@ public class SikdangDto {
 	private String sikloca; //지역
 	private String sikname; //식당이름
 	private String sikcontent; //식당소개
+	/*
+	 * private String sikwriter; //식당소개
+	 */	
 	private String sikaddress; //식당주소 
 	private String siktel; //식당전화번호
 	private Timestamp sikdate; //식당 글 업로드 날짜

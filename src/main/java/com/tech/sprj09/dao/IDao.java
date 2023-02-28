@@ -11,7 +11,17 @@ import com.tech.sprj09.dto.SikdangDto;
 
 public interface IDao {
 
-	public ArrayList<SikdangDto> list(int start,int end,String sk,String selNum);
+	public ArrayList<SikdangDto> list(int start,int end,String sk,String selNum,String com);
+	public ArrayList<SikdangDto> gslist(int start,int end,String sk,String selNum,String com);
+	public ArrayList<SikdangDto> gllist(int start,int end,String sk,String selNum,String com);
+	public ArrayList<SikdangDto> yelist(int start,int end,String sk,String selNum,String com);
+	public ArrayList<SikdangDto> gnlist(int start,int end,String sk,String selNum,String com);
+	public ArrayList<SikdangDto> pklist(int start,int end,String sk,String selNum,String com);
+	
+
+
+	
+	
 	   
 	public SikdangDto contentview(String gsikno);
 	
@@ -27,37 +37,15 @@ public interface IDao {
 	
 	public void reviewDelete(String reviewno);
 	
-	public int selectBoardTotCount1(String searchKeyword);
+	public int selectBoardTotCount1(String searchKeyword,String com);
 	
-	public int selectBoardTotCount2(String searchKeyword);
+	public int selectBoardTotCount2(String searchKeyword,String com);
 	
-	public int selectBoardTotCount3(String searchKeyword);
+	public int selectBoardTotCount3(String searchKeyword,String com);
 	
-	public int selectBoardTotCount4(String searchKeyword);
+	public int selectBoardTotCount4(String searchKeyword,String com);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	//회원가입 DBinsert
 	public void join(String memid, String mempass, String memname, String memsex, String membirth, String mememail,
@@ -117,6 +105,9 @@ public interface IDao {
 	
 	//암호화 재설정, 초기 암호화 설정이 안되어 있을 때 작동
 	public void passUpdate(String memid, String shpwd, String bcpwd);
+	
+
+	
 
 
 	public void sikwrite(String sikno, String sikloca, String sikname, String sikcontent, String sikaddress,
