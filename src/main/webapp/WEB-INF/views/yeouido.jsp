@@ -39,8 +39,8 @@
 					<li><a href="yeouido?com=여의도">여의도</a></li>
 					<li><a href="gangnam?com=강남">강남</a></li>
 					<li><a href="pangyo?com=판교">판교</a></li>
-				</ul>
 
+				</ul>
 				<div id="search">
 					<form action="list" method="post">
 						<label for="search-field">SEARCH</label>
@@ -99,10 +99,11 @@
 	var geocoder = new kakao.maps.services.Geocoder();
 	
 	var positions = [
-		<c:forEach items="${gslist }" var="gasan">
+		
+		<c:forEach items="${yelist }" var="yeouido">
     	{
-    		title: '<c:out value="${gasan.sikname }"/>',
-    		address: '<c:out value="${gasan.sikaddress }"/>'
+    		title: '<c:out value="${yeouido.sikname }"/>',
+    		address: '<c:out value="${yeouido.sikaddress }"/>'
     	},
 		</c:forEach>
     ];
@@ -168,66 +169,66 @@
 				<div class="box">
 					<div class="head">
 						<h2>추천맛집</h2>
-						${gslist.size() }
 						<p class="text-right">
 							<a href="writeview">업체등록</a>
 						</p>
 
 
 					</div>
-					<c:set var="gs" value="1" />
-					<c:set var="gl" value="1" />
-					<c:set var="ye" value="1" />
-					<c:set var="gn" value="1" />
-					<c:set var="pk" value="1" />
-					<c:forEach items="${gslist }" var="dto" varStatus="status">
 
-						<div id="m2" class="${gs%6 eq 0 ? 'movie last' : 'movie'}"
-							style="${gs >= 13 ? '' : ''}">
+					<c:forEach items="${yelist }" var="dto" varStatus="status">
+
+						<input type=hidden id="sika" value="${dto.sikaddress }" />
+						<fmt:formatNumber value="${status.count}" type="number"
+							var="numberType" />
+						<div id="m1" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
 							<div class="movie-image">
 								<span class="play"><span class="name">파트너스</span></span> <a
 									href="contentview?sikno=${dto.sikno }"><img
 									src="resources/upload/${dto.filesrc }" alt="" /></a>
 							</div>
+
 							<div class="rating">
-								<p>${dto.sikloca }</p>
+								<p id="sikn">${dto.sikloca }</p>
 								<div class="stars">
 									<div class="stars-in"></div>
 								</div>
 								<span class="comments">12</span>
 							</div>
 						</div>
-						<c:set var="gs" value="${gs+1 }" />
 
 					</c:forEach>
-					<c:if test="${gs >=13 }" />
+					<%--    totCnt : ${totRowcnt } <br />
+현재페이지/토탈페이지 : ${searchVo.page }/${searchVo.totPage } <br /> --%>
+
+
 					<div class="cl">&nbsp;</div>
+					<form action="gasan" method="post" style="text-align: center;">
+						<c:if test="${searchVo.page>1 }">
+							<a href="yeouido?page=1&com=여의도">[처음]</a>
+							<a href="yeouido?page=${searchVo.page-1 }&com=여의도">[이전]</a>
+						</c:if>
 
+						<c:forEach begin="${searchVo.pageStart }"
+							end="${searchVo.pageEnd }" var="i">
+							<c:choose>
+								<c:when test="${i eq searchVo.page }">
+									<span style="color: red; font-weight: bold;">${i }&nbsp;</span>
+								</c:when>
+								<c:otherwise>
+									<a
+										href="yeouido?page=${i }&sikloca=${sikloca }&sikcon=${sikname }&sk=${resk }&com=여의도"
+										style="text-decoration: none">${i }&nbsp;</a>
+								</c:otherwise>
+							</c:choose>
 
-					<c:if test="${searchVo.page>1 }">
-						<a href="gasan?page=1&com=가산">[처음]</a>
-						<a href="gasan?page=${searchVo.page-1 }&com=가산">[이전]</a>
-					</c:if>
-					<c:forEach begin="${searchVo.pageStart }"
-						end="${searchVo.pageEnd }" var="i">
-						<c:choose>
-							<c:when test="${i eq searchVo.page }">
-								<span style="color: red; font-weight: bold;">${i }&nbsp;</span>
-							</c:when>
-							<c:otherwise>
-								<a
-									href="gasan?page=${i }&sikloca=${sikloca }&sikcon=${sikname }&sk=${resk }&com=가산"
-									style="text-decoration: none">${i }&nbsp;</a>
-							</c:otherwise>
-						</c:choose>
+						</c:forEach>
 
-					</c:forEach>
-
-					<c:if test="${searchVo.page<searchVo.totPage }">
-						<a href="gasan?page=${searchVo.page+1 }&com=가산">[다음]</a>
-						<a href="gasan?page=${searchVo.totPage }&com=가산">[마지막]</a>
-					</c:if>
-					<!-- 	</form> -->
+						<c:if test="${searchVo.page<searchVo.totPage }">
+							<a href="yeouido?page=${searchVo.page+1 }&com=여의도">[다음]</a>
+							<a href="yeouido?page=${searchVo.totPage }&com=여의도">[마지막]</a>
+						</c:if>
+					</form>
 
 				</div>
 
