@@ -60,17 +60,6 @@
 					<li><a href="#">테마</a></li>
 					<li><a href="review">리뷰</a></li>
 
-<<<<<<< HEAD
-				</ul>
-			</div>
-			<div id="sub-navigation">
-				<ul>
-					<li><a href="#m1">가산</a></li>
-					<li><a href="#m2">구로</a></li>
-					<li><a href="#m3">여의도</a></li>
-					<li><a href="#m4">강남</a></li>
-					<li><a href="#m5">판교</a></li>
-=======
       </ul>
     </div>
     <div id="sub-navigation">
@@ -212,23 +201,7 @@
        </div>
     </div>
     
-    
-<!--     <style>
-	div { display:none; }
-	</style> -->
-	<div>Content</div>
-<div>Content</div>
-<div>Content</div>
-<div>Content</div>
-<div>Content</div>
-<div>Content</div>
-<div>Content</div>
-<div>Content</div>
-<div>Content</div>
-<div>Content</div>
-<a href="#" id="load">더 보기</a>
->>>>>>> origin/menumodify
-
+   
 				</ul>
 				<div id="search">
 					<form action="searchpage" method="post">

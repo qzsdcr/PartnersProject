@@ -11,7 +11,7 @@ import com.tech.sprj09.dto.SikdangDto;
 
 public interface IDao {
 
-<<<<<<< HEAD
+
 	public ArrayList<SikdangDto> list(int start,int end,String sk,String selNum,String com);
 	public ArrayList<SikdangDto> gslist(int start,int end,String sk,String selNum,String com);
 	public ArrayList<SikdangDto> gllist(int start,int end,String sk,String selNum,String com);
@@ -24,10 +24,10 @@ public interface IDao {
 	
 	
 	   
-=======
+
 	public ArrayList<SikdangDto> list(int start, int end, String sk, String selNum);
 
->>>>>>> origin/menumodify
+
 	public SikdangDto contentview(String gsikno);
 
 	public void reviewWrite(String memno, String sikno, String reviewtitle, String reviewcontent, String spoon,
@@ -42,31 +42,21 @@ public interface IDao {
 	public void reviewModify(String reviewno, String reviewcontent, String spoon, String rname);
 
 	public void reviewDelete(String reviewno);
-<<<<<<< HEAD
-	
-	public int selectBoardTotCount1(String searchKeyword,String com);
-	
-	public int selectBoardTotCount2(String searchKeyword,String com);
-	
-	public int selectBoardTotCount3(String searchKeyword,String com);
-	
-	public int selectBoardTotCount4(String searchKeyword,String com);
-	
 
 	
 	//회원가입 DBinsert
-=======
 
-	public int selectBoardTotCount1(String searchKeyword);
 
-	public int selectBoardTotCount2(String searchKeyword);
+	public int selectBoardTotCount1(String searchKeyword, String com);
+
+	public int selectBoardTotCount2(String searchKeyword, String com);
 
 	public int selectBoardTotCount3(String searchKeyword);
 
 	public int selectBoardTotCount4(String searchKeyword);
 
 	// 회원가입 DBinsert
->>>>>>> origin/menumodify
+
 	public void join(String memid, String mempass, String memname, String memsex, String membirth, String mememail,
 			String mempnum, String memaddress, String memlikemenu, String shpwd, String bcpwd);
 
@@ -121,15 +111,8 @@ public interface IDao {
 	public String shpwd(String memid);
 
 	public String bcpwd(String memid);
-<<<<<<< HEAD
-	
-	//암호화 재설정, 초기 암호화 설정이 안되어 있을 때 작동
-	public void passUpdate(String memid, String shpwd, String bcpwd);
-	
 
-	
-=======
->>>>>>> origin/menumodify
+
 
 	// 암호화 재설정, 초기 암호화 설정이 안되어 있을 때 작동
 	public void passUpdate(String memid, String shpwd, String bcpwd);
@@ -139,10 +122,7 @@ public interface IDao {
 
 	// 멤버 권한 가져오기
 	public String getMemberAdmin(String memid);
-<<<<<<< HEAD
-	
-	//비밀번호 변경
-	public void passChange(String memid, String mempass, String shpwd, String bcpwd);
+
 		
 	//방문자수 DB insert
 	public void VisitCount(String visitorIP, String visitTime);
@@ -162,8 +142,7 @@ public interface IDao {
 
 	public void modifyMember(String memid, String mempass, String memname, String membirth, String memsex,
 			String mememail, String mempnum, String memaddress, String memlikemenu, String shpwd, String bcpwd);
-=======
->>>>>>> origin/menumodify
+
 
 	// 비밀번호 변경
 	public void passChange(String memid, String mempass, String shpwd, String bcpwd);
