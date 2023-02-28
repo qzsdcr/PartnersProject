@@ -28,15 +28,16 @@
 <!-- IONICONS -->
 <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 <!-- chart js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 
 <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 
-	<!-- JS -->
+<!-- JS -->
 <script src="resources/assets/js/main.js"></script>
 
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 
 function selectAll(selectAll)  {
 	  const checkboxes 
@@ -50,11 +51,49 @@ function selectAll(selectAll)  {
 
 
 
-</script>	
-	
+</script>
+	<script>
+  $(document).ready(function(){
+    var visibleCount = 10; // 초기에 보여지는 게시물 수
+    var incrementCount = 10; // 한번에 추가되는 게시물 수
+    var $table = $('#myTable');
+    var $rows = $table.find('tr:gt(0)'); // 첫 번째 row는 제외
+    $rows.slice(visibleCount).hide(); // 초기 visibleCount 이후 row들 숨김
 
-	<div style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
-	<h1 id="sikdang">관리자 페이지</h1>
+    $('#loadMore').click(function(e){
+      e.preventDefault();
+      var visibleRows = $rows.filter(':visible').length;
+      $rows.slice(visibleRows, visibleRows + incrementCount).show();
+      if($rows.filter(':visible').length == $rows.length) {
+        $('#loadMore').hide(); // 모든 row들이 보이게 되면 더보기 버튼 숨김
+      }
+    });
+  });
+</script>
+	<script>
+$(document).ready(function() {
+  var numToShow = 10; // 보여줄 리뷰 수
+  var numVisible = 10; // 현재 보여지고 있는 리뷰 수
+  var numRows = $('.review-list tr').length; // 총 리뷰 수
+
+  // 더보기 버튼 클릭 시
+  $('#loadMoreButton').click(function() {
+    numVisible += numToShow;
+    $('.review-list tr').slice(numVisible, numVisible + numToShow).show();
+    // 모든 리뷰를 로드한 경우 더보기 버튼 숨기기
+    if (numVisible >= numRows) {
+      $('.load-more-row').hide();
+    }
+  });
+
+  // 초기에는 numToShow 만큼의 리뷰만 보여주기
+  $('.review-list tr').slice(numToShow).hide();
+});
+</script>
+
+	<div
+		style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
+		<h1 id="sikdang">관리자 페이지</h1>
 		<form action="sikdang" method="post">
 			<div class="search">
 				<select class="search-select" name="searchType2">
@@ -64,13 +103,14 @@ function selectAll(selectAll)  {
 				<button type="submit" class="btn search-bnt">검색</button>
 			</div>
 		</form>
-		
-		
-		<div >
-			<table border="1">
+
+
+		<div>
+			<table id="myTable" border="1">
 				<tr>
-				
-					<td><input id="allCheck" type="checkbox" name="bid" onclick='selectAll(this)'/></td>
+
+					<td><input id="allCheck" type="checkbox" name="bid"
+						onclick='selectAll(this)' /></td>
 					<td>사업자 번호</td>
 					<td>지역</td>
 					<td>식당이름</td>
@@ -82,34 +122,36 @@ function selectAll(selectAll)  {
 					<td>영업일</td>
 				</tr>
 				<form action="sikdemultidelete">
-				<c:forEach items="${list }" var="i">
-					<tr>
-						<td style="text-align: center;"><input name="bid" type="checkbox" value="${i.sikno }"/></td>
-						<td><a href="sikdeview?bid=${i.sikno }">${i.sikno }</a></td>
-						<td>${i.sikloca }</td>
-						<td><a href="sikdeview?bid=${i.sikno }">${i.sikname }</a></td>
-						<td>${i.sikcontent }</td>
-						<td>${i.sikaddress }</td>
-						<td>${i.siktel }</td>
-						<td>${i.sikdate }</td>
-						<td>${i.sikhit }</td>
-						<td>${i.sikopenclose }</td>
-					</tr>
-				</c:forEach>
-					
+					<c:forEach items="${list }" var="i">
+						<tr>
+							<td style="text-align: center;"><input name="bid"
+								type="checkbox" value="${i.sikno }" /></td>
+							<td><a href="sikdeview?bid=${i.sikno }">${i.sikno }</a></td>
+							<td>${i.sikloca }</td>
+							<td><a href="sikdeview?bid=${i.sikno }">${i.sikname }</a></td>
+							<td>${i.sikcontent }</td>
+							<td>${i.sikaddress }</td>
+							<td>${i.siktel }</td>
+							<td>${i.sikdate }</td>
+							<td>${i.sikhit }</td>
+							<td>${i.sikopenclose }</td>
+						</tr>
+					</c:forEach>
+
 					<input type="submit" value="삭제" />
-					
+
 				</form>
-					<a href="sikdangwrite"><button>식당등록</button></a>
+				<a href="sikdangwrite"><button>식당등록</button></a>
 			</table>
-			
+			<button id="loadMore">더 보기</button>
 
 		</div>
- 	 </div>
 	</div>
-	
-	<div style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
-	<h1 id="sikdang">리뷰 관리 </h1>
+
+
+	<%-- <div
+		style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
+		<h1 id="sikdang">리뷰 관리</h1>
 		<form action="review" method="post">
 			<div class="search">
 				<select class="search-select" name="searchType2">
@@ -119,45 +161,45 @@ function selectAll(selectAll)  {
 				<button type="submit" class="btn search-bnt">검색</button>
 			</div>
 		</form>
-		
-		
-		<div >
-			<table border="1">
+
+
+		<div>
+			<table id="reviewTable" border="1">
 				<tr>
-				
-					<td><input id="allCheck" type="checkbox" name="bid" onclick='selectAll(this)'/></td>
+					<td><input id="allCheck" type="checkbox" name="bid"
+						onclick="selectAll(this)" /></td>
 					<td>리뷰번호</td>
 					<td>리뷰제목</td>
 					<td>리뷰내용</td>
-					
 					<td>좋아요</td>
 					<td>스푼</td>
-					
 				</tr>
 				<form action="reviewdel">
-				<c:forEach items="${reviewList }" var="i">
-					<tr>
-						<td style="text-align: center;"><input name="bid" type="checkbox" value="${i.reviewno }"/></td>
-						
-						<td>${i.reviewno }</td>
-						<td>${i.reviewtitle }</td>
-						<td>${i.reviewcontent }</td>
-					
-						<td>${i.reviewlike }</td>
-						<td>${i.spoon }</td>
-						
-					</tr>
-				</c:forEach>
-					
+					<c:forEach items="${reviewList }" var="i" varStatus="loop">
+						<tr class="review-row"
+							style="${loop.index > 10 ? 'display:none;' : ''}">
+							<td style="text-align: center;"><input name="bid"
+								type="checkbox" value="${i.reviewno }" /></td>
+							<td>${i.reviewno }</td>
+							<td>${i.reviewtitle }</td>
+							<td>${i.reviewcontent }</td>
+							<td>${i.reviewlike }</td>
+							<td>${i.spoon }</td>
+						</tr>
+					</c:forEach>
 					<input type="submit" value="삭제" />
-					
 				</form>
-				
+				<tr class="load-more-row">
+					<td colspan="6">
+						<button id="loadMoreButton">더보기</button>
+					</td>
+				</tr>
 			</table>
-			
+
+
 
 		</div>
- 	 </div>
-	</div>
+	</div> --%>
+
 </body>
 </html>

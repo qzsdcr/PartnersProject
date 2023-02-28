@@ -206,9 +206,9 @@
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
-							<div class="chart-pie pt-4 pb-2">
+							
 								<canvas id="Chart1"></canvas>
-							</div>
+						
 						
 						</div>
 					</div>
