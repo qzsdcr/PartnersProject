@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tech.sprj09.dao.SikdangDao">
+    <resultMap id="sikdangResultMap" type="com.tech.sprj09.dto.SikdangDto">
+        <id property="siknum" column="siknum" />
+        <result property="sikname" column="sikname" />
+        <result property="sikloca" column="sikloca" />
+        <result property="siktel" column="siktel" />
+        <result property="sikaddress" column="sikaddress" />
+        <result property="sikopenclose" column="sikopenclose" />
+        <result property="sikcontent" column="sikcontent" />
+        <result property="filesrc" column="filesrc" />
+        <result property="sikdate" column="sikdate" />
+        <result property="sikwriter" column="sikwriter" />
+    </resultMap>
+
+    <insert id="insertSikdang" parameterType="com.tech.sprj09.dto.SikdangDto">
+        INSERT INTO sikdang
+        (sikname, sikloca, siktel, sikaddress, sikopenclose, sikcontent, filesrc, sikdate, sikwriter)
+        VALUES
+        (#{sikname}, #{sikloca}, #{siktel}, #{sikaddress}, #{sikopenclose}, #{sikcontent}, #{filesrc}, #{sikdate}, #{sikwriter})
+    </insert>
+
+    <select id="selectSikdangList" resultMap="sikdangResultMap">
+        SELECT siknum, sikname, sikloca, siktel, sikaddress, sikopenclose, sikcontent, filesrc, sikdate, sikwriter
+        FROM sikdang
+        ORDER BY siknum DESC
+    </select>
+
+    <select id="selectSikdang" resultMap="sikdangResultMap">
+        SELECT siknum, sikname, sikloca, siktel, sikaddress, sikopenclose, sikcontent, filesrc, sikdate, sikwriter
+        FROM sikdang
+        WHERE siknum = #{siknum}
+    </select>
+
+    <delete id="deleteSikdang">
+        DELETE FROM sikdang
+        WHERE siknum = #{siknum}
+    </delete>
+
+    <update id="updateSikdang" parameterType="com.tech.sprj09.dto.SikdangDto">
+        UPDATE sikdang SET
+        sikname = #{sikname},
+        sikloca = #{sikloca},
+        siktel = #{siktel},
+        sikaddress = #{sikaddress},
+        sikopenclose = #{sikopenclose},
+        sikcontent = #{sikcontent},
+        filesrc = #{filesrc},
+        sikdate = #{sikdate},
+        sikwriter = #{sikwriter}
+        WHERE siknum = #{siknum}
+    </update>
+</mapper>

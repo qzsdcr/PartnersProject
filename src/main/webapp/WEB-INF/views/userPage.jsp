@@ -31,55 +31,79 @@
 
 <body>
 	<div class="container">
-		<h1 class="mt-5">User Page</h1>
-		<p class="mb-3">로그인 체크: ${loginCheck}</p>
-		<p class="mb-5">로그인 ID: ${memid}</p>
-		
-		<!-- 회원 정보 출력 -->
-		<div class="mb-5">
-			<h2>회원 정보</h2>
-			<table class="table table-bordered">
-				<tbody>
-					<tr>
-						<th>아이디</th>
-						<td>${member.memid}</td>
-					</tr>
-					<tr>
-						<th>이름</th>
-						<td>${member.memname}</td>
-					</tr>
-					<tr>
-						<th>성별</th>
-						<td>${member.memsex}</td>
-					</tr>
-					<tr>
-						<th>생년월일</th>
-						<td>${member.membirth}</td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td>${member.mememail}</td>
-					</tr>
-					<tr>
-						<th>전화번호</th>
-						<td>${member.mempnum}</td>
-					</tr>
-					<tr>
-						<th>주소</th>
-						<td>${member.memaddress}</td>
-					</tr>
-					<tr>
-						<th>좋아하는 메뉴</th>
-						<td>${member.memlikemenu}</td>
-					</tr>
-				</tbody>
-			</table>
-			<!-- 회원 정보 수정 버튼 -->
-			<button type="button" class="btn btn-primary"
-				onclick="location.href='./userModifyForm'">회원 정보 수정</button>
-			<!-- 회원 탈퇴 버튼 -->
-			<button type="button" class="btn btn-danger"
-				onclick="location.href='./userDeleteForm'">회원 탈퇴</button>
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header">
+						<h1 class="text-center">User Page</h1>
+					</div>
+					<div class="card-body">
+						<div class="row mb-3">
+							<div class="col-md-3">
+								<h5>로그인 체크:</h5>
+							</div>
+							<div class="col-md-9">
+								<p class="card-text">${loginCheck}</p>
+							</div>
+						</div>
+						<div class="row mb-5">
+							<div class="col-md-3">
+								<h5>로그인 ID:</h5>
+							</div>
+							<div class="col-md-9">
+								<p class="card-text">${memid}</p>
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<tbody>
+									<tr>
+										<th>아이디</th>
+										<td>${member.memid}</td>
+									</tr>
+									<tr>
+										<th>이름</th>
+										<td>${member.memname}</td>
+									</tr>
+									<tr>
+										<th>성별</th>
+										<td>${member.memsex}</td>
+									</tr>
+									<tr>
+										<th>생년월일</th>
+										<td>${member.membirth}</td>
+									</tr>
+									<tr>
+										<th>이메일</th>
+										<td>${member.mememail}</td>
+									</tr>
+									<tr>
+										<th>전화번호</th>
+										<td>${member.mempnum}</td>
+									</tr>
+									<tr>
+										<th>주소</th>
+										<td>${member.memaddress}</td>
+									</tr>
+									<tr>
+										<th>좋아하는 메뉴</th>
+										<td>${member.memlikemenu}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="text-center">
+							<button type="button" class="btn btn-secondary"
+								onclick="location.href='./'">홈으로 가기</button>
+							<button type="button" class="btn btn-primary"
+								onclick="location.href='./userModifyForm'">회원 정보 수정</button>
+							<button type="button" class="btn btn-danger"
+								onclick="location.href='./userDeleteForm'">회원 탈퇴</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
 </body>
 </html>

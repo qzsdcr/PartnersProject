@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class MemberDto {
 	public MemberDto() {
-
 	}
 	
 	public int memno; // 회원 고유정보
