@@ -59,7 +59,8 @@ ID 권한 : ${sessionScope.loginCheck} <br />
   <p>${memid }님, 환영합니다!</p> <br />
   <a href="list">listttttttt go</a> <br />
   <a href="chat">chat</a> <br />
-  <a href="userPage">userPage</a>
+  <a href="userPage">userPage</a> <br />
+  <a href="sikdangRegForm">업체등록</a> <br />
   <a href="logout">로그아웃</a>
 </c:if>
 

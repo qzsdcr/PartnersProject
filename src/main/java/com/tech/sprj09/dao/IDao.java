@@ -133,6 +133,8 @@ public interface IDao {
 	public void modifyMember(String memid, String mempass, String memname, String membirth, String memsex,
 			String mememail, String mempnum, String memaddress, String memlikemenu, String shpwd, String bcpwd);
 
+	public void deleteMember(String memid);
+
 	
 
 }
