@@ -59,6 +59,10 @@ ID 권한 : ${sessionScope.loginCheck} <br />
   <p>${memid }님, 환영합니다!</p> <br />
   <a href="list">listttttttt go</a> <br />
   <a href="chat">chat</a> <br />
+  <form action="/chat">
+  	<input type="hidden" value="${sessionScope.memid} " />
+  	
+  </form>
   <a href="userPage">userPage</a>
   <a href="logout">로그아웃</a>
 </c:if>
