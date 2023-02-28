@@ -248,7 +248,7 @@ border-bottom:1px dashed #666;
 <div class="sikdang-page-content" id="review">
 	<div class="tab-content" style="width:100%;">
 		<div class="tab-pane fade in active">
-			<form class="reviews-form" role="form" style="display:none;">
+			<form id="review-form" class="reviews-form" role="form" style="display:none;">
 				<h2>리뷰 작성</h2>
 				<div class="form-group">
 					<label for="username">
@@ -259,21 +259,21 @@ border-bottom:1px dashed #666;
 				</div>
 				
 				<div class="star-rating">
-					<input type="radio" id="5-stars" name="rating" value="5" required="required" />  <!-- required 별점 선택 안하면 작성 안되게 막음 -->
+					<input type="radio" id="5-stars" name="spoon" value="5" required="required" />  <!-- required 별점 선택 안하면 작성 안되게 막음 -->
 					<label for="5-stars" class="star">&#9733;</label>
-					<input type="radio" id="4-stars" name="rating" value="4" />
+					<input type="radio" id="4-stars" name="spoon" value="4" />
 					<label for="4-stars" class="star">&#9733;</label>
-					<input type="radio" id="3-stars" name="rating" value="3" />
+					<input type="radio" id="3-stars" name="spoon" value="3" />
 					<label for="3-stars" class="star">&#9733;</label>
-					<input type="radio" id="2-stars" name="rating" value="2" />
+					<input type="radio" id="2-stars" name="spoon" value="2" />
 					<label for="2-stars" class="star">&#9733;</label>
-					<input type="radio" id="1-star" name="rating" value="1" />
+					<input type="radio" id="1-star" name="spoon" value="1" />
 					<label for="1-star" class="star">&#9733;</label>
 				</div>
 
 				<div class="form-group">
 					<label for="review">리뷰</label>
-					<textarea class="form-control" rows="8" id="reviewTxt" style="word-break:break-all;width:100%;text-align:center;"></textarea>
+					<textarea class="form-control" rows="8" id="reviewTxt" name="reviewcontent" style="word-break:break-all;width:100%;text-align:center;"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="file">파일첨부</label>

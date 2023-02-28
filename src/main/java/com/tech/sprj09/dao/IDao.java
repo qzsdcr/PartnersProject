@@ -99,11 +99,16 @@ public interface IDao {
 	
 	
 	//메뉴 리스트 
-	public List<MenuDto> selectMenuList(int sikno); 
+	public List<MenuDto> selectMenuList(int menuid, int sikno); 
 	public List<MenuDto> selectMenuList();
 
-	public void menuwrite(String menulist, String menudate, String menufilesrc);
+	public List<MenuDto> menuwrite(String menulist, String menudate, String menufilesrc);
+	public MenuDto menucontentview(String menuid);
+	public MenuDto menucontentupdate(String menuid);
+	public void menudelete(String menuid);
+	public MenuDto menumodify(String menulist, String menudate, String menufilesrc);
 	
+	public MenuDto calendardetail(String sikno, String menudate);
 	
 	//로그인 암호화처리
 	public String shpwd(String memid);
@@ -113,6 +118,7 @@ public interface IDao {
 	//암호화 재설정, 초기 암호화 설정이 안되어 있을 때 작동
 	public void passUpdate(String memid, String shpwd, String bcpwd);
 
+
 	public void sikwrite(String sikno, String sikloca, String sikname, String sikcontent, String sikaddress,
 			String sikaddress2, String siktel, String fname);
 
@@ -121,13 +127,26 @@ public interface IDao {
 	
 	//비밀번호 변경
 	public void passChange(String memid, String mempass, String shpwd, String bcpwd);
+		
+	//방문자수 DB insert
+	public void VisitCount(String visitorIP, String visitTime);
 	
-	//방문자수 +1
-	public void updateVisitorCount(String ip, LocalDateTime servertime, String refer, String agent);
+	//중복IP 저장 방지
+	public int checkDuplicateIP(String visitorIP, String visitTime);
 	
-	//총방문자수
-	public void incrementTotalVisitorCount();
+	//오늘 방문자수 count
+	public int getTodayCount();
+	
+	//총 방문자 수 count
+	public int getTotalCount();
+	
+	//------------------유저페이지 기능----------
+	//회원정보 조회
+	public MemberDto getMember(String id);
 
-	
+	public void modifyMember(String memid, String mempass, String memname, String membirth, String memsex,
+			String mememail, String mempnum, String memaddress, String memlikemenu, String shpwd, String bcpwd);
+
+
 
 }

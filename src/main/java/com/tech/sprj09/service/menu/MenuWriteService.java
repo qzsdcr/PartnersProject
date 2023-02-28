@@ -32,7 +32,7 @@ public class MenuWriteService implements BServiceInter {
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
 		System.out.println("uploadpathhhhh:" + uploadPath);
 
-		String path = "C:\\2022spring\\springwork1\\sprj29mvc2\\src\\main\\webapp\\resources\\upload"; // 경로 수정 필요 
+		String path = "C:\\2022spring\\springwork1\\Partenersproject\\src\\main\\webapp\\resources\\menuupload"; // 경로 수정 필요 
 
 		MultipartRequest req = null;
 		try {

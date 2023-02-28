@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tech.sprj09.dao.IDao;
 import com.tech.sprj09.service.BServiceInter;
@@ -41,7 +42,7 @@ public class LoginController {
 
 	// 로그인 유효성 검사 (login check service 기능)
 	@RequestMapping("/loginCheck")
-	public String loginCheck(HttpServletRequest request, SearchVO searchVO, Model model)
+	public String loginCheck(HttpServletRequest request, SearchVO searchVO, Model model, RedirectAttributes redirectAttributes)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, NoSuchPaddingException,
 			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
 		System.out.println("=============loginCheck============");
@@ -64,7 +65,10 @@ public class LoginController {
 		System.out.println(shpwd);
 
 		int using_id = dao.idLookup(memid); // 아이디 존재 여부 확인, 존재시 1 반환
-		System.out.println("using_id" + using_id);
+		System.out.println("using_id : " + using_id);
+		
+		//세션 객체 불러오기 (로그인한 사용자의 정보 저장)
+		HttpSession session = request.getSession();
 		
 		if (using_id == 0) {
 			System.out.println("--------아이디가 존재하지 않습니다---------");
@@ -85,8 +89,10 @@ public class LoginController {
 				String dcreypt = CryptoService.decryptAES256(bcpwd, shpwd);
 				System.out.println(dcreypt);
 				System.out.println("----------암호화 재설정 후, 로그인 성공----------");
-				request.setAttribute("loginCheck", loginCheck);
-				request.setAttribute("loginId", memid);
+				session.setAttribute("memid", memid);
+				session.setAttribute("loginCheck", loginCheck);
+				System.out.println("memid : "+memid);
+				System.out.println("loginCheck : "+loginCheck);
 				return "home";
 			}else {
 			System.out.println("----------암호화 재설정 후, 로그인 실패----------");
@@ -94,10 +100,12 @@ public class LoginController {
 			}
 		} else if (mempass.equals(CryptoService.decryptAES256(bcpwd, shpwd))) {
 			String dcreypt = CryptoService.decryptAES256(bcpwd, shpwd);
-			System.out.println(dcreypt);
+			System.out.println("dcreypt : "+dcreypt);
 			System.out.println("----------로그인 성공----------");
-			request.setAttribute("loginCheck", loginCheck);
-			request.setAttribute("loginId", memid);
+			session.setAttribute("memid", memid);
+			session.setAttribute("loginCheck", loginCheck);
+			System.out.println("memid : "+memid);
+			System.out.println("loginCheck : "+loginCheck);
 			return "home";
 		} else {
 			System.out.println("----------비밀번호가 틀렸습니다----------");

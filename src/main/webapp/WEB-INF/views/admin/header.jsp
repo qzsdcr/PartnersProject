@@ -13,7 +13,7 @@ p{ margin-left: 10%;
 }
 </style>
 <body>
-<a href="/partners" class="nav__logo"><img src="resources/img/partners_black.png" alt="logo" style="width: 13%; margin-left: 10%"/></a>
+<a href="/partners" class="nav__logo"><img src="resources/img/partners_black.png" alt="logo" /></a>
 	
 	<p>
 	<id>admin 님 환영합니다.</id>

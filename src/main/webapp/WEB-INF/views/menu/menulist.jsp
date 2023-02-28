@@ -21,12 +21,14 @@
 			<tr>
 				<td><fmt:formatDate value="${dto.menudate}"
 						pattern="yyyy/MM/dd" /></td>
-				<td><a href="menucontentview?menuid=${dto.memuid}">${dto.menulist}</a></td>  <!-- 식단 -->
+				<td><a href="menucontentview?menuid=${dto.menuid}&sikno=${dto.sikno}">${dto.menulist}</a></td>  <!-- 식단 -->
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="5"><a href="writeview">글쓰기</a></td>
+			<td colspan="5"><a href="menuwriteview">글쓰기</a></td>
 		</tr>
+		
+		
 	</table>
 	totCnt : ${totRowcnt }
 	<br /> 현재페이지/토탈페이지 : ${searchVo.page }/${searchVo.totPage }

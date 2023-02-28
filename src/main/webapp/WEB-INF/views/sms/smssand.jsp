@@ -23,6 +23,22 @@
 
 
 <title>Insert title here</title>
+<style>
+		.main-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+		.left-section,
+		.right-section {
+			width: 48%;
+			box-sizing: border-box;
+			padding: 20px;
+			border: 1px solid #ccc;
+			margin-bottom: 20px;
+		}
+	</style>
 </head>
 <!-- CSS -->
 <link rel="stylesheet" href="resources/assets/css/styles.css">
@@ -72,11 +88,7 @@ axios
 </script>
 
 
-<style>
-table {
-	text-align: center;
-}
-</style>
+
 <script>
 function fillForm(mempnum) {
   document.getElementsByName("mempnum")[0].value = mempnum;
@@ -86,10 +98,9 @@ function fillForm(mempnum) {
 
 <body>
 
-	<main style="margin-left: 100px">
-		<div
-			style="overflow-x: hidden; width: 30%; height: 95%; margin-left: 150px; font-family: 'Noto Sans KR', sans-serif; float: left;">
-			<p id="">
+	<main class="main-wrapper" style="text-align: center !important;">
+		<div class="left-section">
+			
 			<h1>회원 관리 페이지</h1>
 			<form action="smssand" method="post">
 				<div class="search">
@@ -105,7 +116,7 @@ function fillForm(mempnum) {
 
   
 			전체 회원숫자 : ${mlist.size() }
-			<table border="1">
+			<table border="1" style="margin-left: 25%" >
 				<tr>
 
 					<td>회원 ID</td>
@@ -122,30 +133,27 @@ function fillForm(mempnum) {
 					</tr>
 				</c:forEach>
 			</table>
-			</p>
+		
 		</div>
 
-		<div
-			style="overflow-x: hidden; width: 30%; height: 95%; margin-left: 150px; font-family: 'Noto Sans KR', sans-serif; float: right;">
+		<div class="right-section">
 
 			<h1>문자 메시지</h1>
 		
 
 				<form action="/partners/send-one">
-					<table border="1">
+					<table border="1" style="margin-left: 35%">
 						<tr>
 							<td>보내는 번호</td>
 							<td><input type="text" name="mempnum" value="보내는 번호" /></td>
-
-
 						</tr>
 						<tr>
 							<td>문자 내용</td>
 							<td><textarea name="smstext" rows="5">문자 내용.</textarea></td>
 						</tr>
 
-						<input type="submit" value="전송" />
 					</table>
+						<input type="submit" value="전송" />
 
 				</form>
 

@@ -88,8 +88,8 @@ body {
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="memname">이름</label> <input type="text" name="memname"
-								class="form-control" id="memname" placeholder="" required>
+							<label for="memname" id="name_chk">이름</label> 
+							<input type="text" class="form-control" name="memname" id="memname" placeholder="" required>
 							<div class="invalid-feedback">이름을 입력해주세요.</div>
 						</div>
 						<div class="col-md-6 mb-3">
@@ -111,9 +111,8 @@ body {
 							<div class="invalid-feedback">생년월일을 입력해주세요.</div>
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="mempnum" id="phone_chk">연락처</label> <input type="tel"
-								class="form-control" name="mempnum" id="mempnum"
-								placeholder="010-0000-0000" required>
+							<label for="mempnum" id="phone_chk">연락처</label> 
+							<input type="tel" class="form-control" name="mempnum" id="mempnum" placeholder="010-0000-0000" required>
 							<div class="invalid-feedback">연락처를 입력해주세요.</div>
 						</div>
 					</div>
@@ -128,8 +127,7 @@ body {
 						<div class="col-md-6 mb-3" style="margin-top: auto;"
 							style="margin-bottom: auto;">
 							<button type="button" class="btn btn-primary"
-								style="width: 100%;" id="get_auth_num"
-								onclick="handleButtonClick()">인증번호 받기</button>
+								style="width: 100%;" id="get_auth_num" onclick="handleButtonClick()">인증번호 받기</button>
 						</div>
 					</div>
 					
@@ -137,15 +135,14 @@ body {
 
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="mail_chk">이메일 인증</label> <input type="text"
-								name="mail_chk" class="form-control" id="mail_chk"
-								placeholder="이메일 인증번호 입력" required>
+							<label for="mail_chk">이메일 인증</label>
+							<input type="text" name="mail_chk" class="form-control" id="mail_chk" placeholder="이메일 인증번호 입력" required>
 							<div class="invalid-feedback">이메일 인증을 해주세요</div>
 						</div>
 						<div class="col-md-6 mb-3" style="margin-top: auto;"
 							style="margin-bottom: auto;">
 							<button type="button" class="btn btn-primary"
-								style="width: 100%;" id="mail_auth_button">메일 인증</button>
+								style="width: 100%;" id="mail_auth_button" disabled>메일 인증</button>
 						</div>
 					</div>
 
@@ -173,6 +170,7 @@ body {
 							</select>
 						</div>
 					</div>
+					
 					<!-- 		  가입경로 & 추천인코드 비활성화
           <div class="row">
             <div class="col-md-8 mb-3">
@@ -323,17 +321,20 @@ body {
 	<!-- 유효성처리 (아이디 중복체크 등) -->
 	<script type="text/javascript"> 
   window.onload = function(){
-	//id와pw 적합여부 검사(4~12자리, 영어대소문자, 숫자만 가능)
+	//id와pw 유효성 검사(4~12자리, 영어대소문자, 숫자만 가능)
 	let val = /^[a-zA-Z0-9]{4,15}$/	
 	
-	//생년월일 적합여부 검사
+	//생년월일 유효성 검사
 	let birth_val = /([0-9]{2}(0[1-9]{1}|1[0-2]{1})(0[1-9]{1}|[1,2]{1}[0-9]{1}|3[0,1]{1}))/g
 	
-	//이메일형식 적합여부 검사
+	//이메일형식 유효성 검사
 	let mail_val = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
 	
-	//폰번호 적합여부 검사
+	//폰번호 유효성 검사
 	let phone_val = /^01(?:0|1|[6-9])\d{3,4}\d{4}$/;
+	
+	// 이름 유효성 검사 (5자 이하)
+	let name_val = /^[a-zA-Z가-힣 ]{2,5}$/;
   
 	//형식검사하는 메서드
 	function check( val, target ) {
@@ -354,23 +355,31 @@ body {
 						if( data == "0" ) {
 							$( "#usingId_chk" ).text( "사용할 수 있는 ID입니다." );
 							$( "#usingId_chk" ).css( "color", "blue" );
+							$( "#submit1" ).prop( "disabled", false );
 						} else if( data == "1"  ) {
 							$( "#usingId_chk" ).text( "사용중인 ID입니다." );
 							$( "#usingId_chk" ).css( "color", "red" );
+							$( "#memid" ).val( "" );
+							$( "#submit1" ).prop( "disabled", true );
 						}
 					},
 					error: function() {
 						console.log( "joinForm의 ajax 에러" )
+						$( "#memid" ).val( "" );
 					}
 				})
 			} else {
 				$( "#usingId_chk" ).text( "ID가 형식에 맞지않습니다." );
 				$( "#usingId_chk" ).css( "color", "red" );
-				$( "#user_id" ).val( "" );
+				$( "#memid" ).val( "" );
+				$( "#submit1" ).prop( "disabled", true );
 			}	
 		} else{
 			$( "#usingId_chk" ).text( "아이디" );
 			$( "#pwd_chk" ).css( "color", "black" );
+			$( "#memid" ).val( "" );
+			$( "#submit1" ).prop( "disabled", true );
+			
 		}
 	})
 	
@@ -382,29 +391,36 @@ body {
 				$( "#pwd_chk" ).text( "비밀번호 형식에 맞지 않습니다." );
 				$( "#pwd_chk" ).css( "color", "red" );
 				$( "#mempass" ).val( "" );
+				$( "#submit1" ).prop( "disabled", true );
 			}else{
 				$( "#pwd_chk" ).text( "비밀번호" );
 				$( "#pwd_chk" ).css( "color", "black" );
+				$( "#submit1" ).prop( "disabled", true );
 			}
 			}
 			})
 			
 		//패스워드 똑같이 입력했는지 검사
 	$( "#mempass2" ).blur( function() {
-		var mempass = $( "#mempass" ).val();
-		var mempass2 = $( "#mempass2" ).val();
-		
-		if( mempass != '' && mempass2 != '' ) {
-			if( mempass == mempass2 ) {
-				$( "#cpwd_chk" ).text( "비밀번호 확인 완료" );
-				$( "#cpwd_chk" ).css( "color", "blue" );
-			} else {
-				$( "#cpwd_chk" ).text( "비밀번호가 틀립니다." );
-				$( "#cpwd_chk" ).css( "color", "red" );
-				$( "#mempass2" ).val( "" );
-				}
-		}
-	})
+	  var mempass = $( "#mempass" ).val();
+	  var mempass2 = $( "#mempass2" ).val();
+	  if( mempass != '' && mempass2 != '' ) {
+	    if( mempass == mempass2 ) {
+	      $( "#cpwd_chk" ).text( "비밀번호 확인 완료" );
+	      $( "#cpwd_chk" ).css( "color", "blue" );
+	      $( "#submit1" ).prop( "disabled", false );
+	    } else {
+	      $( "#cpwd_chk" ).text( "비밀번호가 틀립니다." );
+	      $( "#cpwd_chk" ).css( "color", "red" );
+	      $( "#mempass2" ).val( "" );
+	      $( "#submit1" ).prop( "disabled", true );
+	    }
+	  } else {
+	    $( "#cpwd_chk" ).text( "비밀번호가 틀립니다." );
+	    $( "#mempass2" ).val( "" );
+	    $( "#cpwd_chk" ).css( "color", "red" );
+	  }
+	});
 	
 		//생년월일 유효성검사
 	$( "#membirth" ).blur( function() {
@@ -414,26 +430,47 @@ body {
 			$( "#birth_chk" ).text( "생년월일 형식에 맞지않습니다." );
 			$( "#birth_chk" ).css( "color", "red" );
 			$( '#membirth' ).val( "" );
+			$( "#submit1" ).prop( "disabled", true );
 		} else {
 			$( "#birth_chk" ).text( "생년월일" );
-			$( "#birth_chk" ).css( "color", "black" );			
+			$( "#birth_chk" ).css( "color", "black" );
+			$( "#submit1" ).prop( "disabled", true );
 		}
 	}
 	})
 	
 	//이메일 유효성검사
 	$( "#mememail" ).blur( function() {
-		var mememail = $( "#mememail" ).val();
+		var mememail = $( "#mememail" ).val();			
 		if( !check( mail_val, mememail ) ) {
 			$( "#mail_chk" ).text( "이메일 형식에 맞지 않습니다." );
 			$( "#mail_chk" ).css( "color", "red" );
 			$( '#mememail' ).val( "" );
+			$( "#submit1" ).prop( "disabled", true );
 		} else {
 			$( "#mail_chk" ).text( "이메일" );
 			$( "#mail_chk" ).css( "color", "black" );
+			$( "#submit1" ).prop( "disabled", true );
 		}
 	})
 	
+	//이름 유효성 검사
+	$( '#memname' ).blur( function() {
+    var memname = $("#memname").val();
+ 	if( memname != '' ) {
+	    if( !check( name_val, memname ) ) {
+	      $( "#name_chk" ).text( "이름 형식에 맞지 않습니다." );
+	      $( "#name_chk" ).css( "color", "red" );
+	      $( '#memname' ).val( "" );
+	      $( "#submit1" ).prop( "disabled", true );
+		} else {
+			$( "#mail_chk" ).text( "이름" );
+			$( "#mail_chk" ).css( "color", "black" );
+			$( "#submit1" ).prop( "disabled", true );
+			}
+		}
+ 	})
+	    
 	//전화번호 유효성검사
 	$( '#mempnum' ).blur( function() {
 	  var mempnum = $( '#mempnum' ).val().replace(/-/g, ''); // 하이픈 제거
@@ -442,14 +479,20 @@ body {
 	      $( "#phone_chk" ).text( "연락처 형식에 맞지 않습니다." );
 	      $( "#phone_chk" ).css( "color", "red" );
 	      $( '#mempnum' ).val( "" );
+	      $( "#submit1" ).prop( "disabled", true );
 	    } else {
 	      var formatted = mempnum.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3'); // 하이픈 추가
 	      $( '#mempnum' ).val(formatted);
 	      $( "#phone_chk" ).text( "연락처" );
 	      $( "#phone_chk" ).css( "color", "black" );
+	      $( "#submit1" ).prop( "disabled", true );
 	    }
 	  }
 	});
+
+		
+	}
+	  
 
 		$(document).ready(function() {
 	    // 입력된 값에 자동으로 하이픈 추가
@@ -476,7 +519,6 @@ $( '#dialog' ).dialog({
 		}
 	}
 })
-};	  
 
 //모달창이 닫힐 때 체크박스를 활성화시킴
 $('#modal').on('hidden.bs.modal', function (e) {
@@ -516,20 +558,24 @@ function handleButtonClick() {
 	});
 
 	function verifyTempkey(tempkey) {
-		  var inputkey = $('#mail_chk').val();
-		  if (tempkey == inputkey) {
+		var inputkey = $('#mail_chk').val();
+		if(tempkey == "" || inputkey == ""){
+		    $("#join_button").attr("disabled", true);
+		    $("#mail_chk").val("");
+		    $("#mail_chk").attr("placeholder", "이메일 인증번호를 다시 받으세요.");
+		    $("#mail_auth_button").text("인증번호 재전송");
+		    $("#mail_auth_button").attr("disabled", true);
+		    $( "#submit1" ).prop( "disabled", true );
+		} else if (tempkey == inputkey) {
 		    $("#tempkey").val(tempkey);
 		    $("#join_button").attr("disabled", false);
 		    $("#mail_auth_button").text("인증 완료");
 		    $("#mail_auth_button").attr("disabled", true);
-		  } else {
-		    $("#join_button").attr("disabled", true);
-		    $("#mail_chk").val("");
-		    $("#mail_chk").attr("placeholder", "이메일 인증번호를 다시 받으세요.");
-		    $("#mail_auth_button").css("color", "red");
-		    $("#mail_auth_button").attr("disabled", true);
-		  }
+		    $( "#submit1" ).prop( "disabled", false );
+		} else{
+			$( "#submit1" ).prop( "disabled", true );
 		}
+	}
 </script>
 
 </body>

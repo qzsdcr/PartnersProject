@@ -18,7 +18,7 @@ public class ReviewDto {
 	private int reviewlike; //도움이 돼요
 	private Timestamp reviewdate; //작성된 날짜
 	private int spoon; //별점
-	private int gsikno; //별점
+	
 	private int singo; //신고
 	private String reviewfile; //리뷰 작성시 첨부파일(이미지)
 	
@@ -39,7 +39,7 @@ public class ReviewDto {
 		this.reviewlike = reviewlike;
 		this.reviewdate = reviewdate;
 		this.spoon = spoon;
-		this.gsikno = gsikno;
+	
 		this.singo = singo;
 		this.reviewfile = reviewfile;
 	}
