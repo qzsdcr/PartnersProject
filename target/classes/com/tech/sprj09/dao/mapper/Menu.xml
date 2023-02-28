@@ -43,8 +43,7 @@
 
 	<select id="calendardetail"
 		resultType="com.tech.sprj09.dto.MenuDto">
-		select * from menu where sikno = #{param1} and menudate =
-		#{param2}
+		select * from menu where sikno = #{param1} and menudate =#{param2} 
 	</select>
 
 	<select id="sikdangList"

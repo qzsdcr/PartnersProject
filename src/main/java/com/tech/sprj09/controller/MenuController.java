@@ -133,7 +133,8 @@ public class MenuController {
 
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
-
+		String sikno = request.getParameter("sikno"); // sikno 값을 받아옴
+		
 		// year와 month 값이 null이면 현재 년월을 사용함
 		if (year == null || month == null) {
 			Calendar now = Calendar.getInstance();

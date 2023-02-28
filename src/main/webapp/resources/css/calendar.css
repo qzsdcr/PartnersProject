@@ -1,76 +1,72 @@
+/* Calendar container */
 .calendar_container {
-    position:absolute;
-    left:29%;
-    top:25%;
+  margin: 20px auto;
+  width: 80%;
+  font-size: 1.2rem;
+}
+
+/* Calendar table */
+.calendar_container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.calendar_container td {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px;
+}
+
+.calendar_container td:first-child {
+  color: red;
+}
+
+.calendar_container td:last-child {
+  color: blue;
+}
+
+/* Calendar navigation links */
+.calendar_container a {
+  text-decoration: none;
+  color: #333;
+}
+
+.calendar_container a:hover {
+  text-decoration: underline;
+}
+
+.calendar_container b {
+  font-size: 1.5rem;
+}
+
+/* Empty cells */
+.calendar_container td:empty {
+  background-color: #f1f1f1;
+}
+.cal-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cal-nav .prev-month,
+.cal-nav .next-month {
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cal-nav .prev-month {
+  left: 0;
+}
+
+.cal-nav .next-month {
+  right: 0;
+}
+.center {
     display: flex;
-    justify-content:space-evenly;
-    width: 42%;
-    background-color: white;
-    box-shadow: 1px 1px 25px rgb(0, 0, 0 / 17%);
-    border: 1px solid black;
-    border-radius: 50px;
-}
-
-.hide {
-    display:none;
-}
-
-.calendar_container > button {
-    margin-top: 4%;
-    font-weight: bold;
-    height:10%;
-}
-
-.left_button {
-    margin-left:17%;
-    border: transparent;
-}
-
-.right_button {
-    margin-right:17%;
-    border: transparent;
-}
-
-.calendar {
-    display:flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
-    margin-top: 3%;
-    margin-right:2.5%;
-}
-
-
-.calendar_days > button  {
-    width: 48px;
-    height: 47px;
-    border-radius: 100%;
-    background-color: transparent;
-    border: transparent;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 0 10px;
-}
-
-.day {
-    text-align: center;
-    font-size:12px;
-    font-weight: bold;
-    color:rgb(189, 189, 189);
-}
-
-
-.day_hover {
-    border: 1px solid black !important;
-}
-
-.day_selected {
-    background-color: black !important;
-    color: #ffff;
-}
-
-.gray {
-    background-color: rgb(241, 241, 241) !important;
+    justify-content: center;
 }

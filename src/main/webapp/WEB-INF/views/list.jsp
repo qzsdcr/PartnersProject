@@ -66,7 +66,7 @@
         	<div id="m1" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
         	<div class="movie-image"> 
 	          <span class="play"><span class="name">파트너스</span></span> 
-	          <a href="contentview?sikno=${dto.sikno }"><img src="resources/upload/${dto.filesrc }" alt="" /></a> 
+	          <a href="contentview?sikno=${dto.sikno }&sikname=${dto.sikname }"><img src="resources/upload/${dto.filesrc }" alt="" /></a> 
 	          </div>
 	          
 	          <div class="rating">

@@ -16,5 +16,6 @@ public class MenuDto extends SikdangDto{
 	private String menulist; // 식단
 	private Timestamp menudate;//식단날짜
 	private String menufilesrc;//식판 이미지 저장공간 
-	
+	private String sikname;
+
 }
