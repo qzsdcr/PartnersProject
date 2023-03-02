@@ -96,6 +96,7 @@ h1#logo a {
 }
 .social {
 	float:right;
+	/* width:160px; */
 	width:160px;
 	padding-top:11px;
 }
@@ -228,9 +229,7 @@ background-position:-54px 0;
 	color:#000000;
 	cursor:pointer;
 }
-#main {
-	border-bottom:1px dashed #413e3e;
-}
+
 #content {
 }
 .box {
@@ -247,10 +246,11 @@ background-position:-54px 0;
 	float:left;
 	display:inline;
 }
+
 .box .movie {
 	width:152px;
 	float:left;
-	padding-right:12px;
+	margin-right: 8px;
 }
 .movie-image {
 	float:left;
@@ -297,7 +297,7 @@ background-position:-54px 0;
 .rating {
 	float:left;
 	width:152px;
-	padding-top:8px;
+	
 }
 .rating p {
 	float:left;
@@ -311,13 +311,13 @@ background-position:-54px 0;
 	float:left;
 	width:60px;
 	height:11px;
-	background:url('../images/stars.gif') no-repeat 0 0;
+	/* background:url('../images/stars.gif') no-repeat 0 0; */
 	margin-left:2px;
 }
 .rating .stars-in {
 	width:48px;
 	display:inline;
-	background:url('../images/stars.gif') no-repeat 0 bottom;
+	/* background:url('../images/stars.gif') no-repeat 0 bottom; */
 	position:absolute;
 	height:11px;
 	font-size:0;
@@ -325,7 +325,7 @@ background-position:-54px 0;
 	text-indent:-4000px;
 }
 .comments {
-	background:url('../images/comments.gif') no-repeat 0 center;
+		
 	padding-left:12px;
 	float:right;
 }
@@ -413,4 +413,56 @@ background-position:-54px 0;
 	background-image:none;
  	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='resources/images/image-hover.png', sizingMethod='image');
 }
+.morebtn{
+	text-align: center;
+	
+}
+input[type="button"]{
+	width: 30%;
+	font-weight:bold;
+}
+
+.cardBox {
+  background-color: transparent;
+    width: 152px;
+    /* height: 220px; */
+    perspective: 1000px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.card {
+  position: relative;
+width:152px;
+	height:214px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.cardBox:hover .movie {
+  transform: rotateY(180deg);
+}
+
+.imageCard, .ratingCard {
+  position: absolute;
+width:152px;
+	height:214px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.imageCard {
+  /* background-color: #bbb; */
+  color: black;
+}
+
+.ratingCard {
+/*   background-color: #2980b9; */
+  background-color: #eafcff;
+  color: white;
+  transform: rotateY(180deg);
+}
+
 
