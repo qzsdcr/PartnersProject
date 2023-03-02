@@ -140,9 +140,9 @@
 
 						</c:forEach>
 						<c:if test="${gs >=13 }">
-							<div>
+							<div class="morebtn">
 								<input type="button" name="m1_moreBtn"
-									onclick="showPageMore('m1');" value="더보기" style="width: 100%;">
+									onclick="showPageMore('m1');" value="더보기" >
 							</div>
 						</c:if>
 					</div>
@@ -184,9 +184,9 @@
 
 						</c:forEach>
 						<c:if test="${gl >=13 }">
-							<div>
+							<div class="morebtn">
 								<input type="button" name="m2_moreBtn"
-									onclick="showPageMore('m2');" value="더보기" style="width: 100%;">
+									onclick="showPageMore('m2');" value="더보기" >
 							</div>
 						</c:if>
 					</div>
@@ -226,9 +226,9 @@
 						</c:forEach>
 						<c:if test="${ye >=13 }">
 							<!-- 이런식으로 하면 돼 할 수 있겠음? -->
-							<div>
+							<div class="morebtn">
 								<input type="button" name="m3_moreBtn"
-									onclick="showPageMore('m3');" value="더보기" style="width: 100%;">
+									onclick="showPageMore('m3');" value="더보기" >
 							</div>
 						</c:if>
 					</div>
@@ -267,9 +267,9 @@
 
 						</c:forEach>
 						<c:if test="${gn >=13 }">
-							<div>
+							<div class="morebtn">
 								<input type="button" name="m4_moreBtn"
-									onclick="showPageMore('m4');" value="더보기" style="width: 100%;">
+									onclick="showPageMore('m4');" value="더보기" >
 							</div>
 						</c:if>
 					</div>
@@ -307,9 +307,9 @@
 
 					</c:forEach>
 					<c:if test="${pk >=13 }">
-						<div>
+						<div class="morebtn">
 							<input type="button" name="m5_moreBtn"
-								onclick="showPageMore('m5');" value="더보기" style="width: 100%;">
+								onclick="showPageMore('m5');" value="더보기" >
 						</div>
 					</c:if>
 					<div class="cl">&nbsp;</div>

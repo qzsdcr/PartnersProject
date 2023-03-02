@@ -139,26 +139,20 @@
 						<c:forEach items="${gslist }" var="dto" varStatus="status">
 							<fmt:parseNumber var="gsGroupNum" value="${(gs+5)/6}"
 								integerOnly="true" />
-							<div class="cardBox">
-								<div class="${gs%6 eq 0 ? 'movie last' : 'movie'} card"
-									style="${gs >= 13 ? 'display:none;' : ''}"
-									name='m1_${gsGroupNum }'>
-									<div class="movie-image imageCard">
-										<span class="play"><span class="name">파트너스</span></span> <img
-											src="resources/upload/${dto.filesrc }" alt="" />
+							<div class="${gs%6 eq 0 ? 'movie last' : 'movie'}"
+								style="${gs >= 13 ? 'display:none;' : ''}"
+								name='m1_${gsGroupNum }'>
+								<div class="movie-image">
+									<span class="play"><span class="name">파트너스</span></span> <a
+										href="contentview?sikno=${dto.sikno }"><img
+										src="resources/upload/${dto.filesrc }" alt="" /></a>
+								</div>
+								<div class="rating">
+									<p>${dto.sikloca }</p>
+									<div class="stars">
+										<div class="stars-in"></div>
 									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
-										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
-									</div>
-									
+									<span class="comments"> ${dto.sikhit }</span>
 								</div>
 							</div>
 							<c:set var="gs" value="${gs+1 }" />
@@ -188,26 +182,21 @@
 						<c:forEach items="${gllist }" var="dto" varStatus="status">
 							<fmt:parseNumber var="glGroupNum" value="${(gl+5)/6}"
 								integerOnly="true" />
-							<div class="cardBox">
-								<div class="${gl%6 eq 0 ? 'movie last' : 'movie'} card"
-									style="${gl >= 13 ? 'display:none;' : ''}"
-									name='m2_${glGroupNum }'>
-									<div class="movie-image imageCard">
-										<span class="play"><span class="name">파트너스</span></span> <img
-											src="resources/upload/${dto.filesrc }" alt="" />
+
+							<div id="m2" class="${gl%6 eq 0 ? 'movie last' : 'movie'}"
+								style="${gl >= 13 ? 'display:none;' : ''}"
+								name='m2_${glGroupNum }'>
+								<div class="movie-image">
+									<span class="play"><span class="name">파트너스</span></span> <a
+										href="contentview?sikno=${dto.sikno }"><img
+										src="resources/upload/${dto.filesrc }" alt="" /></a>
+								</div>
+								<div class="rating">
+									<p>${dto.sikloca }</p>
+									<div class="stars">
+										<div class="stars-in"></div>
 									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
-										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
-									</div>
-									
+									<span class="comments">12</span>
 								</div>
 							</div>
 							<c:set var="gl" value="${gl+1 }" />
@@ -233,28 +222,22 @@
 					</div>
 					<div id="m3">
 						<c:forEach items="${yelist }" var="dto" varStatus="status">
-							<fmt:parseNumber var="gsGroupNum" value="${(gl+5)/6}"
+							<fmt:parseNumber var="yeGroupNum" value="${(ye+5)/6}"
 								integerOnly="true" />
-							<div class="cardBox">
-								<div class="${ye%6 eq 0 ? 'movie last' : 'movie'} card"
-									style="${ye >= 13 ? 'display:none;' : ''}"
-									name='m3_${yeGroupNum }'>
-									<div class="movie-image imageCard">
-										<span class="play"><span class="name">파트너스</span></span> <img
-											src="resources/upload/${dto.filesrc }" alt="" />
+							<div id="m3" class="${ye%6 eq 0 ? 'movie last' : 'movie'}"
+								style="${ye >= 13 ? 'display:none;' : ''}"
+								name='m3_${yeGroupNum }'>
+								<div class="movie-image">
+									<span class="play"><span class="name">파트너스</span></span> <a
+										href="contentview?sikno=${dto.sikno }"><img
+										src="resources/upload/${dto.filesrc }" alt="" /></a>
+								</div>
+								<div class="rating">
+									<p>${dto.sikloca }</p>
+									<div class="stars">
+										<div class="stars-in"></div>
 									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
-										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
-									</div>
-									
+									<span class="comments">12</span>
 								</div>
 							</div>
 							<c:set var="ye" value="${ye+1 }" />
@@ -280,28 +263,23 @@
 					</div>
 					<div id="m4">
 						<c:forEach items="${gnlist }" var="dto" varStatus="status">
-							<fmt:parseNumber var="gnGroupNum" value="${(gl+5)/6}"
+							<fmt:parseNumber var="gnGroupNum" value="${(gn+5)/6}"
 								integerOnly="true" />
-							<div class="cardBox">
-								<div class="${gn%6 eq 0 ? 'movie last' : 'movie'} card"
-									style="${gn >= 13 ? 'display:none;' : ''}"
-									name='m4_${gnGroupNum }'>
-									<div class="movie-image imageCard">
-										<span class="play"><span class="name">파트너스</span></span> <img
-											src="resources/upload/${dto.filesrc }" alt="" />
+
+							<div id="m4" class="${gn6 eq 0 ? 'movie last' : 'movie'}"
+								style="${gn >= 13 ? 'display:none;' : ''}"
+								name='m4_${gnGroupNum }'>
+								<div class="movie-image">
+									<span class="play"><span class="name">파트너스</span></span> <a
+										href="contentview?sikno=${dto.sikno }"><img
+										src="resources/upload/${dto.filesrc }" alt="" /></a>
+								</div>
+								<div class="rating">
+									<p>${dto.sikloca }</p>
+									<div class="stars">
+										<div class="stars-in"></div>
 									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
-										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
-									</div>
-									
+									<span class="comments">12</span>
 								</div>
 							</div>
 							<c:set var="gn" value="${gn+1 }" />
@@ -326,33 +304,27 @@
 					</div>
 					<div id="m5"></div>
 					<c:forEach items="${pklist }" var="dto" varStatus="status">
-							<fmt:parseNumber var="pkGroupNum" value="${(pk+5)/6}"
-								integerOnly="true" />
-							<div class="cardBox">
-								<div class="${pk%6 eq 0 ? 'movie last' : 'movie'} card"
-									style="${pk >= 13 ? 'display:none;' : ''}"
-									name='m5_${pkGroupNum }'>
-									<div class="movie-image imageCard">
-										<span class="play"><span class="name">파트너스</span></span> <img
-											src="resources/upload/${dto.filesrc }" alt="" />
-									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
-										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
-									</div>
-									
-								</div>
+						<fmt:parseNumber var="pkGroupNum" value="${(pk+5)/6}"
+							integerOnly="true" />
+						<div id="m5" class="${pk6 eq 0 ? 'movie last' : 'movie'}"
+							style="${pk >= 13 ? 'display:none;' : ''}"
+							name='m5_${pkGroupNum }'>
+							<div class="movie-image">
+								<span class="play"><span class="name">파트너스</span></span> <a
+									href="contentview?sikno=${dto.sikno }"><img
+									src="resources/upload/${dto.filesrc }" alt="" /></a>
 							</div>
-							<c:set var="pk" value="${pk+1 }" />
+							<div class="rating">
+								<p>${dto.sikloca }</p>
+								<div class="stars">
+									<div class="stars-in"></div>
+								</div>
+								<span class="comments">12</span>
+							</div>
+						</div>
+						<c:set var="pk" value="${pk+1 }" />
 
-						</c:forEach>
+					</c:forEach>
 					<c:if test="${pk >=13 }">
 						<div class="morebtn">
 							<input type="button" name="m5_moreBtn"
