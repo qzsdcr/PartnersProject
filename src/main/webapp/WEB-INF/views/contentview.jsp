@@ -176,6 +176,8 @@
                <div>식당내용 : ${content_view.sikcontent }</div>
                <%-- <div>조회수 : ${content_view.bhit }</div> --%>
                <div>주소 : ${content_view.sikaddress }</div>
+               <button type="button" onclick="location.href='/partners/calendar?sikno=${content_view.sikno}&sikname=${content_view.sikname}'">식단</button>
+               
               </div>
               </div>
           </div>
