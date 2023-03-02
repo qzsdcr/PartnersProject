@@ -33,13 +33,13 @@ public class ReviewModifyService implements BServiceInter{
 				(HttpServletRequest)map.get("request");
 		
 //		upload code
-		String attachPath="resources\\upload\\";
+		String attachPath="resources\\reviewupload\\";
 		String uploadPath=request.getSession().getServletContext().getRealPath("/");
 		System.out.println("uploadpathhhhh:"+uploadPath);
 		
 		//String path=uploadPath+attachPath;
 		
-		String path="C:\\2022spring\\springwork1\\partners4\\src\\main\\webapp\\resources\\upload";
+		String path="C:\\2022spring\\springwork1\\partnersproject\\src\\main\\webapp\\resources\\reviewupload";
 		
 		MultipartRequest req=null;
 		try {

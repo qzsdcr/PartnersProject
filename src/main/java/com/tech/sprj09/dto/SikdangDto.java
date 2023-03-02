@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class SikdangDto {
+public class SikdangDto{
 	public SikdangDto() {
 		// TODO Auto-generated constructor stub
 	}

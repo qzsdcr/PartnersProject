@@ -12,20 +12,6 @@ import com.tech.sprj09.dto.SikdangDto;
 public interface IDao {
 
 	public ArrayList<SikdangDto> list(int start,int end,String sk,String selNum);
-	   
-	public SikdangDto contentview(String gsikno);
-	
-	public void reviewWrite(String memno,String sikno,String reviewtitle,String reviewcontent,String spoon,String rname);
-	
-	public ArrayList<ReviewDto> reviewList();
-	
-	public void upLikeHit(String reviewno,String reviewlike);
-	
-	public ReviewDto reviewUpdate(String reviewno);
-	
-	public void reviewModify(String reviewno,String reviewcontent,String spoon,String rname);
-	
-	public void reviewDelete(String reviewno);
 	
 	public int selectBoardTotCount1(String searchKeyword);
 	
@@ -37,9 +23,39 @@ public interface IDao {
 	
 	
 	
+	//식당별 상세페이지   
+	public SikdangDto contentview(String gsikno);
+	
+	//리뷰 글쓰기
+	public void reviewWrite(String memno,String sikno,String reviewtitle,String reviewcontent,String spoon,String rname);
+	
+	//리뷰 리스트
+	public ArrayList<ReviewDto> reviewList(String sikno);
+	
+	//식당별 리뷰 글 갯수
+	public int reviewTotCount(String sikno);
+	
+	//리뷰 수정
+	public ReviewDto reviewUpdate(String reviewno);
+	
+	public void reviewModify(String reviewno,String reviewcontent,String spoon,String rname);
+	
+	//리뷰 삭제
+	public void reviewDelete(String reviewno);
+	
+	//리뷰 좋아요
+	public void upLikeHit(String reviewno,String reviewlike);
 	
 	
 	
+	//채팅
+	public ArrayList<MemberDto> chat();
+	
+	
+	
+	
+	//회원 NO 가져오기
+	public int getMemNo(String memid);
 	
 	
 	

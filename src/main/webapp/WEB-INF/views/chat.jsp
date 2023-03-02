@@ -119,7 +119,8 @@
 	
 	var textarea = document.getElementById("chat-container");
 //	var webSocket = new WebSocket('ws://172.16.4.15:9100/chat9/chat'); //인웅localhost
-	var webSocket = new WebSocket('ws://@172.16.4.17:9100/sprj09/chat'); //오욱localhost
+//	var webSocket = new WebSocket('ws://@172.16.4.17:9100/sprj09/chat'); //오욱localhost
+	var webSocket = new WebSocket('ws://localhost:9100/partners/chat');
 	
 	// 로컬에서 테스트할 때 사용하는 URL입니다.
 // 	var webSocket = new WebSocket('ws://localhost/DevEricServers/webChatServer');
@@ -139,7 +140,24 @@
 	function onMessage(e){
 		var chatMsg = event.data;
 		var date = new Date();
-		var dateInfo = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); //시간
+		var ampm = "오전";
+		var hours = String(date.getHours()).padStart(2, "0"); //시계 두자릿수 출력
+		var min = String(date.getMinutes()).padStart(2, "0");
+		//var sec = String(date.getSeconds()).padStart(2, "0");
+		
+		//시간 앞에 오전,오후 출력 
+		if (hours > 12) {
+			hours = hours - 12;
+			ampm = "오후";
+		}
+		if(hours == 0) {
+            hours = 12;
+         }
+		if(hours == 12){
+        	ampm = "오후"
+        }
+		
+		var dateInfo = ampm + hours + ":" + min;
 		if(chatMsg.substring(0,6) == 'server'){
 			var $chat = $("<div class='chat notice'>" + chatMsg + "</div>");
 			$('#chat-container').append($chat);
@@ -167,7 +185,23 @@
 			return;
 		}
 		var date = new Date();
-		var dateInfo = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+		var ampm = "오전";
+		var hours = String(date.getHours()).padStart(2, "0");
+		var min = String(date.getMinutes()).padStart(2, "0");
+		//var sec = String(date.getSeconds()).padStart(2, "0");
+		
+		if (hours > 12) {
+			hours = hours - 12;
+			ampm = "오후";
+		}
+		if(hours == 0) {
+            hours = 12;
+         }
+		if(hours == 12){
+        	ampm = "오후"
+        }
+		
+		var dateInfo = ampm + hours + ":" + min;
 		var $chat = $("<div class='my-chat-box'><div class='chat my-chat'>" + chatMsg + "</div><div class='chat-info'>"+ dateInfo +"</div></div>");
 		$('#chat-container').append($chat);
 		webSocket.send(chatMsg);
@@ -190,5 +224,20 @@
 		});
 		
 	})
+	
+	//새로고침 방지
+	// Ctrl+R, Ctrl+N, F5 키 막음
+	function doNotReload(){
+    	if((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82))
+        	|| (event.keyCode == 116) )
+    	{
+      	event.keyCode = 0;
+      	event.cancelBubble = true;
+      	event.returnValue = false;
+ 		alert("새로고침 방지");
+    	}
+	}
+	document.onkeydown = doNotReload;
+	
 </script>
 </html>

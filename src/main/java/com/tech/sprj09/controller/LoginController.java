@@ -58,6 +58,10 @@ public class LoginController {
 		String loginCheck = dao.getMemberAdmin(memid);
 		System.out.println(loginCheck);
 		
+		//DB에서 회원 NO 가져오기
+		int memno = dao.getMemNo(memid);
+		System.out.println("memno : "+memno);
+		
 		String shpwd = dao.shpwd(memid); //단방향 DB갖고오기
 		String bcpwd = dao.bcpwd(memid); //양방향 DB갖고고오기
 		
@@ -89,8 +93,10 @@ public class LoginController {
 				String dcreypt = CryptoService.decryptAES256(bcpwd, shpwd);
 				System.out.println(dcreypt);
 				System.out.println("----------암호화 재설정 후, 로그인 성공----------");
+				session.setAttribute("memno", memno);
 				session.setAttribute("memid", memid);
 				session.setAttribute("loginCheck", loginCheck);
+				System.out.println("memno : "+memno);
 				System.out.println("memid : "+memid);
 				System.out.println("loginCheck : "+loginCheck);
 				return "home";
@@ -102,8 +108,10 @@ public class LoginController {
 			String dcreypt = CryptoService.decryptAES256(bcpwd, shpwd);
 			System.out.println("dcreypt : "+dcreypt);
 			System.out.println("----------로그인 성공----------");
+			session.setAttribute("memno", memno);
 			session.setAttribute("memid", memid);
 			session.setAttribute("loginCheck", loginCheck);
+			System.out.println("memno : "+memno);
 			System.out.println("memid : "+memid);
 			System.out.println("loginCheck : "+loginCheck);
 			return "home";

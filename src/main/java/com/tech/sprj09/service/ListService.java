@@ -31,17 +31,8 @@ public class ListService implements BServiceInter{
 		SearchVO searchVO=
 				(SearchVO)map.get("searchVO");
 		
-//		db접속 select처리
-//		BoardDao dao=new BoardDao();
 		IDao dao=sqlSession.getMapper(IDao.class);
-		
-//		for (BoardDto dto : dtos) {
-//			System.out.println("리턴받은값출력 : "+dto.getBtitle());
-//		}
-		
-		
-		
-//		String[] brdtitle=request.getParameterValues("searchType");	
+	
 		String[] bsikloka=request.getParameterValues("searchType");	
 		
 //		if(brdtitle!=null) {//null처리

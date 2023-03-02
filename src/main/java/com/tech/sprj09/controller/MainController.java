@@ -32,7 +32,6 @@ public class MainController {
 	@RequestMapping("/list")
 	public String list(HttpServletRequest request,SearchVO searchVO, Model model) {
 		System.out.println("========list=======");
-		//db에서 데이터 가져오기
 				
 		model.addAttribute("request",request);
 		model.addAttribute("searchVO",searchVO);
@@ -47,7 +46,6 @@ public class MainController {
 	@RequestMapping("/gasan")
 	public String gasan(HttpServletRequest request,SearchVO searchVO, Model model) {
 		System.out.println("========gasan=======");
-		//db에서 데이터 가져오기
 				
 		model.addAttribute("request",request);
 		model.addAttribute("searchVO",searchVO);
@@ -62,8 +60,7 @@ public class MainController {
 	@RequestMapping("/contentview")
 	public String contentview(HttpServletRequest request, Model model) {
 		System.out.println("========contentview=======");
-//		db에 디테일기능		
-		//toss
+		
 		model.addAttribute("request",request);
 
 		bServiceInter=new ContentViewService(sqlSession);
@@ -79,22 +76,19 @@ public class MainController {
 	@RequestMapping("/reviewWrite")
 	public String review(HttpServletRequest request, Model model) {
 		System.out.println("========reviewWrite=======");
-		//db에서 데이터 가져오기
 				
 		model.addAttribute("request",request);
 
 		bServiceInter=new ReviewWriteService(sqlSession);
 		bServiceInter.execute(model);
 		
-//		return "redirect:contentview?sikno=15";
 		return "redirect:contentview";
 	}
 //	리뷰 수정폼으로
 	@RequestMapping("/reviewUpdate")
 	public String reviewupdate(HttpServletRequest request, Model model) {
 		System.out.println("=======reviewUpdate=======");
-//		db에 디테일 기능
-		//toss
+
 		model.addAttribute("request",request);
 		
 		bServiceInter=new ReviewUpdateService(sqlSession);
@@ -104,32 +98,29 @@ public class MainController {
 	}
 	
 //	리뷰 수정하기
-	@RequestMapping(method = RequestMethod.POST,value = "/reviewModify")
+	@RequestMapping(method = RequestMethod.POST, value = "/reviewModify")
 	public String reviewModify(HttpServletRequest request, Model model) {
 		System.out.println("=======reviewModify=======");
-//		db에 디테일 기능
+
 		//toss
 		model.addAttribute("request",request);
 		
 		bServiceInter=new ReviewModifyService(sqlSession);
 		bServiceInter.execute(model);
 		
-		return "redirect:contentview?sikno=15";
-//		return "redirect:contentview";
+		return "redirect:contentview";
 	}
 	
 //	리뷰 삭제
 	@RequestMapping("/reviewDelete")
 	public String reviewDelete(HttpServletRequest request, Model model) {
 		System.out.println("========reviewDelete=======");
-		//db에서 데이터 가져오기
 				
 		model.addAttribute("request",request);
 
 		bServiceInter=new ReviewDeleteService(sqlSession);
 		bServiceInter.execute(model);
 		
-//		return "redirect:contentview?sikno=15";
 		return "redirect:contentview";
 	}
 	
