@@ -24,8 +24,7 @@
     <select id="selectBoardTotCount2" resultType="Integer">
     	SELECT COUNT(*) FROM SIKDANG WHERE SIKLOCA LIKE '%'||#{param2}||'%'
     </select>
-    
-   
+
     
     <select id="list" resultType="com.tech.sprj09.dto.SikdangDto">
     	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
@@ -37,6 +36,7 @@
 		WHERE NUM BETWEEN #{param1} AND #{param2}
     </select>
     
+
 	
 	<select id="gslist" resultType="com.tech.sprj09.dto.SikdangDto">
         	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
@@ -88,26 +88,36 @@
     </select>
     
     
+
     <select id="contentview" resultType="com.tech.sprj09.dto.SikdangDto">
     	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
 		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
 		FROM SIKDANG WHERE SIKNO=#{param1, jdbcType=VARCHAR}
     </select>
-  
-  
-    
+ 
+    <!-- 식당별 리뷰 리스트 -->
     <select id="reviewList" resultType="com.tech.sprj09.dto.ReviewDto">
-    	SELECT REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,REVIEWLIKE,
-		REVIEWDATE,SPOON,REVIEWFILE
-		FROM REVIEW ORDER BY REVIEWDATE DESC
-		<!-- WHERE REVIEWNO=#{param1, jdbcType=VARCHAR} -->
+    	SELECT R.REVIEWNO,R.SIKNO,M.MEMNO,M.MEMID,R.SPOON,
+    	R.REVIEWCONTENT,R.REVIEWDATE,R.REVIEWFILE,
+		REPLACE(M.MEMID,SUBSTR(M.MEMID,3),'***') REMEMID
+		FROM MEMBER M,REVIEW R
+		WHERE M.MEMNO=R.MEMNO
+		AND R.SIKNO=#{param1, jdbcType=VARCHAR}
+		ORDER BY R.REVIEWDATE DESC
     </select>
     
-
+    <!-- 식당별 리뷰 글 갯수 -->
+    <select id="reviewTotCount" resultType="Integer">
+    	SELECT COUNT(*) FROM REVIEW WHERE SIKNO=#{param1, jdbcType=VARCHAR}
+    </select>
+    
+    <!-- 리뷰 좋아요 -->
     <update id="upLikeHit">
-    	UPDATE REVIEW SET REVIEWLIKE=#{param2, jdbcType=VARCHAR} WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
+    	UPDATE REVIEW SET REVIEWLIKE=#{param2, jdbcType=VARCHAR} 
+    	WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
     </update>
     
+    <!-- 리뷰 글쓰기 -->
     <insert id="reviewWrite">
     	INSERT INTO REVIEW(REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,
     	REVIEWLIKE,REVIEWDATE,SPOON,SINGO,REVIEWFILE)
@@ -116,24 +126,37 @@
 		0,SYSDATE,#{param5, jdbcType=VARCHAR},0,#{param6, jdbcType=VARCHAR})
     </insert>
     
+    <!-- 리뷰별 수정폼가기 -->
     <select id="reviewUpdate" resultType="com.tech.sprj09.dto.ReviewDto">
     	SELECT REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,REVIEWLIKE,
 		REVIEWDATE,SPOON,SINGO,REVIEWFILE
 		FROM REVIEW WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
     </select>
     
+    <!-- 리뷰 수정 -->
     <update id="reviewModify">
     	UPDATE REVIEW SET REVIEWCONTENT=#{param2, jdbcType=VARCHAR},
     	SPOON=#{param3, jdbcType=VARCHAR},REVIEWFILE=#{param4, jdbcType=VARCHAR} 
     	WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}
     </update>
     
+    <!-- 리뷰 삭제 -->
     <delete id="reviewDelete">
     	DELETE FROM REVIEW WHERE REVIEWNO=#{param1}
     </delete>
     
     
     
+    <!-- 채팅 -->
+    <select id="chat" resultType="com.tech.sprj09.dto.MemberDto">
+    	SELECT * FROM MEMBER
+    </select>
+    
+    
+    <!-- 회원 NO 가져오기 -->
+    <select id="getMemNo" resultType="Integer">
+		SELECT MEMNO FROM MEMBER WHERE MEMID=#{param1}
+	</select>
 	
 	<!-- 회원가입DB Insert -->
     <insert id="join" >

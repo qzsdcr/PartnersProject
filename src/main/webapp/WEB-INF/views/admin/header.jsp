@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-p{ margin-left: 10%;
+p{ text-align: center;
 
 }
 </style>
@@ -16,7 +16,7 @@ p{ margin-left: 10%;
 <a href="/partners" class="nav__logo"><img src="resources/img/partners_black.png" alt="logo" /></a>
 	
 	<p>
-	<id>admin 님 환영합니다.</id>
+	<id>관리자님 환영합니다.</id>
 	</p>
 </body>
 </html>

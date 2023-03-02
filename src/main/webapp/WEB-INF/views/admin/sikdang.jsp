@@ -90,23 +90,23 @@ $(document).ready(function() {
   $('.review-list tr').slice(numToShow).hide();
 });
 </script>
-
+<style>
+button{
+border: 0; outline: 0; background-color: white;
+}
+</style>
 	<!-- Content Wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
 
 		<!-- Main Content -->
 		<div id="content">
+<!-- Begin Page Content -->
+					<div class="container-fluid">
 
-			<!-- Topbar -->
-			<nav
-				class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-
-
-				<div
-					style="overflow-x: hidden; width: 80%; height: 95%; margin-left: 150px">
+			
 					<h1 id="sikdang">관리자 페이지</h1>
-					<form action="sikdang" method="post">
+					<form action="sikdang" method="post"
+					>
 					
 							<select class="search-select" name="searchType2">
 								<option value="SIKNO" name="SIKNO">사업자 번호 검색</option>
@@ -117,9 +117,16 @@ $(document).ready(function() {
 					</form>
 
 
-
-					<div>
-						<table id="myTable" border="1">
+<!-- DataTales 입력 -->
+						<div class="card shadow mb-4">
+							<div class="card-header py-3">
+								<h6 class="m-0 font-weight-bold text-primary">식당 목록</h6>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="myTable" width="80%"
+										cellspacing="0">
+				
 							<tr>
 
 								<td><input id="allCheck" type="checkbox" name="bid"
@@ -135,6 +142,8 @@ $(document).ready(function() {
 								<td>영업일</td>
 							</tr>
 							<form action="sikdemultidelete">
+								<a href="sikdangwrite"><img src="resources/css/icon/addition.png" alt="" style="width: 40px;" /></a>
+								<button type="submit"><img src="resources/css/icon/minus.png" alt="" style="width: 40px;" /></button> 
 								<c:forEach items="${list }" var="i">
 									<tr>
 										<td style="text-align: center;"><input name="bid"
@@ -151,12 +160,12 @@ $(document).ready(function() {
 									</tr>
 								</c:forEach>
 
-								<input type="submit" value="삭제" />
+								
 
 							</form>
-							<a href="sikdangwrite"><button>식당등록</button></a>
 						</table>
-						<button id="loadMore">더 보기</button>
+						
+						<button id="loadMore"><img src="resources/css/icon/more.png" alt="" style="width: 40px;" /></button>
 
 					</div>
 				</div>

@@ -29,13 +29,23 @@ public class UserController {
 	// 마이페이지(UserController)로 이동
 	@RequestMapping(value = "/userPage", method = RequestMethod.GET)
 	public String userPage(HttpServletRequest request, SearchVO searchVO, Model model) {
-		HttpSession session = request.getSession();
-		String memid = (String) session.getAttribute("memid"); // 현재 로그인한 사용자의 아이디를 가져옴
-		System.out.println("세션아이디 : " + memid);
-		IDao dao = sqlSession.getMapper(IDao.class);
-		MemberDto member = dao.getMember(memid); // 사용자의 정보를 가져옴
-		model.addAttribute("member", member);
-		return "userPage";
+	    HttpSession session = request.getSession();
+	    String memid = (String) session.getAttribute("memid"); // 현재 로그인한 사용자의 아이디를 가져옴
+	    System.out.println("세션아이디 : " + memid);
+	    IDao dao = sqlSession.getMapper(IDao.class);
+	    MemberDto member = dao.getMember(memid); // 사용자의 정보를 가져옴
+
+	    String mempnum = member.getMempnum();
+	    mempnum = mempnum.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
+	    member.setMempnum(mempnum);
+
+	    String membirth = member.getMembirth();
+	    membirth = "20" + membirth.substring(0, 2) + "년 " + membirth.substring(2, 4) + "월 " + membirth.substring(4, 6) + "일";
+	    member.setMembirth(membirth);
+
+	    model.addAttribute("member", member);
+
+	    return "userPage";
 	}
 
 	// 회원 정보 수정 페이지로 이동
@@ -96,19 +106,28 @@ public class UserController {
 		String memid = (String) session.getAttribute("memid"); // 현재 로그인한 사용자의 아이디를 가져옴
 		IDao dao = sqlSession.getMapper(IDao.class);
 		MemberDto member = dao.getMember(memid); // 사용자의 정보를 가져옴
+		
+	    String mempnum = member.getMempnum();
+	    mempnum = mempnum.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
+	    member.setMempnum(mempnum);
+
+	    String membirth = member.getMembirth();
+	    membirth = "20" + membirth.substring(0, 2) + "년 " + membirth.substring(2, 4) + "월 " + membirth.substring(4, 6) + "일";
+	    member.setMembirth(membirth);
+		
 		model.addAttribute("member", member);
 		return "userDeleteForm";
 	}
 
-//	// 회원 탈퇴
-//	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-//	public String delete(HttpServletRequest request, SearchVO searchVO, Model model) {
-//		HttpSession session = request.getSession();
-//		String memid = (String) session.getAttribute("memid"); // 현재 로그인한 사용자 아이디
-//		IDao dao = sqlSession.getMapper(IDao.class);
-//		dao.delete(memid);
-//
-//		session.invalidate();
-//		return "redirect:/";
-//	}
+	// 회원 탈퇴
+	@RequestMapping(value = "/userDelete", method = RequestMethod.POST)
+	public String delete(HttpServletRequest request, SearchVO searchVO, Model model) {
+		HttpSession session = request.getSession();
+		String memid = (String) session.getAttribute("memid"); // 현재 로그인한 사용자 아이디
+		IDao dao = sqlSession.getMapper(IDao.class);
+		dao.deleteMember(memid);
+
+		session.invalidate();
+		return "redirect:/";
+	}
 }

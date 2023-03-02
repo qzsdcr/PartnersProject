@@ -1,5 +1,6 @@
 package com.tech.sprj09.service.menu;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,9 +32,9 @@ public class MenuCalendarDetailService implements BServiceInter {
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		MenuDto dto = dao.calendardetail(sikno, menudate);
-
-		
-		model.addAttribute("calendarDetail", dto);
+		if (dto != null) {
+		    model.addAttribute("calendarDetail", dto);
+		}
 	}
 
 }

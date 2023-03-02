@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/sikdangRegForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/userDeleteForm.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/userPage.jsp=UTF-8

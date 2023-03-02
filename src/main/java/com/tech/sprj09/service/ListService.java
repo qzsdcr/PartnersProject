@@ -26,6 +26,7 @@ public class ListService implements BServiceInter {
 
 //		model에서 request를 풀기
 //		model을 Map로 변환
+
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		SearchVO searchVO = (SearchVO) map.get("searchVO");

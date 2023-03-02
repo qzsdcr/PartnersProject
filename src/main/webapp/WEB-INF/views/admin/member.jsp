@@ -47,35 +47,7 @@
 		<!-- Main Content -->
 		<div id="content">
 
-			<!-- Topbar -->
-			<nav
-				 class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-				<ul class="navbar-nav ml-auto">
-
 				
-					<li class="nav-item dropdown no-arrow d-sm-none">
-						<div
-							class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-							aria-labelledby="searchDropdown">
-							<form class="form-inline mr-auto w-100 navbar-search">
-								<div class="input-group">
-									<input type="text" class="form-control bg-light border-0 small"
-										placeholder="c for..." aria-label="Search"
-										aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-primary" type="button">
-											<i class="fas fa-search fa-sm"></i>
-										</button>
-									</div>
-								</div>
-							</form>
-						</div> <a class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-					</a>
-					</li>
-
 
 					<!-- Begin Page Content -->
 					<div class="container-fluid">
@@ -83,10 +55,8 @@
 						<!-- Page Heading -->
 						<h1 class="h3 mb-2 text-gray-800">회원 목록</h1>
 						<p class="mb-4">
-							회원 목록이다.<a target="_blank" href="https://google.com">구글이나
-								가고싶다</a>.
 						<form action="member#memberchart" method="post"
-							style="display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center;">
+							style="display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center; width: 20%; margin-left: 40%">
 
 
 							<select class="search-select" name="searchType">
@@ -105,7 +75,7 @@
 						</form>
 						</p>
 
-						<!-- DataTales Example -->
+						<!-- DataTales 입력단 -->
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">회원 관리</h6>
@@ -130,22 +100,6 @@
 												<td>회원 등급</td>
 											</tr>
 										</thead>
-										<tfoot>
-											<tr>
-												<td>회원번호</td>
-												<td>회원 ID</td>
-												<td>회원 PASS</td>
-												<td>회원 이름</td>
-												<td>회원 나이</td>
-												<td>회원 성별</td>
-												<td>회원 이메일</td>
-												<td>회원 연락처</td>
-												<td>회원 지역</td>
-												<td>회원 선호메뉴</td>
-												<td>회원 가입일</td>
-												<td>회원 등급</td>
-											</tr>
-										</tfoot>
 										<tbody>
 											<c:forEach items="${mlist }" var="dto">
 												<tr>

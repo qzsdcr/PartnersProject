@@ -20,6 +20,7 @@ import com.tech.sprj09.service.menu.MenuDeleteService;
 import com.tech.sprj09.service.menu.MenuListService;
 import com.tech.sprj09.service.menu.MenuModifyService;
 import com.tech.sprj09.service.menu.MenuWriteService;
+import com.tech.sprj09.service.menu.SikdangListService;
 import com.tech.sprj09.vopage.SearchVO;
 
 @Controller
@@ -31,7 +32,7 @@ public class MenuController {
 
 	// 목록표현
 
-	@RequestMapping("/menu")
+	@RequestMapping("/menulist")
 
 	public String list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("========menulist 컨트롤러 지나감=======");
@@ -91,6 +92,10 @@ public class MenuController {
 	@RequestMapping("/menuwriteview")
 	public String writeview(Model model) {
 		System.out.println("========menuwriteview 컨트롤러 지나감=======");
+		
+		bServiceInter = new SikdangListService(sqlSession);
+		bServiceInter.execute(model);
+		
 		return "menu/menuwriteview";
 	}
 
@@ -100,6 +105,7 @@ public class MenuController {
 		System.out.println("========menuwrite 컨트롤러 지나감=======");
 
 		model.addAttribute("request", request);
+		System.out.println(request);
 		bServiceInter = new MenuWriteService(sqlSession);
 		bServiceInter.execute(model);
 
@@ -127,7 +133,8 @@ public class MenuController {
 
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
-
+		String sikno = request.getParameter("sikno"); // sikno 값을 받아옴
+		
 		// year와 month 값이 null이면 현재 년월을 사용함
 		if (year == null || month == null) {
 			Calendar now = Calendar.getInstance();

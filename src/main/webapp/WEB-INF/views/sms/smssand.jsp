@@ -101,7 +101,7 @@ function fillForm(mempnum) {
 	<main class="main-wrapper" style="text-align: center !important;">
 		<div class="left-section">
 			
-			<h1>회원 관리 페이지</h1>
+			<h1>문자 전송 페이지</h1>
 			<form action="smssand" method="post">
 				<div class="search">
 					<select class="search-select" name="searchType">
