@@ -142,7 +142,7 @@ border: 0; outline: 0; background-color: white;
 								<td>영업일</td>
 							</tr>
 							<form action="sikdemultidelete">
-								<a href="sikdangwrite"><img src="resources/css/icon/addition.png" alt="" style="width: 40px;" /></a>
+								<a href="sikdangRegForm"><img src="resources/css/icon/addition.png" alt="" style="width: 40px;" /></a>
 								<button type="submit"><img src="resources/css/icon/minus.png" alt="" style="width: 40px;" /></button> 
 								<c:forEach items="${list }" var="i">
 									<tr>

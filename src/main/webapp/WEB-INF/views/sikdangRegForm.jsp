@@ -74,7 +74,14 @@ label {
 	<div class="container validation-form">
 		<h1>업체 등록</h1>
 		<hr>
-		<form method="post" action="sikdangReg" enctype="multipart/form-data">
+		<form method="post" action="sikwrite" enctype="multipart/form-data">
+			
+			
+			
+			<div class="form-group">
+				<label for="sikno">사업자 번호</label> <input type="text"
+					class="form-control" id="sikno" name="sikno" required>
+			</div>
 			<div class="form-group">
 				<label for="sikname">업체명</label> <input type="text"
 					class="form-control" id="sikname" name="sikname" required>
@@ -96,21 +103,18 @@ label {
 					class="form-control" id="sikaddress2" name="sikaddress2" required>
 			</div>
 			<div class="form-group">
-				<label for="sikopenclose">영업시간</label> <input type="text"
-					class="form-control" id="sikopenclose" name="sikopenclose" required>
+				 <input type="hidden" class="form-control" id="sikopenclose" name="영업중" required checked="checked">
+	
 			</div>
 			<div class="form-group">
 				<label for="sikcontent">내용</label>
 				<textarea class="form-control" id="sikcontent" name="sikcontent"
 					rows="3" required></textarea>
 			</div>
+			
 			<div class="form-group">
-				<label for="sikwriter">작성자</label> <input type="text"
-					class="form-control" id="sikwriter" name="sikwriter" required>
-			</div>
-			<div class="form-group">
-				<label for="sikfile">사업자등록증</label> <input type="file"
-					class="form-control-file" id="sikfile" name="sikfile" required>
+				<label for="sikfile">식당 사진</label> <input type="file"
+					class="form-control-file" id="sikfile" name="file" required>
 			</div>
 			<button type="submit" class="btn btn-primary">등록</button>
 		</form>

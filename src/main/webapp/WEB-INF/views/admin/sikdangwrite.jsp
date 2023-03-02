@@ -37,41 +37,41 @@
 </head>
 <body>
 	<h3>식당 상세페이지</h3>
-	<form action="sikwrite" method="post">
+	<form action="sikwrite" method="post" enctype="multipart/form-data" >
 		
 		<table>
 
 			<tr>
 				<td class="left">사업자 번호</td>
-				<td><input type="text" name="sikno" value="사업자 번호" /></td>
+				<td><input type="text" id="sikno" name="sikno"/></td>
 			</tr>
 			<tr>
 				<td class="left">지역</td>
-				<td><input type="text" name="sikloca" value="활동지역 ex)구로,강남 등" /></td>
+				<td><input type="text" id="sikloca" name="sikloca"/></td>
 			</tr>
 			<tr>
 				<td class="left">식당이름</td>
-				<td><input type="text" name="sikname" value="식당이름 ex)늘푸름식당 " /></td>
+				<td><input type="text" id="sikname" name="sikname" /></td>
 			</tr>
 			<tr>
 				<td class="left">식당소개</td>
-				<td> <textarea name="sikcontent" rows="5">식당 소개 내용.</textarea> </td>
+				<td> <textarea id="sicontent" name="sikcontent" rows="5">식당 소개 내용.</textarea> </td>
 			</tr>
 			<tr>
 				<td class="left">식당주소</td>
-				<td><input type="text" name="sikaddress" value="식당주소" /></td>
+				<td><input type="text" id="sikaddress" name="sikaddress" value="식당주소" /></td>
 			</tr>
 			<tr>
 				<td class="left">상세주소</td>
-				<td><input type="text" name="sikaddress2" value="상세주소" /></td>
+				<td><input type="text" id="sikaddress2" name="sikaddress2" value="상세주소" /></td>
 			</tr>
 			<tr>
 				<td class="left">식당전화번호</td>
-				<td><input type="text" name="siktel" value="전화번호" /></td>
+				<td><input type="text" id="siktel" name="siktel" value="전화번호" /></td>
 			</tr>
 			<tr>
 				<td class="left">식당이미지</td>
-				<td> <input type="file" name="file" /></td>
+				<td> <input type="file" id="file" name="file" /></td>
 			</tr>
 
 					<tr>
