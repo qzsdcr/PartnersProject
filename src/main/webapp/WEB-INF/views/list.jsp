@@ -7,14 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link rel="stylesheet"
+ <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
--->
+
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<!-- <script 
+ <script 
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="resources/css/styles.css"/> -->
+	<link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
 
 <link rel="stylesheet" href="resources/css/styles2.css" type="text/css"
 	media="all" />
