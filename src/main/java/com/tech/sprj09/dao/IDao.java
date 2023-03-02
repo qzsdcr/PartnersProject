@@ -152,10 +152,10 @@ public interface IDao {
 
 	// 총방문자수
 	public void incrementTotalVisitorCount();
-=======
+
 	public void deleteMember(String memid);
 
->>>>>>> origin/ohuk5
+
 	
 
 

@@ -105,7 +105,8 @@ border: 0; outline: 0; background-color: white;
 
 			
 					<h1 id="sikdang">관리자 페이지</h1>
-					<form action="sikdang" method="post">
+					<form action="sikdang" method="post"
+					>
 					
 							<select class="search-select" name="searchType2">
 								<option value="SIKNO" name="SIKNO">사업자 번호 검색</option>
@@ -116,10 +117,10 @@ border: 0; outline: 0; background-color: white;
 					</form>
 
 
-<!-- DataTales Example -->
+<!-- DataTales 입력 -->
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">회원 관리</h6>
+								<h6 class="m-0 font-weight-bold text-primary">식당 목록</h6>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">

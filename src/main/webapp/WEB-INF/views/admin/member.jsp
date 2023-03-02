@@ -55,10 +55,8 @@
 						<!-- Page Heading -->
 						<h1 class="h3 mb-2 text-gray-800">회원 목록</h1>
 						<p class="mb-4">
-							회원 목록이다.<a target="_blank" href="https://google.com">구글이나
-								가고싶다</a>.
 						<form action="member#memberchart" method="post"
-							style="display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center;">
+							style="display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center; width: 20%; margin-left: 40%">
 
 
 							<select class="search-select" name="searchType">
@@ -77,7 +75,7 @@
 						</form>
 						</p>
 
-						<!-- DataTales Example -->
+						<!-- DataTales 입력단 -->
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">회원 관리</h6>
@@ -102,22 +100,6 @@
 												<td>회원 등급</td>
 											</tr>
 										</thead>
-										<tfoot>
-											<tr>
-												<td>회원번호</td>
-												<td>회원 ID</td>
-												<td>회원 PASS</td>
-												<td>회원 이름</td>
-												<td>회원 나이</td>
-												<td>회원 성별</td>
-												<td>회원 이메일</td>
-												<td>회원 연락처</td>
-												<td>회원 지역</td>
-												<td>회원 선호메뉴</td>
-												<td>회원 가입일</td>
-												<td>회원 등급</td>
-											</tr>
-										</tfoot>
 										<tbody>
 											<c:forEach items="${mlist }" var="dto">
 												<tr>
