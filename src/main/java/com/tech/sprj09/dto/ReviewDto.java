@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ReviewDto {
+public class ReviewDto extends MemberDto{
 	
 	private int reviewno; // 리뷰 고유번호
 	private int memno; //회원 고유번호
@@ -22,6 +22,8 @@ public class ReviewDto {
 	private int singo; //신고
 	private String reviewfile; //리뷰 작성시 첨부파일(이미지)
 	
+	private String rememid; //리뷰 작성 후 memid 두글자 이후 * 처리
+	
 	
 	public ReviewDto() {
 		// TODO Auto-generated constructor stub
@@ -29,8 +31,12 @@ public class ReviewDto {
 
 
 	public ReviewDto(int reviewno, int memno, int sikno, String reviewtitle, String reviewcontent, int reviewlike,
+<<<<<<< HEAD
 
 			Timestamp reviewdate, int spoon,int gsikno, int singo, String reviewfile) {
+=======
+			Timestamp reviewdate, int spoon,int gsikno, int singo, String reviewfile,String rememid) {
+>>>>>>> origin/iw3
 
 
 		this.reviewno = reviewno;

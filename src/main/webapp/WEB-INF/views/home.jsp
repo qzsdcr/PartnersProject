@@ -58,6 +58,10 @@ ID 권한 : ${sessionScope.loginCheck} <br />
 <c:if test="${loginCheck eq '회원' || loginCheck eq '식당'}">
   <p>${memid }님, 환영합니다!</p> <br />
   <a href="list">listttttttt go</a> <br />
+  <form action="/partners/chat" method="post">
+  	<input type="text" name="memid" value="${sessionScope.memid}" />
+  	<input type="submit" value="chat" />
+  </form>
   <a href="chat">chat</a> <br />
 <<<<<<< HEAD
   <form action="/chat">

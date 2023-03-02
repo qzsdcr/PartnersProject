@@ -151,12 +151,47 @@
     <div class="row">
         <div class="cell col1"><img src="resources/upload/${content_view.filesrc}" width="300" height="300" alt=""></div>
         <div class="cell col2">
+<<<<<<< HEAD
             <div>식당이름: ${content_view.sikname}</div>
             <div>별점</div>
             <div>식당내용: ${content_view.sikcontent}</div>
             <%-- <div>조회수: ${content_view.bhit }</div> --%>
             <div>주소: ${content_view.sikaddress}</div>
             <button type="button" onclick="location.href='/partners/calendar?sikno=${content_view.sikno}&sikname=${content_view.sikname}'">식단</button>
+=======
+			<div>식당이름 : ${content_view.sikname }</div>
+			<!-- <div>별점</div> -->
+			
+			<c:set var="totalSpoon" value="0" />
+			<c:set var="reviewCount" value="0" />
+			
+			<!-- 모든 리뷰의 총 별점 합산 및 리뷰 개수 계산 -->
+			<c:forEach items="${reviewList}" var="rdto">
+			    <c:set var="totalSpoon" value="${totalSpoon + rdto.spoon}" />
+			    <c:set var="reviewCount" value="${reviewCount + 1}" />
+			</c:forEach>
+			
+			<!-- 평균 별점 계산 -->
+			<c:if test="${reviewCount > 0}">
+			    <c:set var="averageSpoon" value="${totalSpoon / reviewCount}" />
+			</c:if>
+			
+			<!-- 소수점 둘째 자리에서 반올림 -->
+		    <span class="average-spoon-value">
+			    <fmt:formatNumber type="number" value="${averageSpoon}" pattern="0.0" />
+			</span>
+			
+			<span  class="star_mark">
+				☆☆☆☆☆
+				<span id="star_mark2" style="width: ${averageSpoon*20}%;">★★★★★</span>
+				<input type="range"  value="1" step="1" min="0" max="10">
+			</span>
+			
+			<div>식당내용 : ${content_view.sikcontent }</div>
+			<%-- <div>조회수 : ${content_view.bhit }</div> --%>
+			<div>주소 : ${content_view.sikaddress }</div>
+        </div>
+>>>>>>> origin/iw3
         </div>
     </div>
 </div>
@@ -299,6 +334,30 @@ border-bottom:1px dashed #666;
     margin-right: 2px;
 }
 
+.star_mark {
+	position: relative;
+	font-size: 2rem;
+	color: #ddd;
+}
+
+.star_mark input {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.star_mark span {
+	width: 0;
+	position: absolute; 
+	left: 0;
+	color: gold;
+	overflow: hidden;
+	pointer-events: none;
+}
+
 .heart-container {
 	float: right;
 	font-size: 30px;
@@ -319,6 +378,10 @@ border-bottom:1px dashed #666;
   -webkit-text-fill-color: red;
 }
 
+.review_list li {
+	display: none;
+}
+
 </style>
 
 <button type="button" name="review" id="onReview">리뷰 작성</button>
@@ -327,25 +390,34 @@ border-bottom:1px dashed #666;
 		<div class="tab-pane fade in active">
 			<form id="review-form" class="reviews-form" role="form" style="display:none;">
 				<h2>리뷰 작성</h2>
+				<input type="hidden" id="sikno" name="sikno" value="${content_view.sikno }" readonly />
 				<div class="form-group">
-					<label for="username">
-						이름
+					<label for="memid">
+						작성자
 						<span class="require"></span>
 					</label>
-					<input type="text" class="form-control" id="username" value="작성자" readonly style="width:14%;">
+					<input type="hidden" class="form-control" id="memno" name="memno" value="${memno }" readonly style="width:14%;">
+					<input type="text" class="form-control" id="memid" name="memid" value="${memid }" readonly style="width:14%;">
+				</div>
+				<div class="form-group">
+					<label for="sikname">
+						식당이름
+						<span class="require"></span>
+					</label>
+					<input type="text" class="form-control" id="sikname" name="sikname" value="${content_view.sikname }" readonly style="width:14%;">
 				</div>
 				
 				<div class="star-rating">
 					<input type="radio" id="5-stars" name="spoon" value="5" required="required" />  <!-- required 별점 선택 안하면 작성 안되게 막음 -->
-					<label for="5-stars" class="star">&#9733;</label>
+					<label for="5-stars" class="star">★</label>
 					<input type="radio" id="4-stars" name="spoon" value="4" />
-					<label for="4-stars" class="star">&#9733;</label>
+					<label for="4-stars" class="star">★</label>
 					<input type="radio" id="3-stars" name="spoon" value="3" />
-					<label for="3-stars" class="star">&#9733;</label>
+					<label for="3-stars" class="star">★</label>
 					<input type="radio" id="2-stars" name="spoon" value="2" />
-					<label for="2-stars" class="star">&#9733;</label>
+					<label for="2-stars" class="star">★</label>
 					<input type="radio" id="1-star" name="spoon" value="1" />
-					<label for="1-star" class="star">&#9733;</label>
+					<label for="1-star" class="star">★</label>
 				</div>
 
 				<div class="form-group">
@@ -355,9 +427,9 @@ border-bottom:1px dashed #666;
 				<div class="form-group">
 					<label for="file">파일첨부</label>
 					<input type="file" name="file" id="file-input" />
+					<div id="image-preview"></div>
 				</div>
 				<div class="padding-top-20" style="float: right">
-					<!-- <button type="submit" class="btn btn-primary reviewBtn">작성하기</button> -->
 					<input type="submit" value="작성하기" />
 				</div>
 			</form>
@@ -367,7 +439,7 @@ border-bottom:1px dashed #666;
 <br /><br />
 
 <div class="review">
-<div>리뷰</div>
+<div>리뷰(${totRowcnt })</div>
 
 <div class="container">
     <select id="sort">
@@ -381,39 +453,24 @@ border-bottom:1px dashed #666;
             <li>
                 <!-- 리뷰 출력 내용 -->
                 <div id="reviewlist" class="container">
+                <input type="hidden" name="sikno" value="${rdto.sikno }" />
+                <input type="hidden" name="memno" value="${rdto.memno }" />
+                <input type="hidden" name="memid" value="${rdto.memid }" />
                 <input type="hidden" name="reviewno" value="${rdto.reviewno }" />
 					<div class="top_info">
-						<span class="point_type" style="display: none;">
-							<span class="star_mark" style="width: 100%">${rdto.spoon }</span>
+						<span class="star_count" style="display: none;">${rdto.spoon }</span>
+						<span class="star_mark">
+							☆☆☆☆☆
+							<span id="star_mark2" style="width: ${rdto.spoon*19 }%">★★★★★</span>
+							<input type="range"  value="1" step="1" min="0" max="10">
 						</span>
 						
-						<span class="star_rating">
-			                <c:choose>
-			                    <c:when test="${rdto.spoon == 1}">
-			                        <span class="star">&#9733;</span>
-			                    </c:when>
-			                    <c:when test="${rdto.spoon == 2}">
-			                        <span class="star">&#9733;</span><span class="star">&#9733;</span>
-			                    </c:when>
-			                    <c:when test="${rdto.spoon == 3}">
-			                        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
-			                    </c:when>
-			                    <c:when test="${rdto.spoon == 4}">
-			                        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
-			                    </c:when>
-			                    <c:when test="${rdto.spoon == 5}">
-			                        <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span>
-			                    </c:when>
-			                </c:choose>
-	            		</span>
-						
 						<span class="bar"> | </span>
-						<span class="memno">${rdto.memno }</span>
+						<span class="memid">${rdto.rememid }</span>
 						<span class="bar"> | </span>
 						<span class="date">
 							<fmt:formatDate value="${rdto.reviewdate }"
 	                     	pattern="yyyy-MM-dd HH:mm:ss" />
-	                     	<%-- ${rdto.reviewdate } --%>
 						</span>
 						<div class="heart-container">
 							<input type="checkbox" id="${rdto.reviewno}_heart" name="reviewlike" ${localStorage.getItem(rdto.reviewno) == 'true' ? 'checked' : ''}>
@@ -431,15 +488,14 @@ border-bottom:1px dashed #666;
 						<div class="pto_thumb">
 							<div class="thumb_wrap">
 								<div class="review_file">
-									<img src="resources/upload/${rdto.reviewfile }" alt="" />
+									<img src="resources/reviewupload/${rdto.reviewfile }" alt="" />
 								</div>
 							</div>
 						</div>
 						<div class="review-item clearfix">
 							<div class="reivew-item-content">
 								<a href="#" class="reviewBTN del" onclick="deleteReview(${rdto.reviewno})">삭제</a>
-								<a href="reviewupdate?reviewno=${rdto.reviewno }" class="reviewBTN mdf" id="mdf">수정</a>
-								<a href="${rdto.reviewno }" class="reviewBTN mdfOk" id="mdfOk" style="display:none;">수정 완료</a>
+								<a href="reviewUpdate?reviewno=${rdto.reviewno }" class="reviewBTN mdf" id="mdf">수정</a>
 							</div>
 						</div>
 					</div>
@@ -447,6 +503,7 @@ border-bottom:1px dashed #666;
             </li>
         </c:forEach>
     </ul>
+    <button id="more_btn">더보기</button>
 </div>
 
 </div>
@@ -482,6 +539,7 @@ $(document).ready(function() {
     // 리뷰 폼 제출 시 AJAX로 전송
     $("#review-form").submit(function(e) {
         e.preventDefault();
+        var sikno = $("#sikno").val();
         var formData = new FormData(this);
         if (confirm("해당 내용으로 리뷰를 작성하시겠습니까?")) {
 	        $.ajax({
@@ -491,13 +549,10 @@ $(document).ready(function() {
 	            processData: false,
 	            contentType: false,
 	            success: function(response) {
-	            	//location.reload(true);
-	            	//location.href = "contentview?sikno="+15;
 	            		
             		setTimeout(function() {
-	                   	location.reload(true);
-	                       //location.href = "contentview?sikno="+15;
-	                   	}, 2000); // 2초 후에 페이지 이동
+	                    location.href = "contentview?sikno="+sikno;
+	                }, 2000); // 2초 후에 페이지 이동
 					
 	            }
 	        });
@@ -527,14 +582,14 @@ document.getElementById('sort').addEventListener('change', function() {
 	  });
 	} else if (selectedValue === 'high') { //별점높은순
 	  reviewItems.sort(function(a, b) {
-	    var rating1 = a.querySelector('.star_mark').textContent;
-	    var rating2 = b.querySelector('.star_mark').textContent;
+	    var rating1 = a.querySelector('.star_count').textContent;
+	    var rating2 = b.querySelector('.star_count').textContent;
 	    return rating2 - rating1;
 	  });
 	} else if (selectedValue === 'low') { //별점낮은순
 	  reviewItems.sort(function(a, b) {
-	    var rating1 = a.querySelector('.star_mark').textContent;
-	    var rating2 = b.querySelector('.star_mark').textContent;
+	    var rating1 = a.querySelector('.star_count').textContent;
+	    var rating2 = b.querySelector('.star_count').textContent;
 	    return rating1 - rating2;
 	  });
 	}
@@ -595,6 +650,28 @@ function deleteReview(reviewno) {
 	  });
 	}
 }
+
+//리뷰 리스트 더보기 기능
+$(function(){
+	var numToShow = 5; // 보여줄 초기 갯수
+	var numTotal = $(".review_list li").length; // 전체 항목의 수
+
+	if(numTotal > numToShow) { // 전체 항목이 보여줄 갯수보다 많을 때만
+	    $(".review_list li").slice(0, numToShow).show(); // 초기 갯수만큼 보여줌
+	    $("#more_btn").show(); // 더보기 버튼 보여줌
+	} else {
+	    $(".review_list li").show(); // 모든 항목을 보여줌
+	    $("#more_btn").hide(); // 더보기 버튼 숨김
+	}
+
+	$("#more_btn").click(function(e) { // 더보기 버튼 클릭시
+	    e.preventDefault();
+	    $(".review_list li:hidden").slice(0, numToShow).show(); // 보여줄 갯수만큼 항목을 추가로 보여줌
+	    if($(".review_list li:hidden").length == 0) { // 추가로 보여줄 항목이 없을 경우
+	        $("#more_btn").hide(); // 더보기 버튼 숨김
+	    }
+	});
+});
 
 </script>
 

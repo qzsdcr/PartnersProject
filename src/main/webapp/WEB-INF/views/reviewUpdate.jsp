@@ -46,28 +46,29 @@
 
 <h3>review 수정 페이지</h3>
 
-<form id="review-form" class="reviews-form" role="form" action="reviewmodify" method="post" enctype="multipart/form-data">
+<form id="review-form" class="reviews-form" role="form" action="reviewModify" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="reviewno" value="${review.reviewno}" />
+	<input type="hidden" id="sikno" name="sikno" value="${review.sikno }" />
 	<h2>리뷰 작성</h2>
 	<div class="form-group">
 		<label for="username">
 			작성자
 			<span class="require"></span>
 		</label>
-		<input type="text" class="form-control" id="username" value="작성자아이디" readonly style="width:14%;">
+		<input type="text" class="form-control" id="username" value="${memid }" readonly style="width:14%;">
 	</div>
 	
 	<div class="star-rating">
 	    <input type="radio" id="5-stars" name="spoon" value="5" ${review.spoon == 5 ? 'checked' : ''} />
-	    <label for="5-stars" class="star">&#9733;</label>
+	    <label for="5-stars" class="star">★</label>
 	    <input type="radio" id="4-stars" name="spoon" value="4" ${review.spoon == 4 ? 'checked' : ''} />
-	    <label for="4-stars" class="star">&#9733;</label>
+	    <label for="4-stars" class="star">★</label>
 	    <input type="radio" id="3-stars" name="spoon" value="3" ${review.spoon == 3 ? 'checked' : ''} />
-	    <label for="3-stars" class="star">&#9733;</label>
+	    <label for="3-stars" class="star">★</label>
 	    <input type="radio" id="2-stars" name="spoon" value="2" ${review.spoon == 2 ? 'checked' : ''} />
-	    <label for="2-stars" class="star">&#9733;</label>
+	    <label for="2-stars" class="star">★</label>
 	    <input type="radio" id="1-star" name="spoon" value="1" ${review.spoon == 1 ? 'checked' : ''} />
-	    <label for="1-star" class="star">&#9733;</label>
+	    <label for="1-star" class="star">★</label>
 	</div>
 	
 	<div class="form-group">
@@ -78,11 +79,10 @@
 		<label for="file">파일첨부</label>
 		<input type="file" name="file" id="file-input" />
 		<div id="image-preview">
-        	<img src="resources/upload/${review.reviewfile}" alt="review image" />
+        	<img src="resources/reviewupload/${review.reviewfile}" alt="" />
     	</div>
 	</div>
 	<div class="padding-top-20" style="float: right">
-		<!-- <button type="submit" class="btn btn-primary reviewBtn">작성하기</button> -->
 		<input type="submit" value="수정" />
 	</div>
 </form>
@@ -105,6 +105,7 @@ $(document).ready(function() {
     // 리뷰 폼 제출 시 AJAX로 전송
     $("#review-form").submit(function(e) {
         e.preventDefault();
+        var sikno = $("#sikno").val();
         var formData = new FormData(this);
         if (confirm("해당 내용으로 리뷰를 수정하시겠습니까?")) {
         	var fileInput = $("#file-input")[0];
@@ -113,19 +114,15 @@ $(document).ready(function() {
                 formData.append("reviewfile", "${review.reviewfile}");
             }
 	        $.ajax({
-	            url: "reviewmodify",
+	            url: "reviewModify",
 	            type: "POST",
 	            data: formData,
 	            processData: false,
 	            contentType: false,
 	            success: function(response) {
-	            	//alert("해당 내용으로 리뷰를 작성하시겠습니까?");
-	            	//location.reload(true);
-	            	//location.href = "contentview?sikno="+15;
 	            		
             		setTimeout(function() {
-	                   	//location.reload(true);
-	                    location.href = "contentview?sikno="+15;
+	                    location.href = "contentview?sikno="+sikno;
 	                   	}, 2000); // 2초 후에 페이지 이동
 					
 	            }

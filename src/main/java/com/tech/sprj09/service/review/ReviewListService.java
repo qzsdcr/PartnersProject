@@ -32,6 +32,8 @@ public class ReviewListService implements BServiceInter{
 		HttpServletRequest request=
 				(HttpServletRequest)map.get("request");
 		
+		String sikno=request.getParameter("sikno");
+		
 		String reviewno=request.getParameter("reviewno");
 		String reviewlike=request.getParameter("reviewlike");
 		
@@ -39,9 +41,13 @@ public class ReviewListService implements BServiceInter{
 		
 		dao.upLikeHit(reviewno,reviewlike);
 		
-		ArrayList<ReviewDto> rdto=dao.reviewList();
+		ArrayList<ReviewDto> rdto=dao.reviewList(sikno);
+		
+		int reviewTotCount=dao.reviewTotCount(sikno);
 		
 		model.addAttribute("reviewList",rdto);
+		
+		model.addAttribute("totRowcnt",reviewTotCount);
 		
 	}
 
