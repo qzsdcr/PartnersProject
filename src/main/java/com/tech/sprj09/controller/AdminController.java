@@ -185,7 +185,7 @@ public class AdminController {
 	
 //	쓰기
 	@RequestMapping("/sikwrite")
-	public String Sikdangwrite(HttpServletRequest request, Model model) throws Exception {
+	public String Sikdangwrite(HttpServletRequest request, Model model) {
 		System.out.println("========sikwrite=======");
 //		db에 디테일기능		
 		// toss

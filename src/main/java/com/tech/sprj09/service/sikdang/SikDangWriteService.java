@@ -28,27 +28,40 @@ public class SikDangWriteService implements BServiceInter {
 		Map<String, Object> map=model.asMap();//map으로 변환
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		// upload code
-		String attachPath="resources\\upload\\";
+		String attachPath="resources\\sikupload\\";
 		String uploadPath=request.getSession().getServletContext().getRealPath("/");
-		String path="C:\\2023spring\\springwork1\\PartnersProject\\src\\main\\webapp\\resources\\upload";
+		String path="C:\\2023spring\\springwork1\\PartnersProject\\src\\main\\webapp\\resources\\sikupload";
 		
-//		MultipartRequest req=null;
-//		try {
-//			 req=
-//					new MultipartRequest(request, path, 1024*1024*20, "utf-8",
-//							new DefaultFileRenamePolicy());//r같은 파일명을 정책대로 리네임 하겠다
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		
-		String sikno =request.getParameter("sikno");
-		String sikloca = request.getParameter("sikloca");
-		String sikname = request.getParameter("sikname");
-		String sikcontent = request.getParameter("sikcontent");
-		String sikaddress = request.getParameter("sikaddress");
-		String sikaddress2 = request.getParameter("sikaddress2");
-		String siktel = request.getParameter("siktel");
-		String fname= request.getParameter("file");
+		 System.out.println("request getContentType : " + request.getContentType());
+
+		
+		
+		MultipartRequest req=null;
+		try {
+			
+			 if (-1 < request.getContentType().indexOf("multipart/form-data")) {
+			
+			req=new MultipartRequest(request, path, 1024*1024*20, "utf-8",
+					new DefaultFileRenamePolicy());//r같은 파일명을 정책대로 리네임 하겠다
+			    }
+			    
+	
+		  
+		   }catch (Exception e) {
+		    e.printStackTrace();
+		    throw new RuntimeException("MultipartRequest 생성 중 오류 발생: " + e.getMessage());
+		   }
+
+		 
+		
+		String sikno =req.getParameter("sikno");
+		String sikloca = req.getParameter("sikloca");
+		String sikname = req.getParameter("sikname");
+		String sikcontent = req.getParameter("sikcontent");
+		String sikaddress = req.getParameter("sikaddress");
+		String sikaddress2 = req.getParameter("sikaddress2");
+		String siktel = req.getParameter("siktel");
+		String fname= req.getFilesystemName("file");
 		
 		
 		
