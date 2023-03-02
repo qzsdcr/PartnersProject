@@ -24,12 +24,7 @@
     <select id="selectBoardTotCount2" resultType="Integer">
     	SELECT COUNT(*) FROM SIKDANG WHERE SIKLOCA LIKE '%'||#{param2}||'%'
     </select>
-<<<<<<< HEAD
-    
-   
-=======
 
->>>>>>> origin/iw3
     
     <select id="list" resultType="com.tech.sprj09.dto.SikdangDto">
     	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
@@ -41,7 +36,7 @@
 		WHERE NUM BETWEEN #{param1} AND #{param2}
     </select>
     
-<<<<<<< HEAD
+
 	
 	<select id="gslist" resultType="com.tech.sprj09.dto.SikdangDto">
         	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
@@ -93,29 +88,13 @@
     </select>
     
     
-=======
-    
-    <!-- 식당별 상세페이지 -->
->>>>>>> origin/iw3
+
     <select id="contentview" resultType="com.tech.sprj09.dto.SikdangDto">
     	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
 		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
 		FROM SIKDANG WHERE SIKNO=#{param1, jdbcType=VARCHAR}
     </select>
-<<<<<<< HEAD
-  
-  
-    
-    <select id="reviewList" resultType="com.tech.sprj09.dto.ReviewDto">
-    	SELECT REVIEWNO,MEMNO,SIKNO,REVIEWTITLE,REVIEWCONTENT,REVIEWLIKE,
-		REVIEWDATE,SPOON,REVIEWFILE
-		FROM REVIEW ORDER BY REVIEWDATE DESC
-		<!-- WHERE REVIEWNO=#{param1, jdbcType=VARCHAR} -->
-    </select>
-    
-
-=======
-    
+ 
     <!-- 식당별 리뷰 리스트 -->
     <select id="reviewList" resultType="com.tech.sprj09.dto.ReviewDto">
     	SELECT R.REVIEWNO,R.SIKNO,M.MEMNO,M.MEMID,R.SPOON,
@@ -133,7 +112,6 @@
     </select>
     
     <!-- 리뷰 좋아요 -->
->>>>>>> origin/iw3
     <update id="upLikeHit">
     	UPDATE REVIEW SET REVIEWLIKE=#{param2, jdbcType=VARCHAR} 
     	WHERE REVIEWNO=#{param1, jdbcType=VARCHAR}

@@ -33,22 +33,19 @@ public class ContentViewService implements BServiceInter{
 				(HttpServletRequest)map.get("request");
 		
 		String sikno=request.getParameter("sikno");
-<<<<<<< HEAD
+
 		String sikname=request.getParameter("sikname");
 //		System.out.println("bid : "+bid);
 //		BoardDao dao=new BoardDao();
-=======
->>>>>>> origin/iw3
+
 		
 		IDao dao=sqlSession.getMapper(IDao.class);
 		
 		SikdangDto sdto=dao.contentview(sikno);
-<<<<<<< HEAD
+
 		/* dao.sikHit(sikno); */
 		//리턴받은 db의 선택글을 모델에 담기
-=======
-		
->>>>>>> origin/iw3
+
 		model.addAttribute("content_view",sdto);
 		
 	}

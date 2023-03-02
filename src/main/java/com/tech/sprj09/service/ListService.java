@@ -26,7 +26,7 @@ public class ListService implements BServiceInter {
 
 //		model에서 request를 풀기
 //		model을 Map로 변환
-<<<<<<< HEAD
+
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		SearchVO searchVO = (SearchVO) map.get("searchVO");
@@ -55,35 +55,6 @@ public class ListService implements BServiceInter {
 				} else if (val.equals("sikname")) {
 					model.addAttribute("sikname", "true");
 					sikname = "sikname";
-=======
-		Map<String, Object> map=model.asMap();
-		HttpServletRequest request=
-				(HttpServletRequest)map.get("request");
-		SearchVO searchVO=
-				(SearchVO)map.get("searchVO");
-		
-		IDao dao=sqlSession.getMapper(IDao.class);
-	
-		String[] bsikloka=request.getParameterValues("searchType");	
-		
-//		if(brdtitle!=null) {//null처리
-//			for (int i = 0; i < brdtitle.length; i++) {
-//				System.out.println("aaa : "+brdtitle[i]);
-//			}
-//		}
-		
-		String sikloka="";
-		String sikcontent="";
-		
-		if(bsikloka!=null) {
-			for (String val : bsikloka) {
-				if (val.equals("sikloka")) {
-					model.addAttribute("sikloka","true");
-					sikloka="sikloka";
-				}else if (val.equals("sikcontent")) {
-					model.addAttribute("sikcontent","true");
-					sikcontent="sikcontent";
->>>>>>> origin/iw3
 				}
 			}
 		}

@@ -178,12 +178,9 @@ public class MainController {
 		bServiceInter=new ReviewModifyService(sqlSession);
 		bServiceInter.execute(model);
 		
-<<<<<<< HEAD
-	
-	return "redirect:contentview";
-=======
+
 		return "redirect:contentview";
->>>>>>> origin/iw3
+
 	}
 	
 //	리뷰 삭제

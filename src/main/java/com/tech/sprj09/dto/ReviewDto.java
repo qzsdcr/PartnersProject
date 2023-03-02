@@ -31,12 +31,9 @@ public class ReviewDto extends MemberDto{
 
 
 	public ReviewDto(int reviewno, int memno, int sikno, String reviewtitle, String reviewcontent, int reviewlike,
-<<<<<<< HEAD
 
-			Timestamp reviewdate, int spoon,int gsikno, int singo, String reviewfile) {
-=======
 			Timestamp reviewdate, int spoon,int gsikno, int singo, String reviewfile,String rememid) {
->>>>>>> origin/iw3
+
 
 
 		this.reviewno = reviewno;

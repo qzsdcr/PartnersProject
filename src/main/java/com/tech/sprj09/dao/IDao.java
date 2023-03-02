@@ -11,7 +11,6 @@ import com.tech.sprj09.dto.SikdangDto;
 
 public interface IDao {
 
-<<<<<<< HEAD
 
 	public ArrayList<SikdangDto> list(int start,int end,String sk,String selNum,String com);
 	public ArrayList<SikdangDto> gslist(int start,int end,String sk,String selNum,String com);
@@ -22,29 +21,6 @@ public interface IDao {
 	
 
 
-	
-	
-	   
-
-	public ArrayList<SikdangDto> list(int start, int end, String sk, String selNum);
-
-
-	public SikdangDto contentview(String gsikno);
-
-	public void reviewWrite(String memno, String sikno, String reviewtitle, String reviewcontent, String spoon,
-			String rname);
-
-	public ArrayList<ReviewDto> reviewList();
-
-	public void upLikeHit(String reviewno, String reviewlike);
-
-	public ReviewDto reviewUpdate(String reviewno);
-
-	public void reviewModify(String reviewno, String reviewcontent, String spoon, String rname);
-
-	public void reviewDelete(String reviewno);
-
-=======
 	public ArrayList<SikdangDto> list(int start,int end,String sk,String selNum);
 	
 	public int selectBoardTotCount1(String searchKeyword);
@@ -91,24 +67,7 @@ public interface IDao {
 	//회원 NO 가져오기
 	public int getMemNo(String memid);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> origin/iw3
+
 	
 	//회원가입 DBinsert
 
@@ -117,9 +76,7 @@ public interface IDao {
 
 	public int selectBoardTotCount2(String searchKeyword, String com);
 
-	public int selectBoardTotCount3(String searchKeyword);
-
-	public int selectBoardTotCount4(String searchKeyword);
+	
 
 	// 회원가입 DBinsert
 
