@@ -50,8 +50,6 @@ public class ChatService implements BServiceInter{
 	public void execute(Model model) {
 		System.out.println(">>>ChatService");
 		
-//		model에서 request를 풀기
-//		model을 Map로 변환
 		Map<String, Object> map=model.asMap();
 		HttpServletRequest request=
 				(HttpServletRequest)map.get("request");
@@ -90,16 +88,12 @@ public class ChatService implements BServiceInter{
 		
 		String userName = "user";
 		
-//		String userName = memid;
-//		System.out.println("memid : "+memid);
 		int rand_num = (int)(Math.random()*1000);
 		
 		
-//		ChatClient client = new ChatClient();
 		MemberDto client = new MemberDto();
 		System.out.println("session : "+session);
 		client.setMemid(userName+rand_num);
-//		client.setMemid(userName);
 		
 		System.out.println(session + " connect");
 		

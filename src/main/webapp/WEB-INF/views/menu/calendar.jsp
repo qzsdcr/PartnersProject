@@ -145,13 +145,15 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.min.js"></script>
 </body>
 
-
-<div>
-	<h1>${calendarDetail.sikname}</h1>
-	<h1>${calendarDetail.menudate}</h1>
-	<h1>${calendarDetail.menulist}</h1>
-	<img src="resources/menuupload/${calendarDetail.menufilesrc}" alt="" />
-</div>
+   <div
+      style="display: flex; flex-direction: column; align-items: center;">
+      <h3>배식일:</h3>
+      <p>${calendarDetail.menudate}</p>
+      <h3>메뉴:</h3>
+      <p>${calendarDetail.menulist}</p>
+      <img src="resources/menuupload/${calendarDetail.menufilesrc}" alt=""
+         style="margin-top: 20px;" />
+   </div>
 
 
 </html>

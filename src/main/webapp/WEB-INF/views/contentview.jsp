@@ -81,6 +81,7 @@
          style="margin: auto !important; width: 100%; height: 350px; ">
          </div>
       
+      <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 사용하세요&libraries=services"></script> -->
       <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=122bb8945d23b56b4408d423b4e5fd7d&libraries=services"></script>
       <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -96,7 +97,6 @@
       var geocoder = new kakao.maps.services.Geocoder();
       
       // 주소로 좌표를 검색합니다
-      //geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
       geocoder.addressSearch('${content_view.sikaddress }', function(result, status) {
       
           // 정상적으로 검색이 완료됐으면 
@@ -143,7 +143,7 @@
        </style>
       <div id="table">
           <div class="row">
-              <div class="cell col1"><img src="resources/upload/${content_view.filesrc}" width="300" height="300" alt=""></div>
+              <div class="cell col1"><img src="resources/sikupload/${content_view.filesrc}" width="300" height="300" alt=""></div>
               <div class="cell col2">
                <div>식당이름 : ${content_view.sikname }</div>
                <!-- <div>별점</div> -->
@@ -323,9 +323,22 @@ border-bottom:1px dashed #666;
    display: none;
 }
 
+.review_file img {
+	width: 20%;
+	height: auto;
+	float: right;
+}
+
+#image-preview img {
+  max-height: 300px;
+  width: 30%;
+  height: auto;
+}
+
 </style>
 
-<button type="button" name="review" id="onReview">리뷰 작성</button>
+<button type="button" name="review" id="onReview" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; 
+text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin-top: 20px;">리뷰 작성</button>
 <div class="sikdang-page-content" id="review">
    <div class="tab-content" style="width:100%;">
       <div class="tab-pane fade in active">
@@ -363,7 +376,7 @@ border-bottom:1px dashed #666;
 
             <div class="form-group">
                <label for="review">리뷰</label>
-               <textarea class="form-control" rows="8" id="reviewTxt" name="reviewcontent" style="word-break:break-all;width:100%;text-align:center;"></textarea>
+               <textarea class="form-control" rows="8" id="reviewTxt" name="reviewcontent" style="word-break:break-all;width:100%;"></textarea>
             </div>
             <div class="form-group">
                <label for="file">파일첨부</label>
@@ -371,7 +384,16 @@ border-bottom:1px dashed #666;
                <div id="image-preview"></div>
             </div>
             <div class="padding-top-20" style="float: right">
-               <input type="submit" value="작성하기" />
+               <input type="submit" value="작성하기" style="background-color: #4CAF50; /* Green */
+															border: none;
+															color: white;
+															padding: 10px 20px;
+															text-align: center;
+															text-decoration: none;
+															display: inline-block;
+															font-size: 16px;
+															margin: 4px 2px;
+															cursor: pointer;" />
             </div>
          </form>
       </div>
@@ -412,13 +434,23 @@ border-bottom:1px dashed #666;
                   <span class="date">
                      <fmt:formatDate value="${rdto.reviewdate }"
                            pattern="yyyy-MM-dd HH:mm:ss" />
-                  </span>
-                  <div class="heart-container">
-                     <input type="checkbox" id="${rdto.reviewno}_heart" name="reviewlike" ${localStorage.getItem(rdto.reviewno) == 'true' ? 'checked' : ''}>
-                     <label for="${rdto.reviewno}_heart">&#10084;</label>
-                     <div class="reviewlike_totcnt">${rdto.reviewlike }</div>
+                  </span> 
+                  <c:if test="${memno == rdto.memno}">
+                  <div class="review-item clearfix" style="float: right;">
+                     <div class="reivew-item-content">
+                        <a href="#" class="reviewBTN del" onclick="deleteReview(${rdto.reviewno})">삭제</a>
+                        <a href="reviewUpdate?reviewno=${rdto.reviewno }" class="reviewBTN mdf" id="mdf">수정</a>
+                     </div>
                   </div>
-               </div>
+                  </c:if> <br />
+                  <div class="heart-container">
+                     <input type="checkbox" id="${rdto.reviewno}_heart" 
+                     name="reviewlike" ${localStorage.getItem(rdto.reviewno) == 'true' ? 'checked' : ''}>
+                     <label for="${rdto.reviewno}_heart">&#10084;</label>
+                     <%-- <div class="reviewlike_totcnt">${rdto.reviewlike }</div> --%>
+                  </div>
+               </div> 
+               
                
                <div class="review_tit_cont">
                   <div class="tit_cont">
@@ -427,6 +459,7 @@ border-bottom:1px dashed #666;
                      </div>
                      <div class="cont">${rdto.reviewcontent }</div>
                   </div>
+                  
                   <div class="pto_thumb">
                      <div class="thumb_wrap">
                         <div class="review_file">
@@ -434,18 +467,23 @@ border-bottom:1px dashed #666;
                         </div>
                      </div>
                   </div>
-                  <div class="review-item clearfix">
-                     <div class="reivew-item-content">
-                        <a href="#" class="reviewBTN del" onclick="deleteReview(${rdto.reviewno})">삭제</a>
-                        <a href="reviewUpdate?reviewno=${rdto.reviewno }" class="reviewBTN mdf" id="mdf">수정</a>
-                     </div>
-                  </div>
                </div>
             </div>
             </li>
         </c:forEach>
     </ul>
-    <button id="more_btn">더보기</button>
+    <button id="more_btn" style="background-color: #008CBA; /* Blue */
+									border: none;
+									color: white;
+									padding: 10px 20px;
+									text-align: center;
+									text-decoration: none;
+									display: inline-block;
+									font-size: 16px;
+									margin: 4px 2px;
+									cursor: pointer;
+									border-radius: 5px;
+									box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">더보기</button>
 </div>
 
 </div>
@@ -556,8 +594,8 @@ $(document).ready(function() {
         type: 'POST',
         url: 'contentview',
         data: {
-          'reviewno': reviewno,
-          'reviewlike': reviewlike ? +1 : 0
+	        'reviewno': reviewno,
+	        'reviewlike': reviewlike ? +1 : 0
         }
       });
       location.reload(); // 현재 페이지 새로고침

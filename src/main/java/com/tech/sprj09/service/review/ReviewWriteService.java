@@ -39,7 +39,7 @@ public class ReviewWriteService implements BServiceInter{
 		
 		//String path=uploadPath+attachPath;
 		
-		String path="C:\\2023spring\\springwork1\\PartnersProject\\src\\main\\webapp\\resources\\reviewupload";
+		String path="C:\\2022spring\\springwork1\\partnersproject\\src\\main\\webapp\\resources\\reviewupload";
 		
 		MultipartRequest req=null;
 		try {

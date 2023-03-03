@@ -150,10 +150,10 @@
 		            map: map,
 		            position: coords
 		        });
-		        marker.setMap(map); //추가한 코드
+		        marker.setMap(map);
 		        
 		     	// LatLngBounds 객체에 좌표를 추가합니다
-		        bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 coords이다.
+		        bounds.extend(coords); //현재 코드에서 좌표정보는 point[i]가 아닌 coords이다.
 		
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new kakao.maps.InfoWindow({
@@ -169,7 +169,7 @@
 		
 	});
     
-	function setBounds() { //추가한 함수
+	function setBounds() {
 	    // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
 	    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
 	    map.setBounds(bounds);
