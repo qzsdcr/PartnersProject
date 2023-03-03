@@ -49,10 +49,6 @@ function selectAll(selectAll)  {
 	  })
 	}
 
-
-
-</script>
-	<script>
   $(document).ready(function(){
     var visibleCount = 10; // 초기에 보여지는 게시물 수
     var incrementCount = 10; // 한번에 추가되는 게시물 수
@@ -70,29 +66,17 @@ function selectAll(selectAll)  {
     });
   });
 </script>
-	<script>
-$(document).ready(function() {
-  var numToShow = 10; // 보여줄 리뷰 수
-  var numVisible = 10; // 현재 보여지고 있는 리뷰 수
-  var numRows = $('.review-list tr').length; // 총 리뷰 수
 
-  // 더보기 버튼 클릭 시
-  $('#loadMoreButton').click(function() {
-    numVisible += numToShow;
-    $('.review-list tr').slice(numVisible, numVisible + numToShow).show();
-    // 모든 리뷰를 로드한 경우 더보기 버튼 숨기기
-    if (numVisible >= numRows) {
-      $('.load-more-row').hide();
-    }
-  });
-
-  // 초기에는 numToShow 만큼의 리뷰만 보여주기
-  $('.review-list tr').slice(numToShow).hide();
-});
-</script>
 <style>
 button{
 border: 0; outline: 0; background-color: white;
+}
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+@import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+body{
+font-famliy:'NanumSquare',san-serif;
+font-size:17px;
+line-height:1.5;
 }
 </style>
 	<!-- Content Wrapper -->

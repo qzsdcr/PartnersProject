@@ -85,8 +85,10 @@
 					<c:out value="${list.sum}"/>,
 					
 					</c:forEach> ],
-					backgroundColor : [ 'rgb(226, 238, 41)',
-							'rgb(41, 226, 238)', 'rgb(41, 128, 238)' ],
+					backgroundColor : [ 
+							'RGB(226, 32, 36)',
+							'RGB(255, 237, 39)', 
+							'RGB(79, 173, 59)' ],
 					hoverOffset : 4
 				} ]
 			},
@@ -118,14 +120,14 @@
 					</c:forEach> 
 					],
 					backgroundColor : [ 
-						'rgba(41, 238, 151,1.0)',
-						'rgba(41, 238, 53, 0.8)', 
-						'rgba(127, 238, 41, 0.6)'
+						'RGB(14, 174, 168)',
+						'RGB(53, 184, 231)', 
+						'RGB(0, 119, 186)'
 						 ],
 					borderColor : [
-						'rgba(41, 238, 151,1.0)',
-						'rgba(41, 238, 53, 0.8)', 
-						'rgba(127, 238, 41, 0.6)' ],
+						'RGB(94, 70, 149)',
+						'RGB(140, 71, 147)', 
+						'RGB(189, 33, 109)' ],
 					borderWidth : 1,
 					hoverBorderWidth : 1
 
@@ -143,12 +145,7 @@
 		            data: [2, 1, -4, 6, 2, 3, 4] ,
 		            backgroundColor : [
 						'rgba(41, 238, 151,1.0)',
-					/* 	'rgba(41, 238, 53, 0.8)', 
-						'rgba(150, 200, 99, 0.6)', 
-						'rgba(180, 200, 88, 0.6)', 
-						'rgba(200, 200, 77, 0.6)', 
-						'rgba(220, 200, 66, 0.6)', 
-						'rgba(240, 200, 55, 0.6)',  */
+				
 						],
 					borderWidth : 1,
 					hoverBorderWidth : 1

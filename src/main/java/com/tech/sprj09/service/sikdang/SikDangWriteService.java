@@ -42,7 +42,7 @@ public class SikDangWriteService implements BServiceInter {
 			 if (-1 < request.getContentType().indexOf("multipart/form-data")) {
 			
 			req=new MultipartRequest(request, path, 1024*1024*20, "utf-8",
-					new DefaultFileRenamePolicy());//r같은 파일명을 정책대로 리네임 하겠다
+					new DefaultFileRenamePolicy());//같은 파일명을 정책대로 리네임 하겠다
 			    }
 			    
 	

@@ -18,10 +18,10 @@ public class ReviewDto extends MemberDto{
 	private int reviewlike; //도움이 돼요
 	private Timestamp reviewdate; //작성된 날짜
 	private int spoon; //별점
+	private int avgspoon; //별점
 
 	private int singo; //신고
 	private String reviewfile; //리뷰 작성시 첨부파일(이미지)
-	
 	private String rememid; //리뷰 작성 후 memid 두글자 이후 * 처리
 	
 	
@@ -32,7 +32,7 @@ public class ReviewDto extends MemberDto{
 
 	public ReviewDto(int reviewno, int memno, int sikno, String reviewtitle, String reviewcontent, int reviewlike,
 
-			Timestamp reviewdate, int spoon,int gsikno, int singo, String reviewfile,String rememid) {
+			Timestamp reviewdate, int spoon,int avgspoon,int gsikno, int singo, String reviewfile,String rememid) {
 
 
 
@@ -44,6 +44,7 @@ public class ReviewDto extends MemberDto{
 		this.reviewlike = reviewlike;
 		this.reviewdate = reviewdate;
 		this.spoon = spoon;
+		this.avgspoon = avgspoon;
 		this.singo = singo;
 		this.reviewfile = reviewfile;
 	}

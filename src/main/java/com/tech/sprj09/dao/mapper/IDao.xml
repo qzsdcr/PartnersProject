@@ -106,6 +106,10 @@
 		ORDER BY R.REVIEWDATE DESC
     </select>
     
+    <select id="spoon">
+    SELECT ROUND(AVG(spoon),1) AVGSPOON,SIKNO  FROM REVIEW GROUP BY SIKNO
+    </select>
+    
     <!-- 식당별 리뷰 글 갯수 -->
     <select id="reviewTotCount" resultType="Integer">
     	SELECT COUNT(*) FROM REVIEW WHERE SIKNO=#{param1, jdbcType=VARCHAR}

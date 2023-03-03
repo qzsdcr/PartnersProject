@@ -1,5 +1,6 @@
 package com.tech.sprj09.service;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.tech.sprj09.dao.IDao;
+import com.tech.sprj09.dto.ReviewDto;
 import com.tech.sprj09.vopage.SearchVO;
 
 @Service
@@ -43,7 +45,6 @@ public class ListService implements BServiceInter {
 		/*
 		 * String sikloka=""; String sikcontent="";
 		 */
-
 		String sikloca = "";
 		String sikname = "";
 
@@ -128,7 +129,8 @@ public class ListService implements BServiceInter {
 			model.addAttribute("pklist", dao.pklist(rowStart, rowEnd, searchKeyword, "2", com));
 
 		}
-
+		
+		
 		model.addAttribute("totRowcnt", total);
 		model.addAttribute("searchVo", searchVO);
 

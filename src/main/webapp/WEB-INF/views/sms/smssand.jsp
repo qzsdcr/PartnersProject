@@ -24,21 +24,79 @@
 
 <title>Insert title here</title>
 <style>
-		.main-wrapper {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-		}
+.main-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
 
-		.left-section,
-		.right-section {
-			width: 48%;
-			box-sizing: border-box;
-			padding: 20px;
-			border: 1px solid #ccc;
-			margin-bottom: 20px;
-		}
-	</style>
+.left-section, .right-section {
+	width: 48%;
+	box-sizing: border-box;
+	padding: 20px;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+
+form {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+input[type="text"] {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+input[type="text"], textarea {
+  vertical-align: middle;
+}
+
+textarea {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 300px;
+  height: 300px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+  margin-left: 20px;
+}
+
+</style>
 </head>
 <!-- CSS -->
 <link rel="stylesheet" href="resources/assets/css/styles.css">
@@ -100,7 +158,7 @@ function fillForm(mempnum) {
 
 	<main class="main-wrapper" style="text-align: center !important;">
 		<div class="left-section">
-			
+
 			<h1>문자 전송 페이지</h1>
 			<form action="smssand" method="post">
 				<div class="search">
@@ -114,35 +172,56 @@ function fillForm(mempnum) {
 
 
 
-  
+
 			전체 회원숫자 : ${mlist.size() }
-			<table border="1" style="margin-left: 25%" >
-				<tr>
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">회원 관리</h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<tr>
 
-					<td>회원 ID</td>
-					<td>회원 이름</td>
-					<td>회원 연락처</td>
-				</tr>
-				<c:forEach items="${mlist }" var="dto">
-					<tr>
+								<td>회원 ID</td>
+								<td>회원 이름</td>
+								<td>회원 연락처</td>
+							</tr>
+							<c:forEach items="${mlist }" var="dto">
+								<tr>
 
-						<td>${dto.memid }</td>
-						<td>${dto.memname }</td>
-						<td><a href="#" onclick="fillForm('${dto.mempnum}')">${dto.mempnum}</a></td>
+									<td>${dto.memid }</td>
+									<td>${dto.memname }</td>
+									<td><a href="#" onclick="fillForm('${dto.mempnum}')">${dto.mempnum}</a></td>
 
-					</tr>
-				</c:forEach>
-			</table>
-		
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="right-section">
 
-			<h1>문자 메시지</h1>
-		
 
-				<form action="/partners/send-one">
-					<table border="1" style="margin-left: 35%">
+			<h1>문자 메시지</h1>
+			<form action="/partners/send-one">
+				<label for="recipient">수신자:</label> 
+				<input type="text" name="mempnum" value="보내는 번호" />
+				<br>
+				<br> 
+				<label for="smstext">메시지:</label>
+				<textarea id="smstext" name="smstext">문자 내용.</textarea>
+				<br>
+				<br>
+
+				<button type="submit">보내기</button>
+			</form>
+
+
+			<!-- 	<table border="1" style="margin-left: 35%">
 						<tr>
 							<td>보내는 번호</td>
 							<td><input type="text" name="mempnum" value="보내는 번호" /></td>
@@ -155,10 +234,10 @@ function fillForm(mempnum) {
 					</table>
 						<input type="submit" value="전송" />
 
-				</form>
+				</form> -->
 
 
-				sms 발송을합니다. <br /> 
+		
 		</div>
 	</main>
 

@@ -14,13 +14,12 @@ import com.tech.sprj09.service.admin.MemberDeleteService;
 import com.tech.sprj09.service.admin.MemberListService;
 import com.tech.sprj09.service.admin.MemberModifyService;
 import com.tech.sprj09.service.admin.MemberViewService;
-import com.tech.sprj09.service.review.ReviewListService;
 import com.tech.sprj09.service.sikdang.SListService;
+import com.tech.sprj09.service.sikdang.SikDangWriteService;
 import com.tech.sprj09.service.sikdang.SikDeDeleteService;
 import com.tech.sprj09.service.sikdang.SikDeModifyService;
 import com.tech.sprj09.service.sikdang.SikDeMultiDeleteService;
 import com.tech.sprj09.service.sikdang.SikDeViewService;
-import com.tech.sprj09.service.sikdang.SikDangWriteService;
 import com.tech.sprj09.vopage.admin.AdminSearchVO;
 
 
@@ -76,9 +75,6 @@ public class AdminController {
 		
 		model.addAttribute("request", request);
 		model.addAttribute("adminsearchVO", adminsearchVO);
-
-		bServiceInter = new ReviewListService(sqlSession);	
-		bServiceInter.execute(model);
 
 		bServiceInter1 = new SListService(sqlSession);	
 		bServiceInter1.execute(model);

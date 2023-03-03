@@ -176,6 +176,9 @@ public interface IDao {
 	public void incrementTotalVisitorCount();
 
 	public void deleteMember(String memid);
+	
+	//스푼받기
+	
 
 
 	
