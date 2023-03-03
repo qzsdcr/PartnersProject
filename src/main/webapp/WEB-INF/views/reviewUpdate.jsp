@@ -40,6 +40,12 @@
   -webkit-text-fill-color: #fff58c;
 }
 
+#image-preview img {
+  max-height: 300px;
+  width: 30%;
+  height: auto;
+}
+
 </style>
 
 <body>
@@ -73,7 +79,7 @@
 	
 	<div class="form-group">
 		<label for="review">리뷰</label>
-		<textarea class="form-control" rows="8" id="reviewTxt" name="reviewcontent" style="word-break:break-all;width:100%;text-align:center;">${review.reviewcontent }</textarea>
+		<textarea class="form-control" rows="8" id="reviewTxt" name="reviewcontent" style="word-break:break-all;width:50%;">${review.reviewcontent }</textarea>
 	</div>
 	<div class="form-group">
 		<label for="file">파일첨부</label>
@@ -82,7 +88,7 @@
         	<img src="resources/reviewupload/${review.reviewfile}" alt="" />
     	</div>
 	</div>
-	<div class="padding-top-20" style="float: right">
+	<div class="padding-top-20">
 		<input type="submit" value="수정" />
 	</div>
 </form>

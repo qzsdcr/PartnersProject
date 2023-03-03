@@ -90,6 +90,7 @@
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
 	
+	//배열에 식당이름, 식당주소 담기
 	var positions = [
 		<c:forEach items="${gllist }" var="gulo">
     	{
@@ -112,7 +113,7 @@
     ]; */
     
  	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-    var bounds = new kakao.maps.LatLngBounds(); //추가한 코드
+    var bounds = new kakao.maps.LatLngBounds();
 	
 	positions.forEach(function (position) {	
 		
@@ -129,10 +130,10 @@
 		            map: map,
 		            position: coords
 		        });
-		        marker.setMap(map); //추가한 코드
+		        marker.setMap(map);
 		        
 		     	// LatLngBounds 객체에 좌표를 추가합니다
-		        bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 coords이다.
+		        bounds.extend(coords); //현재 코드에서 좌표정보는 point[i]가 아닌 coords이다.
 		
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new kakao.maps.InfoWindow({
@@ -148,7 +149,7 @@
 		
 	});
     
-	function setBounds() { //추가한 함수
+	function setBounds() {
 	    // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
 	    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
 	    map.setBounds(bounds);
@@ -172,7 +173,7 @@
         	<div id="m1" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
         	<div class="movie-image"> 
 	          <span class="play"><span class="name">파트너스</span></span> 
-	          <a href="contentview?sikno=${dto.sikno }"><img src="resources/upload/${dto.filesrc }" alt="" /></a> 
+	          <a href="contentview?sikno=${dto.sikno }"><img src="resources/sikupload/${dto.filesrc }" alt="" /></a> 
 	        </div>
 	          
 	          <div class="rating">

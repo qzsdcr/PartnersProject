@@ -144,7 +144,7 @@ public class MainController {
 
 //	리뷰 글쓰기
 	@RequestMapping("/reviewWrite")
-	public String review(HttpServletRequest request, Model model) {
+	public String reviewWrite(HttpServletRequest request, Model model) {
 		System.out.println("========reviewWrite=======");
 				
 		model.addAttribute("request",request);
@@ -156,7 +156,7 @@ public class MainController {
 	}
 //	리뷰 수정폼으로
 	@RequestMapping("/reviewUpdate")
-	public String reviewupdate(HttpServletRequest request, Model model) {
+	public String reviewUpdate(HttpServletRequest request, Model model) {
 		System.out.println("=======reviewUpdate=======");
 
 		model.addAttribute("request",request);

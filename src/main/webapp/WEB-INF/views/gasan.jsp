@@ -120,7 +120,7 @@
     ]; */
     
  	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-    var bounds = new kakao.maps.LatLngBounds(); //추가한 코드
+    var bounds = new kakao.maps.LatLngBounds();
 	
 	positions.forEach(function (position) {	
 		
