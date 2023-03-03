@@ -43,6 +43,25 @@
 		}
 
 	}
+
+	$(document).ready(function() {
+		$.ajax({
+			url : "./VisitCount",
+			type : "GET",
+			dataType : "json",
+			success : function(data) {
+				// 성공적으로 데이터를 받았을 때 수행할 코드
+				var todayCount = data.todayVisitorCount; //오늘 방문자
+				var totalCount = data.totalVisitorCount; //총 방문자
+				$("#today-count").text(todayCount);
+				$("#total-count").text(totalCount);
+			},
+			error : function(xhr, status, error) {
+				// 오류 발생시 수행할 코드
+				console.log("Error : " + error);
+			}
+		});
+	});
 </script>
 
 
@@ -56,7 +75,13 @@
 			<h1 id="logo">
 				<a href="list">식신</a>
 			</h1>
+			<!-- 방문자 수 -->
+
 			<div class="social">
+				오늘 방문자 수: <span id="today-count"></span><br /> 총 방문자 수: <span
+					id="total-count"></span><br /> ID 권한 : ${sessionScope.loginCheck}
+				<br />
+
 				<!-- <a class="social" href="login"><span>로그인</span></a> -->
 				<c:if test="${empty loginCheck}">
 					<a href="login"><span>로그인</span></a>
@@ -159,18 +184,16 @@
 
 									<div class="rating ratingCard"
 										onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										
-											<p>${dto.sikname }</p> 
-											<span class="average-spoon-value">
-												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
-													pattern="0.0" />
-											</span> 
-											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
-												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
-												type="range" value="1" step="1" min="0" max="10">
-											</span>
 
-											<p>${dto.sikcontent }</p> 
+										<p>${dto.sikname }</p>
+										<span class="average-spoon-value"> <fmt:formatNumber
+												type="number" value="${dto.avg_spoon }" pattern="0.0" />
+										</span> <span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+											style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+											type="range" value="1" step="1" min="0" max="10">
+										</span>
+
+										<p>${dto.sikcontent }</p>
 									</div>
 
 								</div>
@@ -211,19 +234,17 @@
 
 									<div class="rating ratingCard"
 										onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										
-											<p>${dto.sikname }</p> 
-											<span class="average-spoon-value">
-												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
-													pattern="0.0" />
-											</span> 
-											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
-												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
-												type="range" value="1" step="1" min="0" max="10">
-											</span>
-										
+
+										<p>${dto.sikname }</p>
+										<span class="average-spoon-value"> <fmt:formatNumber
+												type="number" value="${dto.avg_spoon }" pattern="0.0" />
+										</span> <span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+											style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+											type="range" value="1" step="1" min="0" max="10">
+										</span>
+
 										<p>${dto.sikcontent }</p>
-										
+
 									</div>
 
 								</div>
@@ -264,18 +285,16 @@
 
 									<div class="rating ratingCard"
 										onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										
-											<p>${dto.sikname }</p> 
-											<span class="average-spoon-value">
-												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
-													pattern="0.0" />
-											</span> 
-											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
-												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
-												type="range" value="1" step="1" min="0" max="10">
-											</span>
+
+										<p>${dto.sikname }</p>
+										<span class="average-spoon-value"> <fmt:formatNumber
+												type="number" value="${dto.avg_spoon }" pattern="0.0" />
+										</span> <span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+											style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+											type="range" value="1" step="1" min="0" max="10">
+										</span>
 										<p>${dto.sikcontent }</p>
-										
+
 									</div>
 
 								</div>
@@ -316,18 +335,16 @@
 
 									<div class="rating ratingCard"
 										onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										
-											<p>${dto.sikname }</p> 
-											<span class="average-spoon-value">
-												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
-													pattern="0.0" />
-											</span> 
-											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
-												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
-												type="range" value="1" step="1" min="0" max="10">
-											</span>
+
+										<p>${dto.sikname }</p>
+										<span class="average-spoon-value"> <fmt:formatNumber
+												type="number" value="${dto.avg_spoon }" pattern="0.0" />
+										</span> <span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+											style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+											type="range" value="1" step="1" min="0" max="10">
+										</span>
 										<p>${dto.sikcontent }</p>
-										
+
 									</div>
 
 								</div>
@@ -367,18 +384,16 @@
 
 								<div class="rating ratingCard"
 									onclick="location.href ='contentview?sikno=${dto.sikno }'">
-									
-										<p>${dto.sikname }</p> 
-											<span class="average-spoon-value">
-												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
-													pattern="0.0" />
-											</span> 
-											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
-												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
-												type="range" value="1" step="1" min="0" max="10">
-											</span>
+
+									<p>${dto.sikname }</p>
+									<span class="average-spoon-value"> <fmt:formatNumber
+											type="number" value="${dto.avg_spoon }" pattern="0.0" />
+									</span> <span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+										style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+										type="range" value="1" step="1" min="0" max="10">
+									</span>
 									<p>${dto.sikcontent }</p>
-									
+
 								</div>
 
 							</div>

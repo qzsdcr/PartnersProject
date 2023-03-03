@@ -99,7 +99,7 @@ public class LoginController {
 				System.out.println("memno : "+memno);
 				System.out.println("memid : "+memid);
 				System.out.println("loginCheck : "+loginCheck);
-				return "home";
+				return "redirect:list";
 			}else {
 			System.out.println("----------암호화 재설정 후, 로그인 실패----------");
 			return "login";
@@ -114,7 +114,7 @@ public class LoginController {
 			System.out.println("memno : "+memno);
 			System.out.println("memid : "+memid);
 			System.out.println("loginCheck : "+loginCheck);
-			return "home";
+			return "redirect:list";
 		} else {
 			System.out.println("----------비밀번호가 틀렸습니다----------");
 			return "login";
@@ -131,7 +131,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		session.invalidate();
-		return "home";
+		return "redirect:list";
 
 	}
 	
