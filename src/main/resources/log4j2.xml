@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<properties>
+		<property name="name">partners</property>
+		<property name="pattern">[%5p] [%d{yyyy-MM-dd HH:mm:ss}] (%F:%L) -> %m%n</property>
+	</properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="../logs/${name}.log" filePattern="../logs/$${date:yyyy}$${date:MM}$${date:dd}/${name}_%d{yyyyMMdd}.log">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Root>
+		<Logger name="jdbc.sqlonly" level="INFO" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="jdbc.sqltiming" level="OFF" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="jdbc.audit" level="OFF" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="jdbc.resultset" level="OFF" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<Logger name="jdbc.resultsettable" level="INFO" additivity="false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+	</Loggers>
+</Configuration>

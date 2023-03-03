@@ -7,17 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+-->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
- <script 
+<!-- <script 
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
+	 -->
 
 <link rel="stylesheet" href="resources/css/styles2.css" type="text/css"
 	media="all" />
+
+
 <script type="text/javascript" src="resources/js/jquery-3.6.3.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery-func.js"></script>
 <script type="text/javascript">
@@ -43,6 +45,9 @@
 	}
 </script>
 
+
+
+
 </head>
 <body>
 	<!-- START PAGE SOURCE -->
@@ -54,23 +59,27 @@
 			<div class="social">
 				<!-- <a class="social" href="login"><span>로그인</span></a> -->
 				<c:if test="${empty loginCheck}">
-  					<a href="login"><span>로그인</span></a>
- 					<a href="joinform1"><span>회원가입</span></a>
+					<a href="login"><span>로그인</span></a>
+					<a href="joinform1"><span>회원가입</span></a>
 				</c:if>
 				<c:if test="${loginCheck eq '회원' || loginCheck eq '식당'}">
-					<p><span>${memid }님, 환영합니다!</span></p>
+					<p>
+						<span>${memid }님, 환영합니다!</span>
+					</p>
 					<a href="chat"><span>chat</span></a>
 					<a href="userPage"><span>userPage</span></a>
 					<a href="logout"><span>로그아웃</span></a>
 				</c:if>
 				<c:if test="${loginCheck eq '관리자'}">
-					 <p><span>${memid }님, 환영합니다!</span></p>
-					 
-					 <a href="admin"><span>admin list</span></a>
-					 <a href="chat"><span>chat</span></a>
-					 <a href="logout"><span>로그아웃</span></a>
-					 <a href="userPage"><span>userPage</span></a>
-</c:if>
+					<p>
+						<span>${memid }님, 환영합니다!</span>
+					</p>
+
+					<a href="admin"><span>admin list</span></a>
+					<a href="chat"><span>chat</span></a>
+					<a href="logout"><span>로그아웃</span></a>
+					<a href="userPage"><span>userPage</span></a>
+				</c:if>
 			</div>
 			<div id="navigation">
 				<ul>
@@ -114,8 +123,8 @@
 						<input type="text" name="sk" value="${resk }" id="search-field"
 							class="blink search-field" placeholder="지역 및 식당이름"
 							onfocus="this.placeholder=''"
-							onblur="this.placeholder='지역 및 식당이름'" /> 
-						<input type="submit" value="GO!" class="search-button" />
+							onblur="this.placeholder='지역 및 식당이름'" /> <input type="submit"
+							value="GO!" class="search-button" />
 					</form>
 				</div>
 			</div>
@@ -147,33 +156,36 @@
 										<span class="play"><span class="name">파트너스</span></span> <img
 											src="resources/upload/${dto.filesrc }" alt="" />
 									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
-										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
+
+									<div class="rating ratingCard"
+										onclick="location.href ='contentview?sikno=${dto.sikno }'">
+										
+											<p>${dto.sikname }</p> 
+											<span class="average-spoon-value">
+												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
+													pattern="0.0" />
+											</span> 
+											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+												type="range" value="1" step="1" min="0" max="10">
+											</span>
+
+											<p>${dto.sikcontent }</p> 
 									</div>
-									
+
 								</div>
 							</div>
 							<c:set var="gs" value="${gs+1 }" />
 
 						</c:forEach>
 						<c:if test="${gs >=13 }">
-							<div class="morebtn" >
+							<div class="morebtn">
 								<input type="button" name="m1_moreBtn"
-									onclick="showPageMore('m1');" value="더보기" >
+									onclick="showPageMore('m1');" value="더보기">
 							</div>
 						</c:if>
 					</div>
 					<div class="cl">&nbsp;</div>
-
-
 
 				</div>
 
@@ -196,18 +208,24 @@
 										<span class="play"><span class="name">파트너스</span></span> <img
 											src="resources/upload/${dto.filesrc }" alt="" />
 									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
+
+									<div class="rating ratingCard"
+										onclick="location.href ='contentview?sikno=${dto.sikno }'">
+										
+											<p>${dto.sikname }</p> 
+											<span class="average-spoon-value">
+												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
+													pattern="0.0" />
+											</span> 
+											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+												type="range" value="1" step="1" min="0" max="10">
+											</span>
+										
 										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
+										
 									</div>
-									
+
 								</div>
 							</div>
 							<c:set var="gl" value="${gl+1 }" />
@@ -216,12 +234,12 @@
 						<c:if test="${gl >=13 }">
 							<div class="morebtn">
 								<input type="button" name="m2_moreBtn"
-									onclick="showPageMore('m2');" value="더보기" >
+									onclick="showPageMore('m2');" value="더보기">
 							</div>
 						</c:if>
 					</div>
 					<div class="cl">&nbsp;</div>
-					<%--         <c:forEach begin="${searchVo.pageStart }" end="${searchVo.pageEnd }" var="i"/> --%>
+
 				</div>
 
 				<div class="box">
@@ -243,18 +261,23 @@
 										<span class="play"><span class="name">파트너스</span></span> <img
 											src="resources/upload/${dto.filesrc }" alt="" />
 									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
+
+									<div class="rating ratingCard"
+										onclick="location.href ='contentview?sikno=${dto.sikno }'">
+										
+											<p>${dto.sikname }</p> 
+											<span class="average-spoon-value">
+												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
+													pattern="0.0" />
+											</span> 
+											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+												type="range" value="1" step="1" min="0" max="10">
+											</span>
 										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
+										
 									</div>
-									
+
 								</div>
 							</div>
 							<c:set var="ye" value="${ye+1 }" />
@@ -264,7 +287,7 @@
 							<!-- 이런식으로 하면 돼 할 수 있겠음? -->
 							<div class="morebtn">
 								<input type="button" name="m3_moreBtn"
-									onclick="showPageMore('m3');" value="더보기" >
+									onclick="showPageMore('m3');" value="더보기">
 							</div>
 						</c:if>
 					</div>
@@ -290,18 +313,23 @@
 										<span class="play"><span class="name">파트너스</span></span> <img
 											src="resources/upload/${dto.filesrc }" alt="" />
 									</div>
-									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
+
+									<div class="rating ratingCard"
+										onclick="location.href ='contentview?sikno=${dto.sikno }'">
+										
+											<p>${dto.sikname }</p> 
+											<span class="average-spoon-value">
+												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
+													pattern="0.0" />
+											</span> 
+											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+												type="range" value="1" step="1" min="0" max="10">
+											</span>
 										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
+										
 									</div>
-									
+
 								</div>
 							</div>
 							<c:set var="gn" value="${gn+1 }" />
@@ -310,7 +338,7 @@
 						<c:if test="${gn >=13 }">
 							<div class="morebtn">
 								<input type="button" name="m4_moreBtn"
-									onclick="showPageMore('m4');" value="더보기" >
+									onclick="showPageMore('m4');" value="더보기">
 							</div>
 						</c:if>
 					</div>
@@ -326,41 +354,46 @@
 					</div>
 					<div id="m5"></div>
 					<c:forEach items="${pklist }" var="dto" varStatus="status">
-							<fmt:parseNumber var="pkGroupNum" value="${(pk+5)/6}"
-								integerOnly="true" />
-							<div class="cardBox">
-								<div class="${pk%6 eq 0 ? 'movie last' : 'movie'} card"
-									style="${pk >= 13 ? 'display:none;' : ''}"
-									name='m5_${pkGroupNum }'>
-									<div class="movie-image imageCard">
-										<span class="play"><span class="name">파트너스</span></span> <img
-											src="resources/upload/${dto.filesrc }" alt="" />
-									</div>
+						<fmt:parseNumber var="pkGroupNum" value="${(pk+5)/6}"
+							integerOnly="true" />
+						<div class="cardBox">
+							<div class="${pk%6 eq 0 ? 'movie last' : 'movie'} card"
+								style="${pk >= 13 ? 'display:none;' : ''}"
+								name='m5_${pkGroupNum }'>
+								<div class="movie-image imageCard">
+									<span class="play"><span class="name">파트너스</span></span> <img
+										src="resources/upload/${dto.filesrc }" alt="" />
+								</div>
+
+								<div class="rating ratingCard"
+									onclick="location.href ='contentview?sikno=${dto.sikno }'">
 									
-									<div class="rating ratingCard" onclick="location.href ='contentview?sikno=${dto.sikno }'">
-										<a href="contentview?sikno=${dto.sikno }">
-										<p>${dto.sikloca }</p></a>
-										<!-- <div class="stars">
-											<div class="stars-in"></div>
-										</div> -->
-										<p>${dto.sikname }</p>
-										<p>${dto.sikcontent }</p>
-										<span class="comments"> ${dto.sikhit }</span>
-									</div>
+										<p>${dto.sikname }</p> 
+											<span class="average-spoon-value">
+												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
+													pattern="0.0" />
+											</span> 
+											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+												type="range" value="1" step="1" min="0" max="10">
+											</span>
+									<p>${dto.sikcontent }</p>
 									
 								</div>
-							</div>
-							<c:set var="pk" value="${pk+1 }" />
 
-						</c:forEach>
+							</div>
+						</div>
+						<c:set var="pk" value="${pk+1 }" />
+
+					</c:forEach>
 					<c:if test="${pk >=13 }">
 						<div class="morebtn">
 							<input type="button" name="m5_moreBtn"
-								onclick="showPageMore('m5');" value="더보기"  >
+								onclick="showPageMore('m5');" value="더보기">
 						</div>
 					</c:if>
 					<div class="cl">&nbsp;</div>
-					
+
 				</div>
 			</div>
 		</div>

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.gson.Gson;
 import com.tech.sprj09.service.BServiceInter;
 import com.tech.sprj09.service.ContentViewService;
 import com.tech.sprj09.service.ListService;
@@ -25,8 +26,12 @@ public class MainController {
 	BServiceInter bServiceInter;
 	BServiceInter bServiceInter1;
 	
+	
 	@Autowired
 	private SqlSession sqlSession;
+	
+	
+	ReviewListService reviewListService;
 	
 //	목록표현
 	@RequestMapping("/list")
@@ -38,6 +43,8 @@ public class MainController {
 		
 		bServiceInter=new ListService(sqlSession);
 		bServiceInter.execute(model);
+		
+		
 		
 		return "list";
 	}	
@@ -66,6 +73,8 @@ public class MainController {
 		
 		bServiceInter=new ListService(sqlSession);
 		bServiceInter.execute(model);
+
+		
 		
 		return "gasan";
 	}
@@ -79,7 +88,8 @@ public class MainController {
 		model.addAttribute("searchVO",searchVO);
 
 		bServiceInter=new ListService(sqlSession);
-		bServiceInter.execute(model);
+		bServiceInter.execute(model);	
+		
 		
 		return "gulo";
 	}

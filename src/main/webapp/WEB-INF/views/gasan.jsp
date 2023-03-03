@@ -21,14 +21,36 @@
 			<h1 id="logo">
 				<a href="list">식신</a>
 			</h1>
-			<div>
-				<a class="social" href="login"><span>로그인</span></a>
+			<div class="social">
+				<!-- <a class="social" href="login"><span>로그인</span></a> -->
+				<c:if test="${empty loginCheck}">
+					<a href="login"><span>로그인</span></a>
+					<a href="joinform1"><span>회원가입</span></a>
+				</c:if>
+				<c:if test="${loginCheck eq '회원' || loginCheck eq '식당'}">
+					<p>
+						<span>${memid }님, 환영합니다!</span>
+					</p>
+					<a href="chat"><span>chat</span></a>
+					<a href="userPage"><span>userPage</span></a>
+					<a href="logout"><span>로그아웃</span></a>
+				</c:if>
+				<c:if test="${loginCheck eq '관리자'}">
+					<p>
+						<span>${memid }님, 환영합니다!</span>
+					</p>
+
+					<a href="admin"><span>admin list</span></a>
+					<a href="chat"><span>chat</span></a>
+					<a href="logout"><span>로그아웃</span></a>
+					<a href="userPage"><span>userPage</span></a>
+				</c:if>
 			</div>
 			<div id="navigation">
 				<ul>
 					<li><a class="active" href="#">맛집찾기</a></li>
 					<li><a href="#">테마</a></li>
-					<li><a href="#">리뷰</a></li>
+					<li><a href="review">리뷰</a></li>
 
 				</ul>
 			</div>
@@ -82,96 +104,56 @@
 						style="margin: auto !important; width: 100%; height: 350px;">
 					</div>
 
-					<!-- appkey=발급받은키&libraries=services -->
 					<script type="text/javascript"
 						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=122bb8945d23b56b4408d423b4e5fd7d&libraries=services"></script>
 					<script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };  
-	
-	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
-	
-	var positions = [
-		<c:forEach items="${gslist }" var="gasan">
-    	{
-    		title: '<c:out value="${gasan.sikname }"/>',
-    		address: '<c:out value="${gasan.sikaddress }"/>'
-    	},
-		</c:forEach>
-    ];
-	
-    
-    /* var positions = [
-    	{
-   	      title: '구트아카데미',
-   	      address: '서울특별시 구로구 시흥대로 163길 33'
-   	    },
-   	    {
-   	      title: '구로디지털단지역',
-   	      address: '서울특별시 구로구 도림천로 477'
-   	    }
-    ]; */
-    
- 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-    var bounds = new kakao.maps.LatLngBounds(); //추가한 코드
-	
-	positions.forEach(function (position) {	
-		
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch(position.address, function(result, status) {
-		
-		    // 정상적으로 검색이 완료됐으면 
-		  	if (status === kakao.maps.services.Status.OK) {
-		
-		    	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords
-		        });
-		        marker.setMap(map); //추가한 코드
-		        
-		     	// LatLngBounds 객체에 좌표를 추가합니다
-		        bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 coords이다.
-		
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+position.title+'</div>'
-		        });
-		        infowindow.open(map, marker);
-		
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        //map.setCenter(coords);
-		        setBounds(); //추가한 코드
-		    } 
-		});
-		
-	});
-    
-	function setBounds() { //추가한 함수
-	    // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
-	    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
-	    map.setBounds(bounds);
-	}
-	    
-	</script>
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+          mapOption = {
+              center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+              level: 3 // 지도의 확대 레벨
+          };  
+      
+      // 지도를 생성합니다    
+      var map = new kakao.maps.Map(mapContainer, mapOption); 
+      
+      // 주소-좌표 변환 객체를 생성합니다
+      var geocoder = new kakao.maps.services.Geocoder();
+     
+      // 주소로 좌표를 검색합니다
+      //geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+    	  
+      geocoder.addressSearch('${gslits.sikaddress }', function(result, status) {
+      
+          // 정상적으로 검색이 완료됐으면 
+           if (status === kakao.maps.services.Status.OK) {
+      
+              var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      
+              // 결과값으로 받은 위치를 마커로 표시합니다
+              var marker = new kakao.maps.Marker({
+                  map: map,
+                  position: coords
+              });
+      
+              // 인포윈도우로 장소에 대한 설명을 표시합니다
+              var infowindow = new kakao.maps.InfoWindow({
+                  content: '<div style="width:150px;text-align:center;padding:6px 0;">${content_view.sikname }</div>'
+              });
+              infowindow.open(map, marker);
+      
+              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+              map.setCenter(coords);
+          } 
+      });
+ 
+      </script>
 
 				</div>
 				<div class="box">
 					<div class="head">
 						<h2>추천맛집</h2>
-						${gslist.size() }
-						<p class="text-right">
-							<a href="writeview">업체등록</a>
-						</p>
+
+						<p class="text-right">업체(${totRowcnt })</p>
 
 
 					</div>
@@ -180,72 +162,86 @@
 					<c:set var="ye" value="1" />
 					<c:set var="gn" value="1" />
 					<c:set var="pk" value="1" />
-					<c:forEach items="${gslist }" var="dto" varStatus="status">
+					<div id="m1">
+						<c:forEach items="${gslist }" var="dto" varStatus="status">
+							<fmt:parseNumber var="gsGroupNum" value="${(gs+5)/6}"
+								integerOnly="true" />
+							<div class="cardBox">
+								<div class="${gs%6 eq 0 ? 'movie last' : 'movie'} card"
+									style="${gs >= 13 ? 'display:none;' : ''}"
+									name='m1_${gsGroupNum }'>
+									<div class="movie-image imageCard">
+										<span class="play"><span class="name">파트너스</span></span> <img
+											src="resources/upload/${dto.filesrc }" alt="" />
+									</div>
 
-						<div id="m2" class="${gs%6 eq 0 ? 'movie last' : 'movie'}"
-							style="${gs >= 13 ? '' : ''}">
-							<div class="movie-image">
-								<span class="play"><span class="name">파트너스</span></span> <a
-									href="contentview?sikno=${dto.sikno }"><img
-									src="resources/upload/${dto.filesrc }" alt="" /></a>
-							</div>
-							<div class="rating">
-								<p>${dto.sikloca }</p>
-								<div class="stars">
-									<div class="stars-in"></div>
+									<div class="rating ratingCard"
+										onclick="location.href ='contentview?sikno=${dto.sikno }'">
+
+										<p>${dto.sikname }</p>
+										<span class="average-spoon-value"> <fmt:formatNumber
+												type="number" value="${dto.avg_spoon }" pattern="0.0" />
+										</span> <span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+											style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+											type="range" value="1" step="1" min="0" max="10">
+										</span>
+										<p>${dto.sikcontent }</p>
+
+									</div>
+
+
 								</div>
-								<span class="comments">12</span>
 							</div>
-						</div>
-						<c:set var="gs" value="${gs+1 }" />
+							<c:set var="gs" value="${gs+1 }" />
 
-					</c:forEach>
-					<c:if test="${gs >=13 }" />
-					<div class="cl">&nbsp;</div>
+						</c:forEach>
+						<c:if test="${gs >=13 }" />
+						<div class="cl">&nbsp;</div>
 
+						<form action="gasan" method="post" style="text-align: center;">
+							<c:if test="${searchVo.page>1 }">
+								<a href="gasan?page=1&com=가산">[처음]</a>
+								<a href="gasan?page=${searchVo.page-1 }&com=가산">[이전]</a>
+							</c:if>
+							<c:forEach begin="${searchVo.pageStart }"
+								end="${searchVo.pageEnd }" var="i">
+								<c:choose>
+									<c:when test="${i eq searchVo.page }">
+										<span style="color: red; font-weight: bold;">${i }&nbsp;</span>
+									</c:when>
+									<c:otherwise>
+										<a
+											href="gasan?page=${i }&sikloca=${sikloca }&sikcon=${sikname }&sk=${resk }&com=가산"
+											style="text-decoration: none">${i }&nbsp;</a>
+									</c:otherwise>
+								</c:choose>
 
-					<c:if test="${searchVo.page>1 }">
-						<a href="gasan?page=1&com=가산">[처음]</a>
-						<a href="gasan?page=${searchVo.page-1 }&com=가산">[이전]</a>
-					</c:if>
-					<c:forEach begin="${searchVo.pageStart }"
-						end="${searchVo.pageEnd }" var="i">
-						<c:choose>
-							<c:when test="${i eq searchVo.page }">
-								<span style="color: red; font-weight: bold;">${i }&nbsp;</span>
-							</c:when>
-							<c:otherwise>
-								<a
-									href="gasan?page=${i }&sikloca=${sikloca }&sikcon=${sikname }&sk=${resk }&com=가산"
-									style="text-decoration: none">${i }&nbsp;</a>
-							</c:otherwise>
-						</c:choose>
+							</c:forEach>
 
-					</c:forEach>
+							<c:if test="${searchVo.page<searchVo.totPage }">
+								<a href="gasan?page=${searchVo.page+1 }&com=가산">[다음]</a>
+								<a href="gasan?page=${searchVo.totPage }&com=가산">[마지막]</a>
+							</c:if>
+						</form>
 
-					<c:if test="${searchVo.page<searchVo.totPage }">
-						<a href="gasan?page=${searchVo.page+1 }&com=가산">[다음]</a>
-						<a href="gasan?page=${searchVo.totPage }&com=가산">[마지막]</a>
-					</c:if>
-					<!-- 	</form> -->
+					</div>
 
 				</div>
-
 			</div>
-		</div>
 
 
-		<div>
-			<div id="footer">
-				<p class="lf">
-					Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights
-					Reserved
-				</p>
-				<p class="rf">
-					<a href="http://all-free-download.com/free-website-templates/">Free
-						CSS Templates</a> by <a href="http://chocotemplates.com/">ChocoTemplates.com</a>
-				</p>
-				<div style="clear: both;"></div>
+			<div>
+				<div id="footer">
+					<p class="lf">
+						Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights
+						Reserved
+					</p>
+					<p class="rf">
+						<a href="http://all-free-download.com/free-website-templates/">Free
+							CSS Templates</a> by <a href="http://chocotemplates.com/">ChocoTemplates.com</a>
+					</p>
+					<div style="clear: both;"></div>
+				</div>
 			</div>
 		</div>
 	</div>
