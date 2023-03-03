@@ -164,7 +164,7 @@
                
                <!-- 소수점 둘째 자리에서 반올림 -->
                 <span class="average-spoon-value">
-                   <fmt:formatNumber type="number" value="${averageSpoon}" pattern="0.0" />
+                   <fmt:formatNumber type="number" value="${averageSpoon}" pattern="0.0" /> 
                </span>
                
                <span  class="star_mark">
@@ -176,6 +176,7 @@
                <div>식당내용 : ${content_view.sikcontent }</div>
                <%-- <div>조회수 : ${content_view.bhit }</div> --%>
                <div>주소 : ${content_view.sikaddress }</div>
+               <button type="button" onclick="location.href='/partners/calendar?sikno=${content_view.sikno}&sikname=${content_view.sikname}'">식단</button>
               </div>
               </div>
           </div>

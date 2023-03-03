@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.google.gson.Gson;
 import com.tech.sprj09.dao.IDao;
 import com.tech.sprj09.vopage.SearchVO;
 
@@ -126,6 +127,9 @@ public class ListService implements BServiceInter {
 			model.addAttribute("yelist", dao.yelist(rowStart, rowEnd, searchKeyword, "2", com));
 			model.addAttribute("gnlist", dao.gnlist(rowStart, rowEnd, searchKeyword, "2", com));
 			model.addAttribute("pklist", dao.pklist(rowStart, rowEnd, searchKeyword, "2", com));
+			
+			Gson gson = new Gson();
+			model.addAttribute("gllistJson", gson.toJson(dao.gllist(rowStart, rowEnd, searchKeyword, "2", com)));
 
 		}
 

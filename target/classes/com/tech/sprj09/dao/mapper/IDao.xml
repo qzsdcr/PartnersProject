@@ -38,53 +38,60 @@
     
 
 	
-	<select id="gslist" resultType="com.tech.sprj09.dto.SikdangDto">
-        	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
-		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
-		FROM (SELECT ROWNUM NUM, N.* FROM 
-		(SELECT * FROM SIKDANG WHERE SIKLOCA='가산' ORDER BY SIKDATE DESC) N
-		<include refid="includelist" />
-		)		
-		WHERE NUM BETWEEN #{param1} AND #{param2}
+
+    
+     <select id="gslist" resultType="com.tech.sprj09.dto.SikdangDto">
+    	SELECT T.SIKNO, T.SIKLOCA, T.SIKNAME, T.SIKCONTENT, T.SIKWRITER, 
+    	T.SIKADDRESS, T.SIKTEL, T.SIKDATE, T.SIKHIT, T.SIKOPENCLOSE, T.FILESRC,
+    	(SELECT AVG(spoon) FROM REVIEW WHERE SIKNO = T.SIKNO) AS avg_spoon 
+        FROM(SELECT ROWNUM NUM, N.*FROM(SELECT * FROM SIKDANG WHERE SIKLOCA = '가산'
+      ORDER BY SIKDATE DESC) N
+      <include refid="includelist" />
+      )
+      T WHERE T.NUM BETWEEN #{param1} AND #{param2}
     </select>
+    
 	<select id="gllist" resultType="com.tech.sprj09.dto.SikdangDto">
-        	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
-		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
-		FROM (SELECT ROWNUM NUM, N.* FROM 
-		(SELECT * FROM SIKDANG WHERE SIKLOCA='구로' ORDER BY SIKDATE DESC) N
-		<include refid="includelist" />
-		)		
-		WHERE NUM BETWEEN #{param1} AND #{param2}
+        SELECT T.SIKNO, T.SIKLOCA, T.SIKNAME, T.SIKCONTENT, T.SIKWRITER, 
+    	T.SIKADDRESS, T.SIKTEL, T.SIKDATE, T.SIKHIT, T.SIKOPENCLOSE, T.FILESRC,
+    	(SELECT AVG(spoon) FROM REVIEW WHERE SIKNO = T.SIKNO) AS avg_spoon 
+        FROM(SELECT ROWNUM NUM, N.*FROM(SELECT * FROM SIKDANG WHERE SIKLOCA = '구로'
+      ORDER BY SIKDATE DESC) N
+      <include refid="includelist" />
+      )
+      T WHERE T.NUM BETWEEN #{param1} AND #{param2}
     </select>
     
     	<select id="yelist" resultType="com.tech.sprj09.dto.SikdangDto">
-        	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
-		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
-		FROM (SELECT ROWNUM NUM, N.* FROM 
-		(SELECT * FROM SIKDANG WHERE SIKLOCA='여의도' ORDER BY SIKDATE DESC) N
-		<include refid="includelist" />
-		)		
-		WHERE NUM BETWEEN #{param1} AND #{param2}
+        SELECT T.SIKNO, T.SIKLOCA, T.SIKNAME, T.SIKCONTENT, T.SIKWRITER, 
+    	T.SIKADDRESS, T.SIKTEL, T.SIKDATE, T.SIKHIT, T.SIKOPENCLOSE, T.FILESRC,
+    	(SELECT AVG(spoon) FROM REVIEW WHERE SIKNO = T.SIKNO) AS avg_spoon 
+        FROM(SELECT ROWNUM NUM, N.*FROM(SELECT * FROM SIKDANG WHERE SIKLOCA = '여의도'
+      ORDER BY SIKDATE DESC) N
+      <include refid="includelist" />
+      )
+      T WHERE T.NUM BETWEEN #{param1} AND #{param2}
     </select>
     
-    	<select id="gnlist" resultType="com.tech.sprj09.dto.SikdangDto">
-        	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
-		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
-		FROM (SELECT ROWNUM NUM, N.* FROM 
-		(SELECT * FROM SIKDANG WHERE SIKLOCA='강남' ORDER BY SIKDATE DESC) N
-		<include refid="includelist" />
-		)		
-		WHERE NUM BETWEEN #{param1} AND #{param2}
-    </select>
-    
+     	<select id="gnlist" resultType="com.tech.sprj09.dto.SikdangDto">
+        SELECT T.SIKNO, T.SIKLOCA, T.SIKNAME, T.SIKCONTENT, T.SIKWRITER, 
+    	T.SIKADDRESS, T.SIKTEL, T.SIKDATE, T.SIKHIT, T.SIKOPENCLOSE, T.FILESRC,
+    	(SELECT AVG(spoon) FROM REVIEW WHERE SIKNO = T.SIKNO) AS avg_spoon 
+        FROM(SELECT ROWNUM NUM, N.*FROM(SELECT * FROM SIKDANG WHERE SIKLOCA = '강남'
+      ORDER BY SIKDATE DESC) N
+      <include refid="includelist" />
+      )
+      T WHERE T.NUM BETWEEN #{param1} AND #{param2}
+    </select>    
     	<select id="pklist" resultType="com.tech.sprj09.dto.SikdangDto">
-        	SELECT SIKNO,SIKLOCA,SIKNAME,SIKCONTENT,SIKWRITER,
-		SIKADDRESS,SIKTEL,SIKDATE,SIKHIT,SIKOPENCLOSE,FILESRC
-		FROM (SELECT ROWNUM NUM, N.* FROM 
-		(SELECT * FROM SIKDANG WHERE SIKLOCA='판교' ORDER BY SIKDATE DESC) N
-		<include refid="includelist" />
-		)		
-		WHERE NUM BETWEEN #{param1} AND #{param2}
+        SELECT T.SIKNO, T.SIKLOCA, T.SIKNAME, T.SIKCONTENT, T.SIKWRITER, 
+    	T.SIKADDRESS, T.SIKTEL, T.SIKDATE, T.SIKHIT, T.SIKOPENCLOSE, T.FILESRC,
+    	(SELECT AVG(spoon) FROM REVIEW WHERE SIKNO = T.SIKNO) AS avg_spoon 
+        FROM(SELECT ROWNUM NUM, N.*FROM(SELECT * FROM SIKDANG WHERE SIKLOCA = '판교'
+      ORDER BY SIKDATE DESC) N
+      <include refid="includelist" />
+      )
+      T WHERE T.NUM BETWEEN #{param1} AND #{param2}
     </select>
     
     

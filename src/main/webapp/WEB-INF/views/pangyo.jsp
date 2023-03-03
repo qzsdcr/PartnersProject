@@ -21,14 +21,36 @@
 			<h1 id="logo">
 				<a href="list">식신</a>
 			</h1>
-			<div>
-				<a class="social" href="login"><span>로그인</span></a>
+			<div class="social">
+				<!-- <a class="social" href="login"><span>로그인</span></a> -->
+				<c:if test="${empty loginCheck}">
+					<a href="login"><span>로그인</span></a>
+					<a href="joinform1"><span>회원가입</span></a>
+				</c:if>
+				<c:if test="${loginCheck eq '회원' || loginCheck eq '식당'}">
+					<p>
+						<span>${memid }님, 환영합니다!</span>
+					</p>
+					<a href="chat"><span>chat</span></a>
+					<a href="userPage"><span>userPage</span></a>
+					<a href="logout"><span>로그아웃</span></a>
+				</c:if>
+				<c:if test="${loginCheck eq '관리자'}">
+					<p>
+						<span>${memid }님, 환영합니다!</span>
+					</p>
+
+					<a href="admin"><span>admin list</span></a>
+					<a href="chat"><span>chat</span></a>
+					<a href="logout"><span>로그아웃</span></a>
+					<a href="userPage"><span>userPage</span></a>
+				</c:if>
 			</div>
 			<div id="navigation">
 				<ul>
 					<li><a class="active" href="#">맛집찾기</a></li>
 					<li><a href="#">테마</a></li>
-					<li><a href="#">리뷰</a></li>
+					<li><a href="review">리뷰</a></li>
 
 				</ul>
 			</div>
@@ -39,8 +61,8 @@
 					<li><a href="yeouido?com=여의도">여의도</a></li>
 					<li><a href="gangnam?com=강남">강남</a></li>
 					<li><a href="pangyo?com=판교">판교</a></li>
-
 				</ul>
+
 				<div id="search">
 					<form action="list" method="post">
 						<label for="search-field">SEARCH</label>
@@ -99,10 +121,10 @@
 	var geocoder = new kakao.maps.services.Geocoder();
 	
 	var positions = [
-		<c:forEach items="${pklist }" var="pangyo">
+		<c:forEach items="${gslist }" var="gasan">
     	{
-    		title: '<c:out value="${pangyo.sikname }"/>',
-    		address: '<c:out value="${pangyo.sikaddress }"/>'
+    		title: '<c:out value="${gasan.sikname }"/>',
+    		address: '<c:out value="${gasan.sikaddress }"/>'
     	},
 		</c:forEach>
     ];
@@ -169,45 +191,58 @@
 					<div class="head">
 						<h2>추천맛집</h2>
 						<p class="text-right">
-							<a href="writeview">업체등록</a>
+							업체(${totRowcnt })
 						</p>
 
 
 					</div>
+					<c:set var="gs" value="1" />
+					<c:set var="gl" value="1" />
+					<c:set var="ye" value="1" />
+					<c:set var="gn" value="1" />
+					<c:set var="pk" value="1" />
+					<div id="m1">
+						<c:forEach items="${pklist }" var="dto" varStatus="status">
+							<fmt:parseNumber var="pkGroupNum" value="${(pk+5)/6}"
+								integerOnly="true" />
+							<div class="cardBox">
+								<div class="${pk%6 eq 0 ? 'movie last' : 'movie'} card"
+									style="${pk >= 13 ? 'display:none;' : ''}"
+									name='m5_${pkGroupNum }'>
+									<div class="movie-image imageCard">
+										<span class="play"><span class="name">파트너스</span></span> <img
+											src="resources/upload/${dto.filesrc }" alt="" />
+									</div>
 
-					<c:forEach items="${pklist }" var="dto" varStatus="status">
+									<div class="rating ratingCard"
+										onclick="location.href ='contentview?sikno=${dto.sikno }'">
+										
+											<p>${dto.sikname }</p> 
+											<span class="average-spoon-value">
+												<fmt:formatNumber type="number" value="${dto.avg_spoon }"
+													pattern="0.0" />
+											</span> 
+											<span class="star_mark"> ☆☆☆☆☆ <span id="star_mark2"
+												style="width: ${dto.avg_spoon*20}%;">★★★★★</span> <input
+												type="range" value="1" step="1" min="0" max="10">
+											</span>
 
-						<input type=hidden id="sika" value="${dto.sikaddress }" />
-						<fmt:formatNumber value="${status.count}" type="number"
-							var="numberType" />
-						<div id="m1" class="${numberType%6 eq 0 ? 'movie last' : 'movie'}">
-							<div class="movie-image">
-								<span class="play"><span class="name">파트너스</span></span> <a
-									href="contentview?sikno=${dto.sikno }"><img
-									src="resources/upload/${dto.filesrc }" alt="" /></a>
-							</div>
+											<p>${dto.sikcontent }</p> 
+									</div>
 
-							<div class="rating">
-								<p id="sikn">${dto.sikloca }</p>
-								<div class="stars">
-									<div class="stars-in"></div>
 								</div>
-								<span class="comments">12</span>
 							</div>
-						</div>
+							<c:set var="pk" value="${pk+1 }" />
 
-					</c:forEach>
-					<%--    totCnt : ${totRowcnt } <br />
-현재페이지/토탈페이지 : ${searchVo.page }/${searchVo.totPage } <br /> --%>
-
-
+						</c:forEach>
+					<c:if test="${pk >=13 }" />
 					<div class="cl">&nbsp;</div>
-					<form action="gasan" method="post" style="text-align: center;">
+
+					<form action="pangyo" method="post" style="text-align: center;">
 						<c:if test="${searchVo.page>1 }">
 							<a href="pangyo?page=1&com=판교">[처음]</a>
 							<a href="pangyo?page=${searchVo.page-1 }&com=판교">[이전]</a>
 						</c:if>
-
 						<c:forEach begin="${searchVo.pageStart }"
 							end="${searchVo.pageEnd }" var="i">
 							<c:choose>
@@ -248,6 +283,7 @@
 				<div style="clear: both;"></div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<!-- END PAGE SOURCE -->
 	<div align=center>
